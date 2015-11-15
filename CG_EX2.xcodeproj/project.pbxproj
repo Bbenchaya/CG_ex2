@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59B0696E1BF8D21D00E24D65 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59B0696D1BF8D21D00E24D65 /* main.cpp */; };
 		59B069731BF8D2FE00E24D65 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069721BF8D2FE00E24D65 /* GLUT.framework */; };
 		59B069751BF8D30300E24D65 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069741BF8D30300E24D65 /* OpenGL.framework */; };
 		59B069771BF8D30D00E24D65 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069761BF8D30D00E24D65 /* Cocoa.framework */; };
+		F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DBB3671BF91D7D00B0CF52 /* main.cpp */; };
+		F0DBB36A1BF91DB900B0CF52 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F0DBB3691BF91DB900B0CF52 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,12 +28,12 @@
 
 /* Begin PBXFileReference section */
 		59B069631BF8D1D700E24D65 /* CG_EX2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CG_EX2; sourceTree = BUILT_PRODUCTS_DIR; };
-		59B0696D1BF8D21D00E24D65 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		59B069701BF8D29800E24D65 /* Vector3f.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector3f.h; sourceTree = "<group>"; };
-		59B069711BF8D2BA00E24D65 /* CG_EX2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CG_EX2; sourceTree = "<group>"; };
 		59B069721BF8D2FE00E24D65 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		59B069741BF8D30300E24D65 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		59B069761BF8D30D00E24D65 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3f.h; sourceTree = "<group>"; };
+		F0DBB3671BF91D7D00B0CF52 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F0DBB3691BF91DB900B0CF52 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +56,10 @@
 				59B069761BF8D30D00E24D65 /* Cocoa.framework */,
 				59B069741BF8D30300E24D65 /* OpenGL.framework */,
 				59B069721BF8D2FE00E24D65 /* GLUT.framework */,
-				59B0696F1BF8D22000E24D65 /* Include */,
-				59B069651BF8D1D700E24D65 /* CG_EX2 */,
+				F0DBB3641BF91D7D00B0CF52 /* include */,
+				F0DBB3661BF91D7D00B0CF52 /* source */,
 				59B069641BF8D1D700E24D65 /* Products */,
+				F0DBB3691BF91DB900B0CF52 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,21 +71,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		59B069651BF8D1D700E24D65 /* CG_EX2 */ = {
+		F0DBB3641BF91D7D00B0CF52 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				59B0696D1BF8D21D00E24D65 /* main.cpp */,
+				F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */,
 			);
-			path = CG_EX2;
+			path = include;
 			sourceTree = "<group>";
 		};
-		59B0696F1BF8D22000E24D65 /* Include */ = {
+		F0DBB3661BF91D7D00B0CF52 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				59B069711BF8D2BA00E24D65 /* CG_EX2 */,
-				59B069701BF8D29800E24D65 /* Vector3f.h */,
+				F0DBB3671BF91D7D00B0CF52 /* main.cpp */,
 			);
-			name = Include;
+			path = source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59B0696E1BF8D21D00E24D65 /* main.cpp in Sources */,
+				F0DBB36A1BF91DB900B0CF52 /* README.md in Sources */,
+				F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +263,7 @@
 				59B0696C1BF8D1D700E24D65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
