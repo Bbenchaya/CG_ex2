@@ -167,6 +167,10 @@ void readInputFile(){
     while (!feof(f)){
         fscanf(f, "%s", next_line);
         if (strncmp(next_line, "scene", 5) == 0){
+            float upVectorX, upVectorY, upVectorZ, centerX, centerY, centerZ, width, Rx, Ry;
+            float ambient[3]; // ambient[0] = R, ambient[1] = G, ambient[2] = B
+            fscanf(f, " %f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &upVectorX, &upVectorY, &upVectorZ, &centerX, &centerY, &centerZ, &width, &Rx, &Ry, ambient, ambient + 1, ambient + 2);
+            printf("upVectorX:%f,upVectorY:%f,upVectorZ:%f,centerX:%f,centerY:%f,centerZ:%f,width:%f,Rx:%f,Ry:%f,ambientR:%f,ambientG:%f,ambientB:%f\n", upVectorX, upVectorY, upVectorZ, centerX, centerY, centerZ, width, Rx, Ry, ambient[0], ambient[1], ambient[2]);
             cout << "Scene created!" << endl;
         }
         if (strcmp(next_line, "spher") == 0){
