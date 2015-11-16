@@ -33,9 +33,8 @@
 		59B069761BF8D30D00E24D65 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F0CCFBFB1BFA318B00E0BD43 /* init1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init1.txt; sourceTree = "<group>"; };
 		F0CCFBFC1BFA318B00E0BD43 /* init2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init2.txt; sourceTree = "<group>"; };
-		F0CCFBFD1BFA374900E0BD43 /* Sphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
-		F0CCFBFE1BFA375E00E0BD43 /* Plane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
+		F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sphere.hpp; sourceTree = "<group>"; };
 		F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3f.h; sourceTree = "<group>"; };
 		F0DBB3671BF91D7D00B0CF52 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F0DBB3691BF91DB900B0CF52 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -80,8 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */,
-				F0CCFBFD1BFA374900E0BD43 /* Sphere.h */,
-				F0CCFBFE1BFA375E00E0BD43 /* Plane.h */,
+				F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */,
 			);
 			path = include;
 			sourceTree = "<group>";

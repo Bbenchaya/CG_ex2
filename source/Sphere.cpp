@@ -6,7 +6,7 @@
 //  Copyright © 2015 Bbenchaya. All rights reserved.
 //
 
-#include "Sphere.h"
+#include "Sphere.hpp"
 
 Sphere::Sphere(float x, float y, float z, float radius, float *ka, float *kd, float *ks, float shine){
     this->x = x;

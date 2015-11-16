@@ -1,13 +1,13 @@
 //
-//  Sphere.h
+//  Sphere.hpp
 //  CG_EX2
 //
 //  Created by Asaf Chelouche on 16/11/15.
 //  Copyright © 2015 Bbenchaya. All rights reserved.
 //
 
-#ifndef Sphere_h
-#define Sphere_h
+#ifndef Sphere_hpp
+#define Sphere_hpp
 
 class Sphere {
     
@@ -25,4 +25,4 @@ public:
     Sphere(float x, float y, float z, float radius, float *ka, float *kd, float *ks, float shine);
 };
 
-#endif /* Sphere_h */
+#endif /* Sphere_hpp */
