@@ -178,11 +178,18 @@ void readInputFile(){
             float ka[3];
             float ks[3];
             float kd[3];
-            fscanf(f, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &x, &y, &z, &radius, ka, ka + 1, ka + 2, ks, ks + 1, ks + 2, kd, kd + 1, kd + 2, &shine);
+            fscanf(f, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &x, &y, &z, &radius, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine);
             printf("x:%f,y:%f,z:%f,radius:%f,ka0:%f,ka1:%f,ka2:%f,kd0:%f,kd1:%f,kd2:%f,ks0:%f,ks1:%f,ks2:%f,shine:%f\n", x, y, z, radius, ka[0], ka[1], ka[2], kd[0], kd[1], kd[2], ks[0], ks[1], ks[2], shine);
             cout << "Sphere created!" << endl;
         }
         if (strncmp(next_line, "plane", 5) == 0){
+            float normalX, normalY, normalZ, centerX, centerY, centerZ, width, length, shine;
+            float ka[3];
+            float ks[3];
+            float kd[3];
+            char mirror;
+            fscanf(f, " %f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f %c", &normalX, &normalY, &normalZ, &centerX, &centerY, &centerZ, &width, &length, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine, &mirror);
+            printf("normalX:%f,normalY:%f,normalZ:%f,centerX:%f,centerY:%f,centerZ:%f,width:%f,length:%f,ka0:%f,ka1:%f,ka2:%f,kd0:%f,kd1:%f,kd2:%f,ks0:%f,ks1:%f,ks2:%f,shine:%f,mirror:%c\n", normalX, normalY, normalZ, centerX, centerY, centerZ, width, length, ka[0], ka[1], ka[2], kd[0], kd[1], kd[2], ks[0], ks[1], ks[2], shine, mirror);
             cout << "Plane created!" << endl;
         }
         if (strncmp(next_line, "light", 5) == 0){
