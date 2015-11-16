@@ -91,11 +91,11 @@
 			isa = PBXGroup;
 			children = (
 				F0CCFC091BFA739500E0BD43 /* Light.hpp */,
+				F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */,
 				F0CCFC061BFA738A00E0BD43 /* Plane.hpp */,
 				F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */,
 				F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */,
 				F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */,
-				F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -103,8 +103,8 @@
 		F0DBB3661BF91D7D00B0CF52 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */,
 				F0CCFC081BFA739500E0BD43 /* Light.cpp */,
+				F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */,
 				F0CCFC051BFA738A00E0BD43 /* Plane.cpp */,
 				F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */,
 				F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */,
