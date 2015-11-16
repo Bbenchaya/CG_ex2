@@ -14,6 +14,7 @@
 		F0CCFC071BFA738A00E0BD43 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC051BFA738A00E0BD43 /* Plane.cpp */; };
 		F0CCFC0A1BFA739500E0BD43 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC081BFA739500E0BD43 /* Light.cpp */; };
 		F0CCFC0D1BFA739C00E0BD43 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */; };
+		F0CCFC101BFA757000E0BD43 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */; };
 		F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DBB3671BF91D7D00B0CF52 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -38,12 +39,14 @@
 		F0CCFBFC1BFA318B00E0BD43 /* init2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init2.txt; sourceTree = "<group>"; };
 		F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
 		F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sphere.hpp; sourceTree = "<group>"; };
-		F0CCFC051BFA738A00E0BD43 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Plane.cpp; path = ../include/Plane.cpp; sourceTree = "<group>"; };
+		F0CCFC051BFA738A00E0BD43 /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plane.cpp; sourceTree = "<group>"; };
 		F0CCFC061BFA738A00E0BD43 /* Plane.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Plane.hpp; sourceTree = "<group>"; };
-		F0CCFC081BFA739500E0BD43 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = ../include/Light.cpp; sourceTree = "<group>"; };
+		F0CCFC081BFA739500E0BD43 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
 		F0CCFC091BFA739500E0BD43 /* Light.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
-		F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = ../include/Scene.cpp; sourceTree = "<group>"; };
+		F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
+		F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
 		F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3f.h; sourceTree = "<group>"; };
 		F0DBB3671BF91D7D00B0CF52 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F0DBB3691BF91DB900B0CF52 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -87,11 +90,12 @@
 		F0DBB3641BF91D7D00B0CF52 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */,
-				F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */,
-				F0CCFC061BFA738A00E0BD43 /* Plane.hpp */,
 				F0CCFC091BFA739500E0BD43 /* Light.hpp */,
+				F0CCFC061BFA738A00E0BD43 /* Plane.hpp */,
 				F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */,
+				F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */,
+				F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */,
+				F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -99,13 +103,14 @@
 		F0DBB3661BF91D7D00B0CF52 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				F0CCFC051BFA738A00E0BD43 /* Plane.cpp */,
+				F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */,
 				F0CCFC081BFA739500E0BD43 /* Light.cpp */,
+				F0CCFC051BFA738A00E0BD43 /* Plane.cpp */,
 				F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */,
+				F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */,
+				F0DBB3671BF91D7D00B0CF52 /* main.cpp */,
 				F0CCFBFB1BFA318B00E0BD43 /* init1.txt */,
 				F0CCFBFC1BFA318B00E0BD43 /* init2.txt */,
-				F0DBB3671BF91D7D00B0CF52 /* main.cpp */,
-				F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				F0CCFC011BFA37F600E0BD43 /* Sphere.cpp in Sources */,
 				F0CCFC0A1BFA739500E0BD43 /* Light.cpp in Sources */,
 				F0CCFC0D1BFA739C00E0BD43 /* Scene.cpp in Sources */,
+				F0CCFC101BFA757000E0BD43 /* Parser.cpp in Sources */,
 				F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
