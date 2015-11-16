@@ -1,6 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
+#include <fstream>
 #include <GLUT/GLUT.h>
 #include "Vector3f.h"
+
+#define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init1.txt"
+#define MAX_LINE_LENGTH 500
+
+using namespace std;
+
 GLfloat rot;
 
 void drawSquare(Vector3f color)
@@ -146,24 +156,49 @@ void mouse(int button, int state, int x, int y)
    }
 }
 
+void readInputFile(){
+    FILE *f;
+    f = fopen(INPUT_FILE, "r");
+    if (f == NULL){
+        cout << "Error: opening input file" << endl;
+        exit(1);
+    }
+    char next_line[MAX_LINE_LENGTH] = "";
+    while (!feof(f)){
+        fscanf(f, "%s", next_line);
+        if (strncmp(next_line, "scene", 5) == 0){
+            cout << "Scene created!" << endl;
+        }
+        if (strcmp(next_line, "spher") == 0){
+            float x, y, z, radius, shine;
+            float ka[3];
+            float ks[3];
+            float kd[3];
+            fscanf(f, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &x, &y, &z, &radius, ka, ka + 1, ka + 2, ks, ks + 1, ks + 2, kd, kd + 1, kd + 2, &shine);
+            printf("x:%f,y:%f,z:%f,radius:%f,ka0:%f,ka1:%f,ka2:%f,kd0:%f,kd1:%f,kd2:%f,ks0:%f,ks1:%f,ks2:%f,shine:%f\n", x, y, z, radius, ka[0], ka[1], ka[2], kd[0], kd[1], kd[2], ks[0], ks[1], ks[2], shine);
+            cout << "Sphere created!" << endl;
+        }
+        if (strncmp(next_line, "plane", 5) == 0){
+            cout << "Plane created!" << endl;
+        }
+        if (strncmp(next_line, "light", 5) == 0){
+            cout << "Light created!" << endl;
+        }
+    }
+    fclose(f);
+}
+
 
 int main(int  argc,  char** argv) 
 {
-    //FILE *f; //file discriptor
-    //fseek(f,5,SEEK_CUR); //skip 5 character from the current position in the file
-    //fscanf(f,"%f,",&var); //put a float number into var and return 1 when succeed
-
-   glutInit (& argc, argv) ;
-   glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
-   glutInitWindowSize ( 512,512) ;
-   glutCreateWindow("Lighting") ;
-  
-   
-   init();
-   glutDisplayFunc(mydisplay);   
-
-   glutMouseFunc(mouse);
-   
-   glutTimerFunc(2,disp,0);
-   glutMainLoop ();
+    readInputFile();
+    glutInit (&argc, argv) ;
+    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
+    glutInitWindowSize ( 512,512) ;
+    glutCreateWindow("Lighting") ;
+    init();
+    glutDisplayFunc(mydisplay);
+    glutMouseFunc(mouse);
+    glutTimerFunc(2,disp,0);
+    glutMainLoop ();
 }
