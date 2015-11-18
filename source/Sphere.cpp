@@ -8,19 +8,16 @@
 
 #include "Sphere.hpp"
 
-Sphere::Sphere(float x, float y, float z, float radius, float *ka, float *kd, float *ks, float shine){
-    this->x = x;
-    this->y = y;
-    this->z = z;
+Sphere::Sphere(const Vector3f &center,
+               float radius,
+               const Vector3f &ka,
+               const Vector3f &ks,
+               const Vector3f &kd,
+               float shine){
+    this->center = center;
     this->radius = radius;
-    this->ka[0] = ka[0];
-    this->ka[1] = ka[1];
-    this->ka[2] = ka[2];
-    this->kd[0] = kd[0];
-    this->kd[1] = kd[1];
-    this->kd[2] = kd[2];
-    this->ks[0] = ks[0];
-    this->ks[1] = ks[1];
-    this->ks[2] = ks[2];
+    this->ka = ka;
+    this->ks = ks;
+    this->kd = kd;
     this->shine = shine;
 }

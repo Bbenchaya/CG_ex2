@@ -9,37 +9,25 @@
 #ifndef Scene_hpp
 #define Scene_hpp
 
-#include <stdio.h>
+#include "Vector3f.h"
 
 class Scene{
 
 private:
-    float pc_x;
-    float pc_y;
-    float pc_z; //screen center coordinates, this is also the image plane normal
-    float up_x;
-    float up_y;
-    float up_z; //up vector coordinates
+    Vector3f center; //screen center coordinates, this is also the image plane normal
+    Vector3f upVector; //up vector coordinates
     float width;
     float resolution_x;
     float resolution_y;
-    float ambient_R;
-    float ambient_G;
-    float ambient_B;
+    Vector3f color;
     
 public:
-    Scene(float pc_x,
-          float pc_y,
-          float pc_z,
-          float up_x,
-          float up_y,
-          float up_z,
+    Scene(const Vector3f &center,
+          const Vector3f &up,
           float width,
           float resolution_x,
           float resolution_y,
-          float ambient_R,
-          float ambient_G,
-          float ambient_B);
+          const Vector3f &color);
 };
 
 #endif /* Scene_hpp */

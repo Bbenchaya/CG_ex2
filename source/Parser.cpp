@@ -26,7 +26,12 @@ void Parser::parse(vector<Plane> plane_Vec, vector<Light> light_vec, vector<Sphe
             cout << "Scene created!" << endl;
             
             //new code
-            Scene scene(upVectorX, upVectorY, upVectorZ, centerX, centerY, centerZ, width, Rx, Ry, ambient[0], ambient[1], ambient[2]);
+            Scene scene(Vector3f(upVectorX, upVectorY, upVectorZ),
+                        Vector3f(centerX, centerY, centerZ),
+                        width,
+                        Rx,
+                        Ry,
+                        Vector3f(ambient[0], ambient[1], ambient[2]));
             scene_vec.push_back(scene);
         }
         if (strcmp(next_line, "spher") == 0){
@@ -38,7 +43,12 @@ void Parser::parse(vector<Plane> plane_Vec, vector<Light> light_vec, vector<Sphe
             printf("x:%f,y:%f,z:%f,radius:%f,ka0:%f,ka1:%f,ka2:%f,kd0:%f,kd1:%f,kd2:%f,ks0:%f,ks1:%f,ks2:%f,shine:%f\n", x, y, z, radius, ka[0], ka[1], ka[2], kd[0], kd[1], kd[2], ks[0], ks[1], ks[2], shine);
             cout << "Sphere created!" << endl;
             
-            Sphere spher(x, y, z, radius, ka, ks, kd, shine);
+            Sphere spher(Vector3f(x, y, z),
+                         radius,
+                         Vector3f(ka[0], ka[1], ka[2]),
+                         Vector3f(ks[0], ks[1], ks[2]),
+                         Vector3f(kd[0], kd[1], kd[2]),
+                         shine);
             sphere_vec.push_back(spher);
         }
         if (strncmp(next_line, "plane", 5) == 0){
@@ -65,11 +75,16 @@ void Parser::parse(vector<Plane> plane_Vec, vector<Light> light_vec, vector<Sphe
             }
             else if (params == 7) {
                 fscanf(file, ",%f,%f,%f", &positionY, &positionZ, &angle);
-                Light light(dirX, dirY, dirZ, color[0], color[1], color[2], angle);
+                Light light(Vector3f(dirX, dirY, dirZ),
+                            Vector3f(color[0], color[1], color[2]),
+                            angle);
                 light_vec.push_back(light);
             }
             else {//maybe dangerous, should be else if?
-                Light spot_Light(dirX, dirY, dirZ, color[0], color[1], color[2],positionX, positionY, positionZ, angle);
+                Light spot_Light(Vector3f(dirX, dirY, dirZ),
+                                 Vector3f(color[0], color[1], color[2]),
+                                 Vector3f(positionX, positionY, positionZ),
+                                 angle);
                 light_vec.push_back(spot_Light);
             }
             

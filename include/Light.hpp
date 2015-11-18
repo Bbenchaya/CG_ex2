@@ -9,44 +9,27 @@
 #ifndef Light_hpp
 #define Light_hpp
 
-#include <stdio.h>
+#include "Vector3f.h"
+
 class Light{
 
 private:
-float light_x;
-float light_y;
-float light_z;
-float light_intensity_R;
-float light_intensity_G;
-float light_intensity_B;
+    Vector3f position;
+    Vector3f color;
 //Spot Light
-float spotlight_x;
-float spotlight_y;
-float spotlight_z;
-float light_cutoff;
+    Vector3f spotlight;
+    float light_cutoff;
 
 public:
     //Spot_Light
-    Light(
-        float light_x,
-        float light_y,
-        float light_z,
-        float light_intensity_R,
-        float light_intensity_G,
-        float light_intensity_B,
-        float spotlight_x,
-        float spotlight_y,
-        float spotlight_z,
-        float light_cutoff);
+    Light(const Vector3f &position,
+          const Vector3f &color,
+          const Vector3f &spotlight,
+          float light_cutoff);
     //Reular Light
-    Light(
-        float light_x,
-        float light_y,
-        float light_z,
-        float light_intensity_R,
-        float light_intensity_G,
-        float light_intensity_B,
-        float light_cutoff);
+    Light(const Vector3f &position,
+          const Vector3f &color,
+          float light_cutoff);
     
 };
 #endif /* Light_hpp */

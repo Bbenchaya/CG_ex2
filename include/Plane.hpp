@@ -9,25 +9,31 @@
 #ifndef Plane_hpp
 #define Plane_hpp
 
+#include "Vector3f.h"
+
 class Plane {
     
 private:
-    float normalX;
-    float normalY;
-    float normalZ;
-    float centerX;
-    float centerY;
-    float centerZ;
+    Vector3f normal;
+    Vector3f center;
     float width;
     float length;
     float shine;
-    float ka[3];
-    float ks[3];
-    float kd[3];
+    Vector3f ka;
+    Vector3f ks;
+    Vector3f kd;
     bool mirror;
     
 public:
-    Plane(float normalX, float normalY, float normalZ, float centerX, float centerY, float centerZ, float width, float length, float shine, float *ka, float *ks, float *kd, bool mirror);
+    Plane(const Vector3f &normal,
+          const Vector3f &center,
+          float width,
+          float length,
+          float shine,
+          const Vector3f &ka,
+          const Vector3f &kd,
+          const Vector3f &ks,
+          bool mirror);
     
 };
 

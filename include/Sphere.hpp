@@ -9,20 +9,25 @@
 #ifndef Sphere_hpp
 #define Sphere_hpp
 
+#include "Vector3f.h"
+
 class Sphere {
     
 private:
-    float x;
-    float y;
-    float z;
+    Vector3f center;
     float radius;
-    float ka[3];
-    float kd[3];
-    float ks[3];
+    Vector3f ka;
+    Vector3f kd;
+    Vector3f ks;
     float shine;
     
 public:
-    Sphere(float x, float y, float z, float radius, float *ka, float *kd, float *ks, float shine);
+    Sphere(const Vector3f &center,
+           float radius,
+           const Vector3f &ka,
+           const Vector3f &ks,
+           const Vector3f &kd,
+           float shine);
 };
 
 #endif /* Sphere_hpp */
