@@ -41,7 +41,8 @@
 		F05EB9721BFCD17D00A06A14 /* Ray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ray.hpp; sourceTree = "<group>"; };
 		F05EB9771BFCE13D00A06A14 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		F05EB9781BFCE13D00A06A14 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
-		F0CCFBFB1BFA318B00E0BD43 /* init1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init1.txt; sourceTree = "<group>"; };
+		F05EB97A1BFCF5AA00A06A14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/init1.txt; sourceTree = "<group>"; };
+		F05EB97C1BFCF87900A06A14 /* init_simple.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init_simple.txt; sourceTree = "<group>"; };
 		F0CCFBFC1BFA318B00E0BD43 /* init2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init2.txt; sourceTree = "<group>"; };
 		F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
 		F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sphere.hpp; sourceTree = "<group>"; };
@@ -119,7 +120,8 @@
 				F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */,
 				F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */,
 				F0DBB3671BF91D7D00B0CF52 /* main.cpp */,
-				F0CCFBFB1BFA318B00E0BD43 /* init1.txt */,
+				F05EB97C1BFCF87900A06A14 /* init_simple.txt */,
+				F05EB97B1BFCF5AA00A06A14 /* init1.txt */,
 				F0CCFBFC1BFA318B00E0BD43 /* init2.txt */,
 			);
 			path = source;
@@ -193,6 +195,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F05EB97B1BFCF5AA00A06A14 /* init1.txt */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F05EB97A1BFCF5AA00A06A14 /* en */,
+			);
+			name = init1.txt;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		59B069681BF8D1D700E24D65 /* Debug */ = {

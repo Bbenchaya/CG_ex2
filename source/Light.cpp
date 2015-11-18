@@ -16,6 +16,7 @@ Light::Light(const Vector3f &position,
     this->color = color;
     this->spotlight = spotlight;
     this->light_cutoff = light_cutoff;
+    this->is_directional = true;
 }
 
 //Regular Light Constructor
@@ -23,5 +24,6 @@ Light::Light(const Vector3f &position,
              const Vector3f &color){
     this->position = position;
     this->color = color;
+    this->is_directional = false;
 
 };

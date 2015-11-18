@@ -19,6 +19,7 @@ private:
 //Spot Light
     Vector3f spotlight;
     float light_cutoff;
+    bool is_directional;
 
 public:
     //Spot_Light
