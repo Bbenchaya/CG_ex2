@@ -87,7 +87,7 @@ void initLight()
 	GLfloat angle[] = {20.0};
 	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 	//glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_direction);
@@ -96,7 +96,7 @@ void initLight()
 	glShadeModel(GL_SMOOTH);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-
+    glEnable(GL_LIGHT1);
 	GLfloat mat_a[] = {0.1, 0.5, 0.5, 1.0};
 	GLfloat mat_d[] = {0.1, 0.7, 0.7, 1.0};
 	GLfloat mat_s[] = {1.0, 0.0, 0.9, 1.0};
