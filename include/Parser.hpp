@@ -23,7 +23,7 @@
 
 //#define INPUT_FILE "/Users/bbenchaya/Documents/Xcode/CG_EX2/source/init1.txt"
 #define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init_simple.txt"
-#define MAX_LINE_LENGTH 500
+#define MAX_LINE_LENGTH 6
 
 using namespace std;
 
