@@ -8,10 +8,10 @@
 
 #include "Parser.hpp"
 
-void Parser::parse(vector<Plane> planes,
-                   vector<Light> lights,
-                   vector<Sphere> spheres,
-                   vector<Scene> scenes){
+void Parser::parse(vector<Plane> &planes,
+                   vector<Light> &lights,
+                   vector<Sphere> &spheres,
+                   vector<Scene> &scenes){
     FILE *file;
     file = fopen(INPUT_FILE, "r");
     if (file == NULL){

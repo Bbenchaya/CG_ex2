@@ -31,10 +31,10 @@ class Parser {
 private:
 
 public:
-    void parse(vector<Plane> planes,
-               vector<Light> lights,
-               vector<Sphere> spheres,
-               vector<Scene> scenes);
+    void parse(vector<Plane> &planes,
+               vector<Light> &lights,
+               vector<Sphere> &spheres,
+               vector<Scene> &scenes);
     
 };
 
