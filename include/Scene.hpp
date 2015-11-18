@@ -11,7 +11,7 @@
 
 #include "Vector3f.h"
 
-class Scene{
+class Scene {
 
 private:
     Vector3f center; //screen center coordinates, this is also the image plane normal

@@ -161,16 +161,13 @@ void mouse(int button, int state, int x, int y)
    }
 }
 
-int main(int  argc,  char** argv) 
-{
-    vector<Plane> plane_Vec;
-    vector<Light> light_vec;
-    vector<Sphere> sphere_vec;
-    vector<Scene> scene_vec;
-    
+int main(int argc, char **argv){
+    vector<Plane> planes;
+    vector<Light> lights;
+    vector<Sphere> spheres;
+    vector<Scene> scenes;
     Parser parser;
-    parser.parse(plane_Vec, light_vec, sphere_vec, scene_vec);
-    
+    parser.parse(planes, lights, spheres, scenes);
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
     glutInitWindowSize ( 512,512) ;

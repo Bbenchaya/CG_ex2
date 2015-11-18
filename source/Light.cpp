@@ -19,11 +19,9 @@ Light::Light(const Vector3f &position,
 }
 
 //Regular Light Constructor
-             Light::Light(const Vector3f &position,
-                          const Vector3f &color,
-                          float light_cutoff){
+Light::Light(const Vector3f &position,
+             const Vector3f &color){
     this->position = position;
     this->color = color;
-    this->light_cutoff = light_cutoff;
 
 };

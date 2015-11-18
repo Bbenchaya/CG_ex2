@@ -31,8 +31,11 @@ class Parser {
 private:
 
 public:
+    void parse(vector<Plane> planes,
+               vector<Light> lights,
+               vector<Sphere> spheres,
+               vector<Scene> scenes);
     
-    void parse(vector<Plane> plane_Vec, vector<Light> light_vec, vector<Sphere> sphere_vec, vector<Scene> scene_vec);
 };
 
 #endif /* Parser_hpp */

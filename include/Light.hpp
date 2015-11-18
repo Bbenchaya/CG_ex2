@@ -11,7 +11,7 @@
 
 #include "Vector3f.h"
 
-class Light{
+class Light {
 
 private:
     Vector3f position;
@@ -28,8 +28,7 @@ public:
           float light_cutoff);
     //Reular Light
     Light(const Vector3f &position,
-          const Vector3f &color,
-          float light_cutoff);
+          const Vector3f &color);
     
 };
 #endif /* Light_hpp */
