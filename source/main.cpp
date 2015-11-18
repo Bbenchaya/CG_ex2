@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <GLUT/GLUT.h>
 #include "Vector3f.h"
 #include "Parser.hpp"
+#include "Light.hpp"
+#include "Scene.hpp"
+#include "Sphere.hpp"
 
 #define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init1.txt"
 #define MAX_LINE_LENGTH 500
@@ -159,8 +163,14 @@ void mouse(int button, int state, int x, int y)
 
 int main(int  argc,  char** argv) 
 {
+    vector<Plane> plane_Vec;
+    vector<Light> light_vec;
+    vector<Sphere> sphere_vec;
+    vector<Scene> scene_vec;
+    
     Parser parser;
-    parser.parse();
+    parser.parse(plane_Vec, light_vec, sphere_vec, scene_vec);
+    
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
     glutInitWindowSize ( 512,512) ;
