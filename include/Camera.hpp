@@ -18,6 +18,7 @@ private:
     Vector3f direction;
     
 public:
+    Camera();
     Camera(const Vector3f &position,
            const Vector3f &direction);
 };

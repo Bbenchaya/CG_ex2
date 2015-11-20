@@ -8,6 +8,10 @@
 
 #include "Camera.hpp"
 
+Camera::Camera(){
+    
+}
+
 Camera::Camera(const Vector3f &position,
                const Vector3f &direction){
     this->position = position;

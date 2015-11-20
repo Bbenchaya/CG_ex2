@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <GLUT/GLUT.h>
 #include "Vector3f.h"
 #include "Parser.hpp"
 #include "Light.hpp"
@@ -165,9 +164,11 @@ int main(int argc, char **argv){
     vector<Plane> planes;
     vector<Light> lights;
     vector<Sphere> spheres;
-    vector<Scene> scenes;
+    Scene scene = Scene();
     Parser parser;
-    parser.parse(planes, lights, spheres, scenes);
+    parser.parse(planes, lights, spheres, scene);
+    Vector3f ***image;
+    scene.castRays(&image, lights, planes, spheres);
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
     glutInitWindowSize ( 512,512) ;

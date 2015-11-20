@@ -11,7 +11,7 @@
 void Parser::parse(vector<Plane> &planes,
                    vector<Light> &lights,
                    vector<Sphere> &spheres,
-                   vector<Scene> &scenes){
+                   Scene &scene){
     FILE *file;
     file = fopen(INPUT_FILE, "r");
     if (file == NULL){
@@ -24,17 +24,17 @@ void Parser::parse(vector<Plane> &planes,
         // the if statement prevents parsing the last line twice, causing th last primitive to have dual instances
         if((successful_read = fscanf(file, "%s", next_line)) > 0){
             if (strncmp(next_line, "scene", 5) == 0){
-                float upVectorX, upVectorY, upVectorZ, centerX, centerY, centerZ, width, Rx, Ry;
+                float upVectorX, upVectorY, upVectorZ, centerX, centerY, centerZ, width;
+                unsigned int Rx, Ry;
                 float ambient[3]; // ambient[0] = R, ambient[1] = G, ambient[2] = B
-                fscanf(file, " %f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &upVectorX, &upVectorY, &upVectorZ, &centerX, &centerY, &centerZ, &width, &Rx, &Ry, ambient, ambient + 1, ambient + 2);
+                fscanf(file, " %f,%f,%f,%f,%f,%f,%f,%u,%u,%f,%f,%f", &upVectorX, &upVectorY, &upVectorZ, &centerX, &centerY, &centerZ, &width, &Rx, &Ry, ambient, ambient + 1, ambient + 2);
                 //            printf("upVectorX:%f,upVectorY:%f,upVectorZ:%f,centerX:%f,centerY:%f,centerZ:%f,width:%f,Rx:%f,Ry:%f,ambientR:%f,ambientG:%f,ambientB:%f\n", upVectorX, upVectorY, upVectorZ, centerX, centerY, centerZ, width, Rx, Ry, ambient[0], ambient[1], ambient[2]);
-                Scene scene(Vector3f(upVectorX, upVectorY, upVectorZ),
+                scene = Scene(Vector3f(upVectorX, upVectorY, upVectorZ),
                             Vector3f(centerX, centerY, centerZ),
                             width,
-                            Rx,
                             Ry,
+                            Rx,
                             Vector3f(ambient));
-                scenes.push_back((scene));
                 cout << "Scene created!" << endl;
             }
             if (strcmp(next_line, "spher") == 0){

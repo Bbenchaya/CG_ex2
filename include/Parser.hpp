@@ -34,7 +34,7 @@ public:
     void parse(vector<Plane> &planes,
                vector<Light> &lights,
                vector<Sphere> &spheres,
-               vector<Scene> &scenes);
+               Scene &scenes);
     
 };
 
