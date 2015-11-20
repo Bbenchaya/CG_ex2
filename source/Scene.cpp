@@ -8,7 +8,7 @@
 
 #include "Scene.hpp"
 
-Scene::Scene(){
+Scene::Scene() {
     
 }
 
@@ -46,6 +46,7 @@ Scene& Scene::operator=(const Scene &other){
 }
 
 float Scene::intersect(const Ray &ray, const Primitive &primitive){
+    
     return 0;
 }
 

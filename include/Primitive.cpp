@@ -7,3 +7,19 @@
 //
 
 #include "Primitive.hpp"
+
+Primitive::Primitive() : type('\0'){
+    
+}
+
+Primitive::Primitive(char type) : type(type){
+    
+}
+
+Primitive& Primitive::operator=(const Primitive &other){
+    return *this;
+}
+
+const char Primitive::instanceof(){
+    return type;
+}

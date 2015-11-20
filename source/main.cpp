@@ -168,7 +168,7 @@ int main(int argc, char **argv){
     for (int i = 0; i < scene.getHeight(); i++) {
         image[i] = new Vector3f[scene.getWidth()];
     }
-    scene.castRays(&image, lights, primitives);
+    scene.castRays(&image);
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
     glutInitWindowSize ( 512,512) ;

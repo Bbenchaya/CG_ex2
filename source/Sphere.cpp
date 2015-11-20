@@ -13,7 +13,7 @@ Sphere::Sphere(const Vector3f &center,
                const Vector3f &ka,
                const Vector3f &ks,
                const Vector3f &kd,
-               float shine){
+               float shine) : Primitive('s'){
     this->center = center;
     this->radius = radius;
     this->ka = ka;

@@ -16,7 +16,7 @@ Plane::Plane(const Vector3f &normal,
              const Vector3f &ka,
              const Vector3f &kd,
              const Vector3f &ks,
-             bool mirror){
+             bool mirror) : Primitive('p'){
     this->normal = normal;
     this->center = center;
     this->width = width;

@@ -10,7 +10,15 @@
 #define Primitive_hpp
 
 class Primitive {
+
+protected:
+    const char type;
     
+public:
+    Primitive();
+    Primitive(char type);
+    Primitive& operator=(const Primitive &other);
+    const char instanceof();
 };
 
 #endif /* Primitive_hpp */
