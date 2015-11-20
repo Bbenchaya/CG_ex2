@@ -27,6 +27,7 @@ class Scene {
 private:
     Vector3f center; //screen center coordinates, this is also the image plane normal
     Vector3f upVector; //up vector coordinates
+    Vector3f rightVector;
     float width;
     unsigned int resolution_i;
     unsigned int resolution_j;

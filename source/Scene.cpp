@@ -24,6 +24,7 @@ Scene::Scene(const Vector3f &center,
     this->resolution_j = resolution_x;
     this->width = width;
     this->color = color;
+    this->rightVector = Vector3f::crossProduct(center, up);
 }
 
 Scene& Scene::operator=(const Scene &other){
@@ -35,6 +36,7 @@ Scene& Scene::operator=(const Scene &other){
     this->resolution_j = other.resolution_j;
     this->width = other.width;
     this->color = other.color;
+    this->rightVector = Vector3f::crossProduct(other.center, other.upVector);
     return *this;
 }
 
