@@ -45,8 +45,18 @@ Scene& Scene::operator=(const Scene &other){
     return *this;
 }
 
-float Scene::intersect(const Ray &ray, const Primitive &primitive){
-    
+float Scene::intersect(Ray &ray, Primitive &primitive){
+    switch (primitive.instanceof()) {
+        case 's':
+            return 0;
+        case 'p':
+            float numerator = Vector3f::dotProduct((static_cast<Plane*>(&primitive))->getCenter(),
+                                                   (static_cast<Plane*>(&primitive))->getNormal());
+            float denominator = Vector3f::dotProduct((static_cast<Plane*>(&primitive))->getNormal(), ray.getDirection());
+            float scalar =  numerator / denominator;
+            Vector3f possibleIntersection = ray.getDirection() * scalar;
+            return 0;
+    }
     return 0;
 }
 
@@ -98,7 +108,7 @@ Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int
     return *(new Ray(v));
 }
 
-Intersection Scene::findIntersection(const Ray &ray){
+Intersection Scene::findIntersection(Ray &ray){
     float min_distance = INFINITY;
     Primitive *min_primitive = NULL;
     for (vector<Primitive>::iterator primitive = primitives.begin(); primitive != primitives.end(); primitive++) {

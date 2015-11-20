@@ -6,7 +6,6 @@
 #include <fstream>
 #include "Vector3f.h"
 #include "Parser.hpp"
-#include "Pixel.hpp"
 #include "Light.hpp"
 #include "Scene.hpp"
 #include "Sphere.hpp"

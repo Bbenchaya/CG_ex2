@@ -11,7 +11,6 @@
 		59B069751BF8D30300E24D65 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069741BF8D30300E24D65 /* OpenGL.framework */; };
 		59B069771BF8D30D00E24D65 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069761BF8D30D00E24D65 /* Cocoa.framework */; };
 		F053BAF71BFF113800B31B92 /* Intersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F053BAF51BFF113800B31B92 /* Intersection.cpp */; };
-		F053BAFA1BFF133700B31B92 /* Pixel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F053BAF81BFF133700B31B92 /* Pixel.cpp */; };
 		F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F05EB9711BFCD17D00A06A14 /* Ray.cpp */; };
 		F05EB9791BFCE13D00A06A14 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F05EB9771BFCE13D00A06A14 /* Camera.cpp */; };
 		F0CCFC011BFA37F600E0BD43 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */; };
@@ -42,8 +41,6 @@
 		59B069761BF8D30D00E24D65 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F053BAF51BFF113800B31B92 /* Intersection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Intersection.cpp; sourceTree = "<group>"; };
 		F053BAF61BFF113800B31B92 /* Intersection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Intersection.hpp; sourceTree = "<group>"; };
-		F053BAF81BFF133700B31B92 /* Pixel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pixel.cpp; sourceTree = "<group>"; };
-		F053BAF91BFF133700B31B92 /* Pixel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pixel.hpp; sourceTree = "<group>"; };
 		F05EB9711BFCD17D00A06A14 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
 		F05EB9721BFCD17D00A06A14 /* Ray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ray.hpp; sourceTree = "<group>"; };
 		F05EB9771BFCE13D00A06A14 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
@@ -61,7 +58,7 @@
 		F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
 		F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
-		F0D7C7961BFF4C9D002CF750 /* Primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Primitive.cpp; path = ../include/Primitive.cpp; sourceTree = "<group>"; };
+		F0D7C7961BFF4C9D002CF750 /* Primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Primitive.cpp; sourceTree = "<group>"; };
 		F0D7C7971BFF4C9D002CF750 /* Primitive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Primitive.hpp; sourceTree = "<group>"; };
 		F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3f.h; sourceTree = "<group>"; };
 		F0DBB3671BF91D7D00B0CF52 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -110,7 +107,6 @@
 				F053BAF61BFF113800B31B92 /* Intersection.hpp */,
 				F0CCFC091BFA739500E0BD43 /* Light.hpp */,
 				F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */,
-				F053BAF91BFF133700B31B92 /* Pixel.hpp */,
 				F0CCFC061BFA738A00E0BD43 /* Plane.hpp */,
 				F0D7C7971BFF4C9D002CF750 /* Primitive.hpp */,
 				F05EB9721BFCD17D00A06A14 /* Ray.hpp */,
@@ -128,7 +124,6 @@
 				F053BAF51BFF113800B31B92 /* Intersection.cpp */,
 				F0CCFC081BFA739500E0BD43 /* Light.cpp */,
 				F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */,
-				F053BAF81BFF133700B31B92 /* Pixel.cpp */,
 				F0D7C7961BFF4C9D002CF750 /* Primitive.cpp */,
 				F0CCFC051BFA738A00E0BD43 /* Plane.cpp */,
 				F05EB9711BFCD17D00A06A14 /* Ray.cpp */,
@@ -207,7 +202,6 @@
 				F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */,
 				F0D7C7981BFF4C9D002CF750 /* Primitive.cpp in Sources */,
 				F0CCFC101BFA757000E0BD43 /* Parser.cpp in Sources */,
-				F053BAFA1BFF133700B31B92 /* Pixel.cpp in Sources */,
 				F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

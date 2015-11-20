@@ -26,3 +26,11 @@ Plane::Plane(const Vector3f &normal,
     this->ks = ks;
     this->mirror = mirror;
 }
+
+Vector3f Plane::getCenter(){
+    return this->center;
+}
+
+Vector3f Plane::getNormal(){
+    return this->normal;
+}

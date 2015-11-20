@@ -36,6 +36,10 @@ public:
           const Vector3f &ks,
           bool mirror);
     
+    virtual Vector3f getCenter();
+    
+    virtual Vector3f getNormal();
+    
 };
 
 #endif /* Plane_hpp */

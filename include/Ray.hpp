@@ -19,7 +19,7 @@ public:
     Ray();
     Ray(Vector3f &direction);
     Ray& operator=(const Ray &other);
-    Vector3f getDirection();
+    Vector3f getDirection() const;
 };
 
 #endif /* Ray_hpp */

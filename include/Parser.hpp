@@ -12,14 +12,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <iostream>
+
 #include <fstream>
+#include <iostream>
 #include <vector>
+
 #include "Light.hpp"
-#include "Scene.hpp"
 #include "Plane.hpp"
 #include "Primitive.hpp"
+#include "Scene.hpp"
 #include "Sphere.hpp"
+
 #include "Vector3f.h"
 
 //#define INPUT_FILE "/Users/bbenchaya/Documents/Xcode/CG_EX2/source/init1.txt"

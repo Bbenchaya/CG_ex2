@@ -10,18 +10,21 @@
 #define Scene_hpp
 
 #include <cmath>
-#include <GLUT/GLUT.h>
-#include <limits>
 #include <cstddef>
+#include <iostream>
+#include <limits>
+#include <string>
 #include <vector>
+
 #include "Camera.hpp"
 #include "Intersection.hpp"
 #include "Light.hpp"
 #include "Plane.hpp"
-#include "Pixel.hpp"
 #include "Primitive.hpp"
 #include "Ray.hpp"
 #include "Sphere.hpp"
+
+#include <GLUT/GLUT.h>
 #include "Vector3f.h"
 
 using namespace std;
@@ -53,11 +56,11 @@ public:
     
     Scene& operator=(const Scene &other);
     
-    float intersect(const Ray &ray, const Primitive &primitive);
+    float intersect(Ray &ray, Primitive &primitive);
     
     Ray constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j);
     
-    Intersection findIntersection(const Ray &ray);
+    Intersection findIntersection(Ray &ray);
     
     Vector3f getColor(const Ray &ray, const Intersection &hit);
     

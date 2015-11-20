@@ -23,6 +23,6 @@ Ray& Ray::operator=(const Ray &other){
     return *this;
 }
 
-Vector3f Ray::getDirection(){
+Vector3f Ray::getDirection() const{
     return this->direction;
 }
