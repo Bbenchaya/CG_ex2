@@ -55,7 +55,7 @@ public:
     
     float intersect(const Ray &ray, Primitive *primitive);
     
-    Ray constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j);
+    Ray constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j);
     
     Intersection findIntersection(const Ray &ray, const Scene &scene);
     

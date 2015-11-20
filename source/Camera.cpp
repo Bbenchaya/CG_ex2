@@ -12,8 +12,11 @@ Camera::Camera(){
     
 }
 
-Camera::Camera(const Vector3f &position,
-               const Vector3f &direction){
+Camera::Camera(Vector3f &position){
     this->position = position;
-    this->direction = direction;
 }
+
+Vector3f Camera::getPosition(){
+    return this->position;
+}
+

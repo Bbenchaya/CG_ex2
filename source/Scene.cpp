@@ -49,7 +49,51 @@ float Scene::intersect(const Ray &ray, Primitive *primitive){
     return 0;
 }
 
-Ray Scene::constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j){
+Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j){
+    float scalar = width / getWidth();
+    Vector3f v;
+    if (i < getWidth() / 2) {
+        float scalar_left = -scalar * (getWidth() - i);
+        Vector3f left_addition = rightVector;
+        left_addition *= scalar_left;
+        if (j < getWidth() / 2) {
+            float scalar_up = scalar * (getWidth() - j);
+            Vector3f up_addition = upVector;
+            up_addition *= scalar_up;
+            up_addition += left_addition;
+            v = center + up_addition;
+            v.normalize();
+        }
+        else {
+            float scalar_down = -scalar * (getWidth() - j);
+            Vector3f down_addition = upVector;
+            down_addition *= scalar_down;
+            down_addition += left_addition;
+            v = center + down_addition;
+            v.normalize();
+        }
+    }
+    else {
+        float scalar_right = scalar * (getWidth() - i);
+        Vector3f right_addition = rightVector;
+        right_addition *= scalar_right;
+        if (j < getWidth() / 2) {
+            float scalar_up = scalar * (getWidth() - j);
+            Vector3f up_addition = upVector;
+            up_addition *= scalar_up;
+            up_addition += right_addition;
+            v = center + up_addition;
+            v.normalize();
+        }
+        else {
+            float scalar_down = -scalar * (getWidth() - j);
+            Vector3f down_addition = upVector;
+            down_addition *= scalar_down;
+            down_addition += right_addition;
+            v = center + down_addition;
+            v.normalize();
+        }
+    }
     return *(new Ray());
 }
 
@@ -73,9 +117,10 @@ Vector3f Scene::getColor(const Scene &scene, const Ray &ray, const Intersection 
 void Scene::castRays(Vector3f ***image,
                      const vector<Light> &lights,
                      const vector<Primitive> &primitives){
-    Camera camera = Camera();
-    for (unsigned int i = 0; i < resolution_i; i++) {
-        for (unsigned int j = 0; j < 5; j++) {
+    Vector3f cameraPosition(0, 0, 0);
+    Camera camera = Camera(cameraPosition);
+    for (unsigned int i = 0; i < getHeight(); i++) {
+        for (unsigned int j = 0; j < getWidth(); j++) {
             Ray ray = constructRayThroughPixel(camera, i ,j);
             Intersection hit = findIntersection(ray, *this);
             (*image)[i][j] = getColor(*this, ray, hit);

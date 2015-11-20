@@ -15,12 +15,11 @@ class Camera {
 
 private:
     Vector3f position;
-    Vector3f direction;
     
 public:
     Camera();
-    Camera(const Vector3f &position,
-           const Vector3f &direction);
+    Camera(Vector3f &position);
+    Vector3f getPosition();
 };
 
 #endif /* Camera_hpp */
