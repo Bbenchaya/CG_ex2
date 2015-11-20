@@ -53,17 +53,15 @@ public:
     
     Scene& operator=(const Scene &other);
     
-    float intersect(const Ray &ray, Primitive *primitive);
+    float intersect(const Ray &ray, const Primitive &primitive);
     
     Ray constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j);
     
-    Intersection findIntersection(const Ray &ray, const Scene &scene);
+    Intersection findIntersection(const Ray &ray);
     
-    Vector3f getColor(const Scene &scene, const Ray &ray, const Intersection &hit);
+    Vector3f getColor(const Ray &ray, const Intersection &hit);
     
-    void castRays(Vector3f ***image,
-                  const vector<Light> &lights,
-                  const vector<Primitive> &primitives);
+    void castRays(Vector3f ***image);
     
     unsigned int getWidth();
     

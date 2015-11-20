@@ -12,7 +12,7 @@ Intersection::Intersection() {
     
 }
 
-Intersection::Intersection(float min_distance, const Primitive &min_primitive){
+Intersection::Intersection(float min_distance, Primitive &min_primitive){
     this->min_distance = min_distance;
     this->min_primitive = min_primitive;
 }
@@ -20,14 +20,15 @@ Intersection::Intersection(float min_distance, const Primitive &min_primitive){
 Intersection& Intersection::operator=(const Intersection &other){
     if (this == &other)
         return *this;
-    
+    this->min_distance = other.min_distance;
+    this->min_primitive = other.min_primitive;
     return *this;
 }
 
-float Intersection::getMinDistance(){
+float Intersection::getMinDistance() const{
     return this->min_distance;
 }
 
-Primitive* Intersection::getMinPrimitive(){
-    return &(this->min_primitive);
+Primitive Intersection::getMinPrimitive() const{
+    return this->min_primitive;
 }

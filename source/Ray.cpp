@@ -12,15 +12,17 @@ Ray::Ray(){
     
 }
 
-Ray::Ray(const Vector3f &origin,
-         const Vector3f &direction){
-    this->origin = origin;
+Ray::Ray(Vector3f &direction){
     this->direction = direction;
 }
 
 Ray& Ray::operator=(const Ray &other){
     if (this == &other)
         return *this;
-    
+    this->direction = other.direction;
     return *this;
+}
+
+Vector3f Ray::getDirection(){
+    return this->direction;
 }

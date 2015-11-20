@@ -45,7 +45,7 @@ Scene& Scene::operator=(const Scene &other){
     return *this;
 }
 
-float Scene::intersect(const Ray &ray, Primitive *primitive){
+float Scene::intersect(const Ray &ray, const Primitive &primitive){
     return 0;
 }
 
@@ -94,36 +94,39 @@ Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int
             v.normalize();
         }
     }
-    return *(new Ray());
+    return *(new Ray(v));
 }
 
-Intersection Scene::findIntersection(const Ray &ray, const Scene &scene){
+Intersection Scene::findIntersection(const Ray &ray){
     float min_distance = INFINITY;
     Primitive *min_primitive = NULL;
-    for (vector<Primitive>::iterator prim_iter = primitives.begin(); prim_iter != primitives.end(); prim_iter++) {
-        float curr_distance = intersect(ray, &(*prim_iter));
+    for (vector<Primitive>::iterator primitive = primitives.begin(); primitive != primitives.end(); primitive++) {
+        float curr_distance = intersect(ray, *primitive);
         if (curr_distance < min_distance) {
-            min_primitive = &*prim_iter;
+            min_primitive = &(*primitive);
             min_distance = curr_distance;
         }
     }
     return *(new Intersection(min_distance, *min_primitive));
 }
 
-Vector3f Scene::getColor(const Scene &scene, const Ray &ray, const Intersection &hit){
+Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
+    if (hit.getMinDistance() == INFINITY)
+        return *(new Vector3f(0, 0, 0)); //the ray hits nothing, so paint the pixel in black
+    Vector3f *res = new Vector3f(0, 0, 0);
+    /* construct a vector from the intersection point to each light source, and check if it reaches the light. if so, sum up the
+        light's color values into *res. */
     return *(new Vector3f());
 }
 
-void Scene::castRays(Vector3f ***image,
-                     const vector<Light> &lights,
-                     const vector<Primitive> &primitives){
+void Scene::castRays(Vector3f ***image){
     Vector3f cameraPosition(0, 0, 0);
     Camera camera = Camera(cameraPosition);
     for (unsigned int i = 0; i < getHeight(); i++) {
         for (unsigned int j = 0; j < getWidth(); j++) {
             Ray ray = constructRayThroughPixel(camera, i ,j);
-            Intersection hit = findIntersection(ray, *this);
-            (*image)[i][j] = getColor(*this, ray, hit);
+            Intersection hit = findIntersection(ray);
+            (*image)[i][j] = getColor(ray, hit);
         }
     }
 }

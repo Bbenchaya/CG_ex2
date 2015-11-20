@@ -19,10 +19,10 @@ private:
     
 public:
     Intersection();
-    Intersection(float min_distance, const Primitive &min_primitive);
+    Intersection(float min_distance, Primitive &min_primitive);
     Intersection& operator=(const Intersection &other);
-    float getMinDistance();
-    Primitive* getMinPrimitive();
+    float getMinDistance() const;
+    Primitive getMinPrimitive() const;
     
 };
 
