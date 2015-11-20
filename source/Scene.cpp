@@ -54,14 +54,12 @@ void Scene::castRays(Vector3f ***image,
                      const vector<Light> &lights,
                      const vector<Plane> &planes,
                      const vector<Sphere> &spheres){
-    
     Camera camera = Camera();
     for (unsigned int i = 0; i < resolution_i; i++) {
-        for (unsigned int j = 0; j < resolution_j; j++) {
+        for (unsigned int j = 0; j < 5; j++) {
             Ray ray = constructRayThroughPixel(camera, i ,j);
             Intersection hit = findIntersection(ray, *this);
-            *image[i][j] = *(new Vector3f(0,0,0));
-            *image[i][j] = getColor(*this, ray, hit);
+            (*image)[i][j] = getColor(*this, ray, hit);
         }
     }
 }
