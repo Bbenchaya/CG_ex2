@@ -38,16 +38,16 @@ Scene& Scene::operator=(const Scene &other){
     return *this;
 }
 
-Ray* constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j){
-    return new Ray();
+Ray Scene::constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j){
+    return *(new Ray());
 }
 
-Intersection* findIntersection(const Ray &ray, const Scene &scene){
-    return new Intersection();
+Intersection Scene::findIntersection(const Ray &ray, const Scene &scene){
+    return *(new Intersection());
 }
 
-Vector3f* getColor(const Scene &scene, const Ray &ray, const Intersection &hit){
-    return new Vector3f();
+Vector3f Scene::getColor(const Scene &scene, const Ray &ray, const Intersection &hit){
+    return *(new Vector3f());
 }
 
 void Scene::castRays(Vector3f ***image,
@@ -58,9 +58,18 @@ void Scene::castRays(Vector3f ***image,
     Camera camera = Camera();
     for (unsigned int i = 0; i < resolution_i; i++) {
         for (unsigned int j = 0; j < resolution_j; j++) {
-            Ray *ray = constructRayThroughPixel(camera, i ,j);
-            Intersection *hit = findIntersection(*ray, *this);
-            *image[i][j] = *getColor(*this, *ray, *hit);
+            Ray ray = constructRayThroughPixel(camera, i ,j);
+            Intersection hit = findIntersection(ray, *this);
+            *image[i][j] = *(new Vector3f(0,0,0));
+            *image[i][j] = getColor(*this, ray, hit);
         }
     }
+}
+
+unsigned int Scene::getWidth(){
+    return resolution_j;
+}
+
+unsigned int Scene::getHeight(){
+    return resolution_i;
 }

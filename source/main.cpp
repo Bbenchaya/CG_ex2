@@ -165,7 +165,10 @@ int main(int argc, char **argv){
     Scene scene = Scene();
     Parser parser;
     parser.parse(planes, lights, spheres, scene);
-    Vector3f **image;
+    Vector3f **image = new Vector3f*[scene.getHeight()];
+    for (int i = 0; i < scene.getHeight(); i++) {
+        image[i] = new Vector3f[scene.getWidth()];
+    }
     scene.castRays(&image, lights, planes, spheres);
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;

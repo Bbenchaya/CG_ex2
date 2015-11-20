@@ -41,13 +41,15 @@ public:
           unsigned int resolution_j,
           const Vector3f &color);
     Scene& operator=(const Scene &other);
-    Ray* constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j);
-    Intersection* findIntersection(const Ray &ray, const Scene &scene);
-    Vector3f* getColor(const Scene &scene, const Ray &ray, const Intersection &hit);
+    Ray constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j);
+    Intersection findIntersection(const Ray &ray, const Scene &scene);
+    Vector3f getColor(const Scene &scene, const Ray &ray, const Intersection &hit);
     void castRays(Vector3f ***image,
                   const vector<Light> &lights,
                   const vector<Plane> &planes,
                   const vector<Sphere> &spheres);
+    unsigned int getWidth();
+    unsigned int getHeight();
     
 };
 
