@@ -8,8 +8,7 @@
 
 #include "Scene.hpp"
 
-Scene::Scene() :    resolution_j(0),
-                    resolution_i(0){
+Scene::Scene(){
     
 }
 
@@ -18,25 +17,50 @@ Scene::Scene(const Vector3f &center,
              float width,
              unsigned int resolution_x,
              unsigned int resolution_y,
-             const Vector3f &color) :   resolution_j(resolution_x),
-                                        resolution_i(resolution_y){
+             const Vector3f &color){
     this->center = center;
     this->upVector = upVector;
+    this->resolution_i = resolution_y;
+    this->resolution_j = resolution_x;
     this->width = width;
     this->color = color;
 }
 
-void Scene::castRays(Vector3f ****image,
+Scene& Scene::operator=(const Scene &other){
+    if (this == &other)
+        return *this;
+    this->center = other.center;
+    this->upVector = other.upVector;
+    this->resolution_i = other.resolution_i;
+    this->resolution_j = other.resolution_j;
+    this->width = other.width;
+    this->color = other.color;
+    return *this;
+}
+
+Ray* constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j){
+    return new Ray();
+}
+
+Intersection* findIntersection(const Ray &ray, const Scene &scene){
+    return new Intersection();
+}
+
+Vector3f* getColor(const Scene &scene, const Ray &ray, const Intersection &hit){
+    return new Vector3f();
+}
+
+void Scene::castRays(Vector3f ***image,
                      const vector<Light> &lights,
                      const vector<Plane> &planes,
                      const vector<Sphere> &spheres){
-    **image =  new Vector3f[5][5];
+    
     Camera camera = Camera();
-    for (unsigned int i = 0; i < resolution_i; i++){
+    for (unsigned int i = 0; i < resolution_i; i++) {
         for (unsigned int j = 0; j < resolution_j; j++) {
-            Ray ray = constructRayThroughPixel(camera, i ,j);
-            Intersection hit = findIntersection(ray, this);
-            image[i][j] = getColor(this, ray, hit);
+            Ray *ray = constructRayThroughPixel(camera, i ,j);
+            Intersection *hit = findIntersection(*ray, *this);
+            *image[i][j] = *getColor(*this, *ray, *hit);
         }
     }
 }

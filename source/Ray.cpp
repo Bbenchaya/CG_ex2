@@ -17,3 +17,10 @@ Ray::Ray(const Vector3f &origin,
     this->origin = origin;
     this->direction = direction;
 }
+
+Ray& Ray::operator=(const Ray &other){
+    if (this == &other)
+        return *this;
+    
+    return *this;
+}

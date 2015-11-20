@@ -6,12 +6,10 @@
 #include <fstream>
 #include "Vector3f.h"
 #include "Parser.hpp"
+#include "Pixel.hpp"
 #include "Light.hpp"
 #include "Scene.hpp"
 #include "Sphere.hpp"
-
-#define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init1.txt"
-#define MAX_LINE_LENGTH 500
 
 using namespace std;
 
@@ -167,7 +165,7 @@ int main(int argc, char **argv){
     Scene scene = Scene();
     Parser parser;
     parser.parse(planes, lights, spheres, scene);
-    Vector3f ***image;
+    Vector3f **image;
     scene.castRays(&image, lights, planes, spheres);
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
