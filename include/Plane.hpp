@@ -9,9 +9,10 @@
 #ifndef Plane_hpp
 #define Plane_hpp
 
+#include "Primitive.hpp"
 #include "Vector3f.h"
 
-class Plane {
+class Plane : public Primitive{
     
 private:
     Vector3f normal;

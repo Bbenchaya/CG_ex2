@@ -159,17 +159,16 @@ void mouse(int button, int state, int x, int y)
 }
 
 int main(int argc, char **argv){
-    vector<Plane> planes;
     vector<Light> lights;
-    vector<Sphere> spheres;
+    vector<Primitive> primitives;
     Scene scene = Scene();
     Parser parser;
-    parser.parse(planes, lights, spheres, scene);
+    parser.parse(lights, primitives, scene);
     Vector3f **image = new Vector3f*[scene.getHeight()];
     for (int i = 0; i < scene.getHeight(); i++) {
         image[i] = new Vector3f[scene.getWidth()];
     }
-    scene.castRays(&image, lights, planes, spheres);
+    scene.castRays(&image, lights, primitives);
     glutInit (&argc, argv) ;
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
     glutInitWindowSize ( 512,512) ;

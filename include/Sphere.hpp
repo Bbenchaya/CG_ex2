@@ -9,9 +9,10 @@
 #ifndef Sphere_hpp
 #define Sphere_hpp
 
+#include "Primitive.hpp"
 #include "Vector3f.h"
 
-class Sphere {
+class Sphere : public Primitive{
     
 private:
     Vector3f center;

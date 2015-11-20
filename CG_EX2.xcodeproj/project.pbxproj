@@ -19,6 +19,7 @@
 		F0CCFC0A1BFA739500E0BD43 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC081BFA739500E0BD43 /* Light.cpp */; };
 		F0CCFC0D1BFA739C00E0BD43 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */; };
 		F0CCFC101BFA757000E0BD43 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */; };
+		F0D7C7981BFF4C9D002CF750 /* Primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0D7C7961BFF4C9D002CF750 /* Primitive.cpp */; };
 		F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DBB3671BF91D7D00B0CF52 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
 		F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parser.hpp; sourceTree = "<group>"; };
+		F0D7C7961BFF4C9D002CF750 /* Primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Primitive.cpp; path = ../include/Primitive.cpp; sourceTree = "<group>"; };
+		F0D7C7971BFF4C9D002CF750 /* Primitive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Primitive.hpp; sourceTree = "<group>"; };
 		F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3f.h; sourceTree = "<group>"; };
 		F0DBB3671BF91D7D00B0CF52 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F0DBB3691BF91DB900B0CF52 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 				F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */,
 				F053BAF91BFF133700B31B92 /* Pixel.hpp */,
 				F0CCFC061BFA738A00E0BD43 /* Plane.hpp */,
+				F0D7C7971BFF4C9D002CF750 /* Primitive.hpp */,
 				F05EB9721BFCD17D00A06A14 /* Ray.hpp */,
 				F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */,
 				F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */,
@@ -125,6 +129,7 @@
 				F0CCFC081BFA739500E0BD43 /* Light.cpp */,
 				F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */,
 				F053BAF81BFF133700B31B92 /* Pixel.cpp */,
+				F0D7C7961BFF4C9D002CF750 /* Primitive.cpp */,
 				F0CCFC051BFA738A00E0BD43 /* Plane.cpp */,
 				F05EB9711BFCD17D00A06A14 /* Ray.cpp */,
 				F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */,
@@ -200,6 +205,7 @@
 				F0CCFC0D1BFA739C00E0BD43 /* Scene.cpp in Sources */,
 				F05EB9791BFCE13D00A06A14 /* Camera.cpp in Sources */,
 				F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */,
+				F0D7C7981BFF4C9D002CF750 /* Primitive.cpp in Sources */,
 				F0CCFC101BFA757000E0BD43 /* Parser.cpp in Sources */,
 				F053BAFA1BFF133700B31B92 /* Pixel.cpp in Sources */,
 				F0DBB3681BF91D7D00B0CF52 /* main.cpp in Sources */,

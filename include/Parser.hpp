@@ -18,6 +18,7 @@
 #include "Light.hpp"
 #include "Scene.hpp"
 #include "Plane.hpp"
+#include "Primitive.hpp"
 #include "Sphere.hpp"
 #include "Vector3f.h"
 
@@ -28,12 +29,10 @@
 using namespace std;
 
 class Parser {
-private:
 
 public:
-    void parse(vector<Plane> &planes,
-               vector<Light> &lights,
-               vector<Sphere> &spheres,
+    void parse(vector<Light> &lights,
+               vector<Primitive> &primitives,
                Scene &scenes);
     
 };

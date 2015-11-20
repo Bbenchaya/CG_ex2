@@ -17,7 +17,10 @@ Scene::Scene(const Vector3f &center,
              float width,
              unsigned int resolution_x,
              unsigned int resolution_y,
-             const Vector3f &color){
+             const Vector3f &color,
+             vector<Primitive> &primitives,
+             vector<Light> &lights) :   primitives(NULL),
+                                        lights(NULL){
     this->center = center;
     this->upVector = upVector;
     this->resolution_i = resolution_y;
@@ -25,6 +28,8 @@ Scene::Scene(const Vector3f &center,
     this->width = width;
     this->color = color;
     this->rightVector = Vector3f::crossProduct(center, up);
+    this->primitives = primitives;
+    this->lights = lights;
 }
 
 Scene& Scene::operator=(const Scene &other){
@@ -40,12 +45,25 @@ Scene& Scene::operator=(const Scene &other){
     return *this;
 }
 
+float Scene::intersect(const Ray &ray, Primitive *primitive){
+    return 0;
+}
+
 Ray Scene::constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j){
     return *(new Ray());
 }
 
 Intersection Scene::findIntersection(const Ray &ray, const Scene &scene){
-    return *(new Intersection());
+    float min_distance = INFINITY;
+    Primitive *min_primitive = NULL;
+    for (vector<Primitive>::iterator prim_iter = primitives.begin(); prim_iter != primitives.end(); prim_iter++) {
+        float curr_distance = intersect(ray, &(*prim_iter));
+        if (curr_distance < min_distance) {
+            min_primitive = &*prim_iter;
+            min_distance = curr_distance;
+        }
+    }
+    return *(new Intersection(min_distance, *min_primitive));
 }
 
 Vector3f Scene::getColor(const Scene &scene, const Ray &ray, const Intersection &hit){
@@ -54,8 +72,7 @@ Vector3f Scene::getColor(const Scene &scene, const Ray &ray, const Intersection 
 
 void Scene::castRays(Vector3f ***image,
                      const vector<Light> &lights,
-                     const vector<Plane> &planes,
-                     const vector<Sphere> &spheres){
+                     const vector<Primitive> &primitives){
     Camera camera = Camera();
     for (unsigned int i = 0; i < resolution_i; i++) {
         for (unsigned int j = 0; j < 5; j++) {

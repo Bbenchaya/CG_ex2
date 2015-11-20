@@ -9,13 +9,17 @@
 #ifndef Scene_hpp
 #define Scene_hpp
 
+#include <cmath>
 #include <GLUT/GLUT.h>
+#include <limits>
+#include <cstddef>
 #include <vector>
 #include "Camera.hpp"
 #include "Intersection.hpp"
 #include "Light.hpp"
 #include "Plane.hpp"
 #include "Pixel.hpp"
+#include "Primitive.hpp"
 #include "Ray.hpp"
 #include "Sphere.hpp"
 #include "Vector3f.h"
@@ -32,24 +36,37 @@ private:
     unsigned int resolution_i;
     unsigned int resolution_j;
     Vector3f color;
+    vector<Primitive> primitives;
+    vector<Light> lights;
     
 public:
     Scene();
+    
     Scene(const Vector3f &center,
           const Vector3f &up,
           float width,
           unsigned int resolution_i,
           unsigned int resolution_j,
-          const Vector3f &color);
+          const Vector3f &color,
+          vector<Primitive> &primitives,
+          vector<Light> &lights);
+    
     Scene& operator=(const Scene &other);
+    
+    float intersect(const Ray &ray, Primitive *primitive);
+    
     Ray constructRayThroughPixel(const Camera &camera, unsigned int i ,unsigned int j);
+    
     Intersection findIntersection(const Ray &ray, const Scene &scene);
+    
     Vector3f getColor(const Scene &scene, const Ray &ray, const Intersection &hit);
+    
     void castRays(Vector3f ***image,
                   const vector<Light> &lights,
-                  const vector<Plane> &planes,
-                  const vector<Sphere> &spheres);
+                  const vector<Primitive> &primitives);
+    
     unsigned int getWidth();
+    
     unsigned int getHeight();
     
 };

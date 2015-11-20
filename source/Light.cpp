@@ -7,6 +7,11 @@
 //
 
 #include "Light.hpp"
+
+Light::Light(){
+    
+}
+
 //SpotLight Constructor
 Light::Light(const Vector3f &position,
              const Vector3f &color,

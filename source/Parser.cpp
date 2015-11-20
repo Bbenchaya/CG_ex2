@@ -8,9 +8,8 @@
 
 #include "Parser.hpp"
 
-void Parser::parse(vector<Plane> &planes,
-                   vector<Light> &lights,
-                   vector<Sphere> &spheres,
+void Parser::parse(vector<Light> &lights,
+                   vector<Primitive> &primitives,
                    Scene &scene){
     FILE *file;
     file = fopen(INPUT_FILE, "r");
@@ -34,7 +33,9 @@ void Parser::parse(vector<Plane> &planes,
                             width,
                             Ry,
                             Rx,
-                            Vector3f(ambient));
+                            Vector3f(ambient),
+                            primitives,
+                            lights);
                 cout << "Scene created!" << endl;
             }
             if (strcmp(next_line, "spher") == 0){
@@ -50,7 +51,7 @@ void Parser::parse(vector<Plane> &planes,
                              Vector3f(ks),
                              Vector3f(kd),
                              shine);
-                spheres.push_back((spher));
+                primitives.push_back((spher));
                 cout << "Sphere created!" << endl;
             }
             if (strncmp(next_line, "plane", 5) == 0){
@@ -70,7 +71,7 @@ void Parser::parse(vector<Plane> &planes,
                             Vector3f(kd),
                             Vector3f(ks),
                             mirror);
-                planes.push_back((plane));
+                primitives.push_back((plane));
                 cout << "Plane created!" << endl;
             }
             if (strncmp(next_line, "light", 5) == 0){

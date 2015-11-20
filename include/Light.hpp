@@ -22,6 +22,7 @@ private:
     bool is_directional;
 
 public:
+    Light();
     //Spot_Light
     Light(const Vector3f &position,
           const Vector3f &color,
