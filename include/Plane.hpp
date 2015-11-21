@@ -40,6 +40,8 @@ public:
     
     virtual Vector3f getNormal();
     
+    virtual float intersect(Ray &ray);
+    
 };
 
 #endif /* Plane_hpp */

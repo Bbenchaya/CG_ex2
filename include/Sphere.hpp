@@ -29,6 +29,8 @@ public:
            const Vector3f &ks,
            const Vector3f &kd,
            float shine);
+    
+    float intersect(Ray &ray);
 };
 
 #endif /* Sphere_hpp */

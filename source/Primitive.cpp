@@ -20,6 +20,10 @@ Primitive& Primitive::operator=(const Primitive &other){
     return *this;
 }
 
+float Primitive::intersect(Ray &ray){
+    return 0;
+}
+
 const char Primitive::instanceof(){
     return type;
 }

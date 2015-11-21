@@ -56,7 +56,7 @@ public:
     
     Scene& operator=(const Scene &other);
     
-    float intersect(Ray &ray, Primitive &primitive);
+//    float intersect(Ray &ray, Primitive &primitive);
     
     Ray constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j);
     

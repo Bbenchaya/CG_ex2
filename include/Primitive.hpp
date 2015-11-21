@@ -9,6 +9,8 @@
 #ifndef Primitive_hpp
 #define Primitive_hpp
 
+#include "Ray.hpp"
+
 class Primitive {
 
 protected:
@@ -18,6 +20,7 @@ public:
     Primitive();
     Primitive(char type);
     Primitive& operator=(const Primitive &other);
+    virtual float intersect(Ray &ray);
     const char instanceof();
 };
 
