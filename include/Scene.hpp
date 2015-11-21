@@ -11,7 +11,6 @@
 
 #include <cmath>
 #include <cstddef>
-#include <iostream>
 #include <limits>
 #include <string>
 #include <vector>
@@ -25,7 +24,6 @@
 #include "Sphere.hpp"
 
 #include <GLUT/GLUT.h>
-#include "Vector3f.h"
 
 using namespace std;
 

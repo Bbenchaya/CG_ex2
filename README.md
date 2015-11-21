@@ -3,7 +3,7 @@
 The purpose of this exercise is to implement a ray tracer. A text file is given as input, 
 describing a 3D scene with objects inside it. From this data a 3D scene would be modeled in-memory, and then a ray tracing
 algorithm is applied, in order to find the scene's projection on a 2D plane that's present in the scene. This plane simbolizes
-the user's field of view, so the projection is processed into a 2D image file which is given as output.
+the user's field of view, so the projection is processed into a 2D image which is rendered in an OpenGL window.
 
 
 ### License
