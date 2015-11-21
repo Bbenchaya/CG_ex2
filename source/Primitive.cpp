@@ -17,12 +17,19 @@ Primitive::Primitive(char type) : type(type){
 }
 
 Primitive& Primitive::operator=(const Primitive &other){
+    if (this == &other)
+        return *this;
     return *this;
 }
 
 pair<float, Vector3f> Primitive::intersect(Ray &ray){
     return make_pair(0, Vector3f());
 }
+
+pair<float, Vector3f> Primitive::intersect(Ray &ray){
+    return make_pair(0, Vector3f());
+}
+
 
 const char Primitive::instanceof(){
     return type;
