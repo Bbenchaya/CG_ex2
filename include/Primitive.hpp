@@ -25,7 +25,8 @@ public:
     Primitive();
     Primitive(char type);
     Primitive& operator=(const Primitive &other);
-    virtual pair<float, Vector3f> intersect(Ray &ray);
+    bool operator!=(const Primitive &other);
+    virtual std::pair<float, Vector3f> intersect(Ray &ray);
     const char instanceof();
 };
 

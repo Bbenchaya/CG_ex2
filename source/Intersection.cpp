@@ -35,6 +35,6 @@ Primitive Intersection::getMinPrimitive() const{
     return this->min_primitive;
 }
 
-Vector3f Intersection::getInterSectionPoint() const{
+Vector3f Intersection::getIntersectionPoint() const{
     return this->intersectionPoint;
 }

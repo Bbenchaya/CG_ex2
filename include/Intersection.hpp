@@ -24,8 +24,7 @@ public:
     Intersection& operator=(const Intersection &other);
     float getMinDistance() const;
     Primitive getMinPrimitive() const;
-    Vector3f getInterSectionPoint() const;
-    
+    Vector3f getIntersectionPoint() const;
 };
 
 #endif /* Intersection_hpp */

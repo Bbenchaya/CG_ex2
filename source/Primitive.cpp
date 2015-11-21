@@ -22,8 +22,8 @@ Primitive& Primitive::operator=(const Primitive &other){
     return *this;
 }
 
-pair<float, Vector3f> Primitive::intersect(Ray &ray){
-    return make_pair(0, Vector3f());
+bool Primitive::operator!=(const Primitive &other){
+    return (*this != other);
 }
 
 pair<float, Vector3f> Primitive::intersect(Ray &ray){
