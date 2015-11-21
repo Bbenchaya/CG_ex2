@@ -22,6 +22,7 @@ Sphere::Sphere(const Vector3f &center,
     this->shine = shine;
 }
 
-float Sphere::intersect(Ray &ray){
-    return 0;
+pair<float, Vector3f> Sphere::intersect(Ray &ray){
+    return make_pair<float, Vector3f>;
+    
 }

@@ -30,7 +30,8 @@ public:
            const Vector3f &kd,
            float shine);
     
-    float intersect(Ray &ray);
+    pair<float, Vector3f> intersect(Ray &ray);
+    Vector3f get_center();
 };
 
 #endif /* Sphere_hpp */

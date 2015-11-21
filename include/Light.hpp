@@ -32,5 +32,7 @@ public:
     Light(const Vector3f &position,
           const Vector3f &color);
     
+    Vector3f get_position();
+    Vector3f get_color();
 };
 #endif /* Light_hpp */

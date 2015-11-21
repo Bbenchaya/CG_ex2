@@ -30,5 +30,13 @@ Light::Light(const Vector3f &position,
     this->position = position;
     this->color = color;
     this->is_directional = false;
+}
 
-};
+Vector3f Light::get_position(){
+    return this->position;
+}
+
+Vector3f Light::get_color(){
+    return this->color;
+}
+
