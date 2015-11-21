@@ -37,7 +37,7 @@ public:
     
     Vector3f getCenter();
     
-    Vector3f getNormal();
+    Vector3f getNormal(Vector3f point);
     
     pair<float, Vector3f> intersect(Ray &ray);
     

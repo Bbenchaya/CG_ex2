@@ -31,13 +31,13 @@ Vector3f Plane::getCenter(){
     return this->center;
 }
 
-Vector3f Plane::getNormal(){
+Vector3f Plane::getNormal(Vector3f point){
     return this->normal;
 }
 
 pair<float, Vector3f> Plane::intersect(Ray &ray){
-    float numerator = Vector3f::dotProduct(getNormal(), getCenter());
-    float denominator = Vector3f::dotProduct(getNormal(), ray.getDirection());
+    float numerator = Vector3f::dotProduct(getNormal(Vector3f()), getCenter());
+    float denominator = Vector3f::dotProduct(getNormal(Vector3f()), ray.getDirection());
     float scalar =  numerator / denominator;
     Vector3f possibleIntersection = ray.getDirection() * scalar;
     Vector3f centerToPossibleIntersection = Vector3f();

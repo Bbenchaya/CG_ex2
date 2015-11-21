@@ -27,9 +27,12 @@ bool Primitive::operator!=(const Primitive &other){
 }
 
 pair<float, Vector3f> Primitive::intersect(Ray &ray){
-    return make_pair(0, Vector3f());
+    return make_pair(INFINITY, Vector3f());
 }
 
+Vector3f Primitive::getNormal(Vector3f point){
+    return Vector3f();
+}
 
 const char Primitive::instanceof(){
     return type;

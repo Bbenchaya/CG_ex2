@@ -33,3 +33,7 @@ pair<float, Vector3f> Sphere::intersect(Ray &ray){
     else
         return make_pair(t_m + t_h, ray.getDirection() * (t_m + t_h)); // ray-sphere intersection point
 }
+
+Vector3f Sphere::getNormal(Vector3f point){
+    return (point - center)/Vector3f::dotProduct(point-center, point-center);
+}

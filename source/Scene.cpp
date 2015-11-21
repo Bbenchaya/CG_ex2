@@ -127,66 +127,56 @@ Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
     if (hit.getMinDistance() == INFINITY)
         return *(new Vector3f(0, 0, 0)); //the ray hits nothing, so paint the pixel in black
     Vector3f res = Vector3f(0, 0, 0);
-    /* construct a vector from the intersection point to each light source, and check if it reaches the light. if so, sum up the
-        light's color values into *res. */
-    //find reflected light vector and iterate through lights to see if it reaches any of them, if it does check if any primitive obstructs the view.
     Primitive prim = hit.getMinPrimitive();
-    char type = prim.instanceof();
-    
-    if (type == 'p'){
-        Vector3f ray_direction = ray.getDirection();
-        Vector3f plane_normal = static_cast<Plane*>(&prim)->getNormal();
-        Vector3f ray_normal = -plane_normal*(Vector3f::dotProduct(ray_direction, plane_normal));
-        Vector3f directional_vec = ray_direction+ray_normal;
-        Vector3f reflected_light = ray_normal+directional_vec;
-        for (vector<Light>::iterator light_iter = lights.begin(); light_iter != lights.end(); ++light_iter){
-            Vector3f curr_light = light_iter->get_position();
-            float scalar = 0;
-            if (reflected_light[0] == 0){
-                if (curr_light[0] != 0) {
+    Vector3f ray_direction = ray.getDirection();
+    Vector3f primitiveNormal = prim.getNormal(hit.getIntersectionPoint());
+    Vector3f ray_normal = -primitiveNormal*(Vector3f::dotProduct(ray_direction, primitiveNormal));
+    Vector3f directional_vec = ray_direction+ray_normal;
+    Vector3f reflected_light = ray_normal+directional_vec;
+    for (vector<Light>::iterator light_iter = lights.begin(); light_iter != lights.end(); ++light_iter){
+        Vector3f curr_light = light_iter->get_position();
+        float scalar = 0;
+        if (reflected_light[0] == 0){
+            if (curr_light[0] != 0) {
+                continue;
+            }
+            else{
+                scalar = (curr_light[0]/reflected_light[0]);
+            }
+        }
+        else if (reflected_light[1] == 0){
+            if (curr_light[1] != 0) {
+                continue;
+            }
+            else{
+                if(scalar != (curr_light[1]/reflected_light[1])){
                     continue;
-                }
-                else{
-                    scalar = (curr_light[0]/reflected_light[0]);
                 }
             }
-            else if (reflected_light[1] == 0){
-                if (curr_light[1] != 0) {
-                    continue;
-                }
-                else{
-                    if(scalar != (curr_light[1]/reflected_light[1])){
-                       continue;
-                    }
-                }
+        }
+        else if (reflected_light[2] == 0){
+            if (curr_light[2] != 0) {
+                continue;
             }
-            else if (reflected_light[2] == 0){
-                if (curr_light[2] != 0) {
+            else{
+                if(scalar != (curr_light[2]/reflected_light[2])){
                     continue;
                 }
                 else{
-                    if(scalar != (curr_light[2]/reflected_light[2])){
-                    continue;
-                    }
-                    else{
-                        Ray reflected_ray = Ray(reflected_light);
-                        bool reach_light = true;
-                        for(vector<Primitive>::iterator prim_iter = primitives.begin(); prim_iter != primitives.end() && reach_light; ++prim_iter){
-                            float distance = prim_iter->intersect(reflected_ray).first;
-                            if((*prim_iter != prim) && distance < INFINITY){
-                               reach_light = false;
-                            }
+                    Ray reflected_ray = Ray(reflected_light);
+                    bool reach_light = true;
+                    for(vector<Primitive>::iterator prim_iter = primitives.begin(); prim_iter != primitives.end() && reach_light; ++prim_iter){
+                        float distance = prim_iter->intersect(reflected_ray).first;
+                        if((*prim_iter != prim) && distance < INFINITY){
+                            reach_light = false;
                         }
-                        res += light_iter->get_color();
                     }
+                    res += light_iter->get_color();
                 }
             }
         }
     }
-    else{//type is sphere
-        
-    }
-        return *(new Vector3f());
+    return res;
 }
 
 void Scene::castRays(Vector3f ***image){
