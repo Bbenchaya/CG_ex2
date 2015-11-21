@@ -36,11 +36,11 @@ public:
           const Vector3f &ks,
           bool mirror);
     
-    virtual Vector3f getCenter();
+    Vector3f getCenter();
     
-    virtual Vector3f getNormal();
+    Vector3f getNormal();
     
-    virtual pair<float, Vector3f> intersect(Ray &ray);
+    pair<float, Vector3f> intersect(Ray &ray);
     
 };
 

@@ -51,7 +51,7 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
         if (centerToPossibleIntersectionXComponent <= length / 2 && centerToPossibleIntersectionYComponent <= width / 2) {
             return make_pair(sqrtf(Vector3f::dotProduct(possibleIntersection, possibleIntersection)), possibleIntersection); // the distance from the origin to the intersection point
         }
-        else return make_pair(0, Vector3f());
+        else return make_pair(INFINITY, Vector3f());
     }
     if (normal.p[1] == 0) { // plane rotates around y axis
         float cosAngle = Vector3f::dotProduct(centerToPossibleIntersection, Vector3f(0, 1, 0)) / centerToPossibleIntersectionNorm;
@@ -61,9 +61,9 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
         if (centerToPossibleIntersectionXComponent <= length / 2 && centerToPossibleIntersectionYComponent <= width / 2) {
             return make_pair(sqrtf(Vector3f::dotProduct(possibleIntersection, possibleIntersection)), possibleIntersection); // the distance from the origin to the intersection point
         }
-        else return make_pair(0, Vector3f());
+        else return make_pair(INFINITY, Vector3f());
     }
-    if (normal.p[0] == 0) { // plane rotates around y axis
+    if (normal.p[0] == 0) { // plane rotates around z axis
         float cosAngle = Vector3f::dotProduct(centerToPossibleIntersection, Vector3f(1, 0, 0)) / centerToPossibleIntersectionNorm;
         float angle = acosf(cosAngle);
         float centerToPossibleIntersectionXComponent = centerToPossibleIntersectionNorm * cosAngle;
@@ -71,7 +71,7 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
         if (centerToPossibleIntersectionXComponent <= length / 2 && centerToPossibleIntersectionYComponent <= width / 2) {
             return make_pair(sqrtf(Vector3f::dotProduct(possibleIntersection, possibleIntersection)), possibleIntersection); // the distance from the origin to the intersection point
         }
-        else return make_pair(0, Vector3f());
+        else return make_pair(INFINITY, Vector3f());
     }
     cout << "A plane was provided with illegal normal vector" << endl;
     return make_pair(0, Vector3f());;

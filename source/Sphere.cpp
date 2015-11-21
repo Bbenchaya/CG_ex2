@@ -23,5 +23,13 @@ Sphere::Sphere(const Vector3f &center,
 }
 
 pair<float, Vector3f> Sphere::intersect(Ray &ray){
-    return make_pair(0, Vector3f());
+    float t_m = Vector3f::dotProduct(center, ray.getDirection());
+    float d_squared = Vector3f::dotProduct(center, center) - powf(t_m, 2);
+    if (d_squared > radius * radius)
+        return make_pair(INFINITY, Vector3f());
+    float t_h = sqrtf(radius * radius - d_squared);
+    if (t_m - t_h > 0)
+        return make_pair(t_m - t_h, ray.getDirection() * (t_m - t_h));
+    else
+        return make_pair(t_m + t_h, ray.getDirection() * (t_m + t_h));
 }
