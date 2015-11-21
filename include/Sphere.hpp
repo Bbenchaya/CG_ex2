@@ -10,7 +10,6 @@
 #define Sphere_hpp
 
 #include "Primitive.hpp"
-#include "Vector3f.h"
 
 class Sphere : public Primitive{
     

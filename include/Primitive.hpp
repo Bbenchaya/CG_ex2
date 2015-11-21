@@ -12,6 +12,7 @@
 #include <iostream>
 #include <utility>
 #include "Ray.hpp"
+#include "Vector3f.h"
 
 using namespace std;
 

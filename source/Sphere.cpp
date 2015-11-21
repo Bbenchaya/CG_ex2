@@ -29,7 +29,7 @@ pair<float, Vector3f> Sphere::intersect(Ray &ray){
         return make_pair(INFINITY, Vector3f());
     float t_h = sqrtf(radius * radius - d_squared);
     if (t_m - t_h > 0)
-        return make_pair(t_m - t_h, ray.getDirection() * (t_m - t_h));
+        return make_pair(t_m - t_h, ray.getDirection() * (t_m - t_h)); // ray-sphere intersection point
     else
-        return make_pair(t_m + t_h, ray.getDirection() * (t_m + t_h));
+        return make_pair(t_m + t_h, ray.getDirection() * (t_m + t_h)); // ray-sphere intersection point
 }

@@ -10,7 +10,6 @@
 #define Plane_hpp
 
 #include "Primitive.hpp"
-#include "Vector3f.h"
 
 class Plane : public Primitive{
     
