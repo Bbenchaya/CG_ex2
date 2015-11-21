@@ -16,13 +16,15 @@ class Intersection {
 private:
     float min_distance;
     Primitive min_primitive;
+    Vector3f intersectionPoint;
     
 public:
     Intersection();
-    Intersection(float min_distance, Primitive &min_primitive);
+    Intersection(float min_distance, Primitive &min_primitive, Vector3f intersectionPoint);
     Intersection& operator=(const Intersection &other);
     float getMinDistance() const;
     Primitive getMinPrimitive() const;
+    Vector3f getInterSectionPoint() const;
     
 };
 

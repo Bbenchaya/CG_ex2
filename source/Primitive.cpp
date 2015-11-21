@@ -20,8 +20,8 @@ Primitive& Primitive::operator=(const Primitive &other){
     return *this;
 }
 
-float Primitive::intersect(Ray &ray){
-    return 0;
+pair<float, Vector3f> Primitive::intersect(Ray &ray){
+    return make_pair(0, Vector3f());
 }
 
 const char Primitive::instanceof(){

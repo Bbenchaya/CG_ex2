@@ -9,7 +9,11 @@
 #ifndef Primitive_hpp
 #define Primitive_hpp
 
+#include <iostream>
+#include <utility>
 #include "Ray.hpp"
+
+using namespace std;
 
 class Primitive {
 
@@ -20,7 +24,7 @@ public:
     Primitive();
     Primitive(char type);
     Primitive& operator=(const Primitive &other);
-    virtual float intersect(Ray &ray);
+    virtual pair<float, Vector3f> intersect(Ray &ray);
     const char instanceof();
 };
 

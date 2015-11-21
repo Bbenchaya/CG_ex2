@@ -40,7 +40,7 @@ public:
     
     virtual Vector3f getNormal();
     
-    virtual float intersect(Ray &ray);
+    virtual pair<float, Vector3f> intersect(Ray &ray);
     
 };
 

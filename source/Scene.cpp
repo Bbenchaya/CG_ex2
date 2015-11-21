@@ -111,14 +111,16 @@ Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int
 Intersection Scene::findIntersection(Ray &ray){
     float min_distance = INFINITY;
     Primitive *min_primitive = NULL;
+    Vector3f intersectionPoint;
     for (vector<Primitive>::iterator primitive = primitives.begin(); primitive != primitives.end(); primitive++) {
-        float curr_distance = (*primitive).intersect(ray);
-        if (curr_distance < min_distance) {
+        pair<float, Vector3f> curr_distance = (*primitive).intersect(ray);
+        if (curr_distance.first < min_distance) {
             min_primitive = &(*primitive);
-            min_distance = curr_distance;
+            min_distance = curr_distance.first;
+            intersectionPoint = curr_distance.second;
         }
     }
-    return *(new Intersection(min_distance, *min_primitive));
+    return *(new Intersection(min_distance, *min_primitive, intersectionPoint));
 }
 
 Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
