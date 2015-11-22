@@ -30,6 +30,8 @@ Scene::Scene(const Vector3f &center,
     this->rightVector = Vector3f::crossProduct(center, up);
     this->primitives = primitives;
     this->lights = lights;
+    this->center.normalize();
+    this->upVector.normalize();
 }
 
 Scene& Scene::operator=(const Scene &other){
@@ -44,21 +46,6 @@ Scene& Scene::operator=(const Scene &other){
     this->rightVector = Vector3f::crossProduct(other.center, other.upVector);
     return *this;
 }
-
-//float Scene::intersect(Ray &ray, Primitive &primitive){
-//    switch (primitive.instanceof()) {
-//        case 's':
-//            return 0;
-//        case 'p':
-//            float numerator = Vector3f::dotProduct((static_cast<Plane*>(&primitive))->getCenter(),
-//                                                   (static_cast<Plane*>(&primitive))->getNormal());
-//            float denominator = Vector3f::dotProduct((static_cast<Plane*>(&primitive))->getNormal(), ray.getDirection());
-//            float scalar =  numerator / denominator;
-//            Vector3f possibleIntersection = ray.getDirection() * scalar;
-//            return 0;
-//    }
-//    return 0;
-//}
 
 Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j){
     float scalar = width / getWidth();
