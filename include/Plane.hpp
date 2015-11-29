@@ -10,6 +10,7 @@
 #define Plane_hpp
 
 #include "Primitive.hpp"
+#include "Triangle.hpp"
 
 class Plane : public Primitive{
     

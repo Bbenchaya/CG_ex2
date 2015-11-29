@@ -10,6 +10,7 @@
 		59B069731BF8D2FE00E24D65 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069721BF8D2FE00E24D65 /* GLUT.framework */; };
 		59B069751BF8D30300E24D65 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069741BF8D30300E24D65 /* OpenGL.framework */; };
 		59B069771BF8D30D00E24D65 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B069761BF8D30D00E24D65 /* Cocoa.framework */; };
+		F01DA7641C0B929100979F08 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F01DA7621C0B929100979F08 /* Triangle.cpp */; };
 		F053BAF71BFF113800B31B92 /* Intersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F053BAF51BFF113800B31B92 /* Intersection.cpp */; };
 		F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F05EB9711BFCD17D00A06A14 /* Ray.cpp */; };
 		F05EB9791BFCE13D00A06A14 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F05EB9771BFCE13D00A06A14 /* Camera.cpp */; };
@@ -39,6 +40,8 @@
 		59B069721BF8D2FE00E24D65 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		59B069741BF8D30300E24D65 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		59B069761BF8D30D00E24D65 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F01DA7621C0B929100979F08 /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
+		F01DA7631C0B929100979F08 /* Triangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Triangle.hpp; sourceTree = "<group>"; };
 		F053BAF51BFF113800B31B92 /* Intersection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Intersection.cpp; sourceTree = "<group>"; };
 		F053BAF61BFF113800B31B92 /* Intersection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Intersection.hpp; sourceTree = "<group>"; };
 		F05EB9711BFCD17D00A06A14 /* Ray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ray.cpp; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 				F05EB9721BFCD17D00A06A14 /* Ray.hpp */,
 				F0CCFC0C1BFA739C00E0BD43 /* Scene.hpp */,
 				F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */,
+				F01DA7631C0B929100979F08 /* Triangle.hpp */,
 				F0DBB3651BF91D7D00B0CF52 /* Vector3f.h */,
 			);
 			path = include;
@@ -129,6 +133,7 @@
 				F05EB9711BFCD17D00A06A14 /* Ray.cpp */,
 				F0CCFC0B1BFA739C00E0BD43 /* Scene.cpp */,
 				F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */,
+				F01DA7621C0B929100979F08 /* Triangle.cpp */,
 				F0DBB3671BF91D7D00B0CF52 /* main.cpp */,
 				F05EB97C1BFCF87900A06A14 /* init_simple.txt */,
 				F0FED6571C00C26000B5A3D6 /* init1.txt */,
@@ -198,6 +203,7 @@
 				F0CCFC0A1BFA739500E0BD43 /* Light.cpp in Sources */,
 				F053BAF71BFF113800B31B92 /* Intersection.cpp in Sources */,
 				F0CCFC0D1BFA739C00E0BD43 /* Scene.cpp in Sources */,
+				F01DA7641C0B929100979F08 /* Triangle.cpp in Sources */,
 				F05EB9791BFCE13D00A06A14 /* Camera.cpp in Sources */,
 				F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */,
 				F0D7C7981BFF4C9D002CF750 /* Primitive.cpp in Sources */,

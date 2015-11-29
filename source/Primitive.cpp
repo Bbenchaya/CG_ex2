@@ -23,7 +23,7 @@ Primitive& Primitive::operator=(const Primitive &other){
 }
 
 bool Primitive::operator!=(const Primitive &other){
-    return (*this != other);
+    return (this != &other);
 }
 
 pair<float, Vector3f> Primitive::intersect(Ray &ray){
