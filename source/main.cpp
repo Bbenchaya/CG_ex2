@@ -17,18 +17,19 @@ GLfloat* transformImageToGL(Vector3f*** image){
     GLfloat *res = new GLfloat[512 * 512 * 3];
     for (int i = 0; i < 512; i++)
         for (int j = 0; j < 512; j++) {
-//            res[i * 512 + j] = (*image)[i][j].p[0];
-//            res[(i * 512 + j) + 1] = (*image)[i][j].p[1];
-//            res[(i * 512 + j) + 2] = (*image)[i][j].p[2];
-            res[i * 512 + j] = 0;
-            res[(i * 512 + j) + 1] = 0;
-            res[(i * 512 + j) + 2] = 0;
-        }
+            res[(i * 512 + j) * 3] = ((*image)[i][j]).p[0];
+            res[(i * 512 + j) * 3 + 1] = ((*image)[i][j]).p[1];
+            res[(i * 512 + j) * 3 + 2] = ((*image)[i][j]).p[2];
+//            res[(i * 512 + j) * 3] = 1;
+//            res[(i * 512 + j) * 3 + 1] = 1;
+//            res[(i * 512 + j) * 3 + 2] = 0;
+         }
     return res;
 }
 
 void init(Vector3f ***image){
     glEnable(GL_TEXTURE_2D);
+    glClearColor(0, 0, 0, 0);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -37,20 +38,23 @@ void init(Vector3f ***image){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     GLfloat *image_for_GL = transformImageToGL(image);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 512, 512, 0,GL_LUMINANCE, GL_FLOAT, image_for_GL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 512, 512, 0, GL_RGB, GL_FLOAT, image_for_GL);
 
 }
 
 void mydisplay(){
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBindTexture(GL_TEXTURE_2D, texture);
     glViewport(0, 0, 512, 512);
     glBegin(GL_QUADS);
-    glTexCoord2f(0.0, 0.0); glVertex3f(1.0, 1.0f, 1.0);
-    glTexCoord2f(1.0, 0.0); glVertex3f(1.0, -1.0f, 1.0);
-    glTexCoord2f(1.0, 1.0); glVertex3f(-1.0, -1.0f, 1.0);
-    glTexCoord2f(0.0, 1.0); glVertex3f(-1.0, 1.0f, 1.0);
+    glTexCoord2f(0, 0);
+    glVertex3f(1.0, 1.0f, 1.0);
+    glTexCoord2f(1, 0);
+    glVertex3f(1.0, -1.0f, 1.0);
+    glTexCoord2f(1, 1);
+    glVertex3f(-1.0, -1.0f, 1.0);
+    glTexCoord2f(0, 1);
+    glVertex3f(-1.0, 1.0f, 1.0);
     glEnd();
     glFlush();
 }
@@ -67,11 +71,12 @@ int main(int argc, char **argv){
         image[i] = new Vector3f[scene.getWidth()];
     }
     scene.castRays(&image);
-    glutInit (&argc, argv) ;
-    glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB) ;
-    glutInitWindowSize ( 512,512) ;
-    glutCreateWindow("Lighting") ;
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitWindowSize(512, 512);
+    glutCreateWindow("Ray casting");
     init(&image);
     glutDisplayFunc(mydisplay);
     glutMainLoop ();
+    return 0;
 }
