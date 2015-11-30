@@ -74,7 +74,7 @@ Intersection Scene::findIntersection(Ray &ray){
 
 Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera){
     if (hit.getMinDistance() == INFINITY)
-        return *(new Vector3f(0, 0, 0)); //the ray hits nothing, so paint the pixel in black
+        return Vector3f(0, 0, 0); //the ray hits nothing, so paint the pixel in black
     Primitive *prim = hit.getMinPrimitive();
     Vector3f ka = prim->getKa();
     Vector3f kd = prim->getKd();
@@ -87,10 +87,9 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
         Vector3f L = (*light_iter).get_direction() - hit.getIntersectionPoint();
         L.normalize();
-//        if (light_iter->is_directional() && !light_iter->illuminates(L)) {
-//            continue;
-//        }
-
+        if (light_iter->is_spotlight() && !light_iter->illuminates(L)) {
+            continue;
+        }
         bool ray_intersects_another_primitive = false;
 //        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
 //            if (*primitive != prim) {

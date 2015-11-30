@@ -40,16 +40,16 @@ Vector3f Light::get_intensity(){
     return this->intensity;
 }
 
-bool Light::is_directional(){
-    return this->directional;
+bool Light::is_spotlight(){
+    return !this->directional;
 }
 
-bool Light::illuminates(Vector3f ray){
-    ray = -ray;
-    ray.normalize();
+bool Light::illuminates(Vector3f L){
+    L = -L;
+    L.normalize();
     Vector3f D = direction - position;
     D.normalize();
-    if (light_cutoff < acosf(Vector3f::dotProduct(ray, D)))
+    if (light_cutoff < acosf(Vector3f::dotProduct(L, D)))
         return false;
     else
         return true;

@@ -36,8 +36,8 @@ public:
     
     Vector3f get_intensity();
     
-    bool is_directional();
+    bool is_spotlight();
     
-    bool illuminates(Vector3f ray);
+    bool illuminates(Vector3f L);
 };
 #endif /* Light_hpp */
