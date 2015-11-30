@@ -22,6 +22,18 @@ Sphere::Sphere(const Vector3f &center,
     this->shine = shine;
 }
 
+Sphere& Sphere::operator=(const Sphere &other){
+    if (this == &other)
+        return *this;
+    this->center = other.center;
+    this->radius = other.radius;
+    this->ka = other.ka;
+    this->ks = other.ks;
+    this->kd = other.kd;
+    this->shine = other.shine;
+    return *this;
+}
+
 pair<float, Vector3f> Sphere::intersect(Ray &ray){
     float t_m = Vector3f::dotProduct(center, ray.getDirection());
     float d_squared = Vector3f::dotProduct(center, center) - powf(t_m, 2);
@@ -39,5 +51,6 @@ pair<float, Vector3f> Sphere::intersect(Ray &ray){
 }
 
 Vector3f Sphere::getNormal(Vector3f point){
+    //possible bug? should 'new'?
     return (point - center)/Vector3f::dotProduct(point-center, point-center);
 }

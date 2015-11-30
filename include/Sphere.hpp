@@ -29,6 +29,8 @@ public:
            const Vector3f &kd,
            float shine);
     
+    Sphere& operator=(const Sphere &other);
+    
     pair<float, Vector3f> intersect(Ray &ray);
 
     Vector3f getNormal(Vector3f point);

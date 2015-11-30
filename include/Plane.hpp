@@ -24,6 +24,12 @@ private:
     Vector3f ks;
     Vector3f kd;
     bool mirror;
+    Vector3f p1;
+    Vector3f p2;
+    Vector3f p3;
+    Vector3f p4;
+    Triangle t1;
+    Triangle t2;
     
 public:
     Plane(const Vector3f &normal,
@@ -35,6 +41,8 @@ public:
           const Vector3f &kd,
           const Vector3f &ks,
           bool mirror);
+    
+    Plane& operator=(const Plane &other);
     
     Vector3f getCenter();
     
