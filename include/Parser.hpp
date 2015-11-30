@@ -25,7 +25,8 @@
 
 #include "Vector3f.h"
 
-#define INPUT_FILE "/Users/bbenchaya/Documents/Xcode/CG_EX2/source/init_simple.txt"
+//#define INPUT_FILE "/Users/bbenchaya/Documents/Xcode/CG_EX2/source/init_simple.txt"
+#define INPUT_FILE "/Users/bbenchaya/Documents/Xcode/CG_EX2/source/init2.txt"
 //#define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init1.txt"
 //#define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init2.txt"
 //#define INPUT_FILE "/Users/asafchelouche/programming/CG_ex2/source/init_simple.txt"
@@ -37,7 +38,7 @@ class Parser {
 
 public:
     void parse(vector<Light> &lights,
-               vector<Primitive> &primitives,
+               vector<Primitive*> &primitives,
                Scene &scenes);
     
 };

@@ -9,7 +9,7 @@
 #include "Parser.hpp"
 
 void Parser::parse(vector<Light> &lights,
-                   vector<Primitive> &primitives,
+                   vector<Primitive*> &primitives,
                    Scene &scene){
     FILE *file;
     file = fopen(INPUT_FILE, "r");
@@ -51,7 +51,7 @@ void Parser::parse(vector<Light> &lights,
                              Vector3f(ks),
                              Vector3f(kd),
                              shine);
-                primitives.push_back((spher));
+                primitives.push_back(&(spher));
                 cout << "Sphere created!" << endl;
             }
             if (strncmp(next_line, "plane", 5) == 0){
@@ -71,7 +71,7 @@ void Parser::parse(vector<Light> &lights,
                             Vector3f(kd),
                             Vector3f(ks),
                             mirror);
-                primitives.push_back((plane));
+                primitives.push_back(&(plane));
                 cout << "Plane created!" << endl;
             }
             if (strncmp(next_line, "light", 5) == 0){
@@ -82,7 +82,7 @@ void Parser::parse(vector<Light> &lights,
                 if (params < 7){
                     Light light(Vector3f(dirX, dirY, dirZ),
                                 Vector3f(color));
-                    lights.push_back((light));
+                    lights.push_back(light);
                 }
                 else {
                     fscanf(file, ",%f,%f,%f", &positionY, &positionZ, &angle);
@@ -90,7 +90,7 @@ void Parser::parse(vector<Light> &lights,
                                      Vector3f(color),
                                      Vector3f(positionX, positionY, positionZ),
                                      angle);
-                    lights.push_back((spot_light));
+                    lights.push_back(spot_light);
                 }
                 //            if (params < 7)
                 //                printf("dirX:%f,dirY:%f,dirZ:%f,R:%f,G:%f,B:%f\n", dirX, dirY, dirZ, color[0], color[1], color[2]);

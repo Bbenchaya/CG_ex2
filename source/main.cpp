@@ -62,7 +62,7 @@ void mydisplay(){
 
 int main(int argc, char **argv){
     vector<Light> lights;
-    vector<Primitive> primitives;
+    vector<Primitive*> primitives;
     Scene scene = Scene();
     Parser parser;
     parser.parse(lights, primitives, scene);

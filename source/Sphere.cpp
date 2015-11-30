@@ -35,6 +35,7 @@ Sphere& Sphere::operator=(const Sphere &other){
 }
 
 pair<float, Vector3f> Sphere::intersect(Ray &ray){
+    cout<<"Sphere Intersect-------"<<endl;
     float t_m = Vector3f::dotProduct(center, ray.getDirection());
     float d_squared = Vector3f::dotProduct(center, center) - powf(t_m, 2);
     if (d_squared > radius * radius)

@@ -18,7 +18,7 @@ Scene::Scene(const Vector3f &center,
              unsigned int resolution_x,
              unsigned int resolution_y,
              const Vector3f &color,
-             vector<Primitive> *primitives,
+             vector<Primitive*> *primitives,
              vector<Light> *lights){
     this->center = center;
     this->upVector = upVector;
@@ -100,10 +100,11 @@ Intersection Scene::findIntersection(Ray &ray){
     float min_distance = INFINITY;
     Primitive *min_primitive = NULL;
     Vector3f intersectionPoint;
-    for (vector<Primitive>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
-        pair<float, Vector3f> curr_distance = (*primitive).intersect(ray);
+    for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
+        pair<float, Vector3f> curr_distance = (*primitive)->intersect(ray);
+        printf("--------- curr distance is: %f ---------", curr_distance.first);
         if (curr_distance.first < min_distance) {
-            min_primitive = &(*primitive);
+            min_primitive = (*primitive);
             min_distance = curr_distance.first;
             intersectionPoint = curr_distance.second;
         }
@@ -153,9 +154,9 @@ Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
                 else{
                     Ray reflected_ray = Ray(reflected_light);
                     bool reach_light = true;
-                    for(vector<Primitive>::iterator prim_iter = primitives->begin(); prim_iter != primitives->end() && reach_light; ++prim_iter){
-                        float distance = prim_iter->intersect(reflected_ray).first;
-                        if((*prim_iter != prim) && distance < INFINITY){
+                    for(vector<Primitive*>::iterator prim_iter = primitives->begin(); prim_iter != primitives->end() && reach_light; ++prim_iter){
+                        float distance = (*prim_iter)->intersect(reflected_ray).first;
+                        if((*prim_iter != &prim) && distance < INFINITY){
                             reach_light = false;
                         }
                     }
