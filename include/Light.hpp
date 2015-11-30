@@ -19,7 +19,7 @@ private:
 //Spot Light
     Vector3f position;
     float light_cutoff;
-    bool is_directional;
+    bool directional;
 
 public:
     Light();
@@ -35,5 +35,9 @@ public:
     Vector3f get_direction();
     
     Vector3f get_intensity();
+    
+    bool is_directional();
+    
+    bool illuminates(Vector3f ray);
 };
 #endif /* Light_hpp */

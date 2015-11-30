@@ -21,7 +21,7 @@ Light::Light(const Vector3f &direction,
     this->intensity = intensity;
     this->position = position;
     this->light_cutoff = light_cutoff;
-    this->is_directional = false;
+    this->directional = false;
 }
 
 //Regular Light Constructor
@@ -29,7 +29,7 @@ Light::Light(const Vector3f &direction,
              const Vector3f &intensity){
     this->direction = direction;
     this->intensity = intensity;
-    this->is_directional = true;
+    this->directional = true;
 }
 
 Vector3f Light::get_direction(){
@@ -38,5 +38,20 @@ Vector3f Light::get_direction(){
 
 Vector3f Light::get_intensity(){
     return this->intensity;
+}
+
+bool Light::is_directional(){
+    return this->directional;
+}
+
+bool Light::illuminates(Vector3f ray){
+    ray = -ray;
+    ray.normalize();
+    Vector3f D = direction - position;
+    D.normalize();
+    if (light_cutoff < acosf(Vector3f::dotProduct(ray, D)))
+        return false;
+    else
+        return true;
 }
 

@@ -87,6 +87,10 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
         Vector3f L = (*light_iter).get_direction() - hit.getIntersectionPoint();
         L.normalize();
+//        if (light_iter->is_directional() && !light_iter->illuminates(L)) {
+//            continue;
+//        }
+
         bool ray_intersects_another_primitive = false;
 //        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
 //            if (*primitive != prim) {
