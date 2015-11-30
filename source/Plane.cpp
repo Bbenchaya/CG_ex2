@@ -141,21 +141,17 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
 
 
 Vector3f Plane::getKa() {
-    printf("plane kA\n");
     return this->ka;
 }
 
 Vector3f Plane::getKd(){
-    printf("plane kD\n");
     return this->kd;
 }
 
 Vector3f Plane::getKs(){
-    printf("plane kS\n");
     return this->ks;
 }
 
 float Plane::getShine(){
-    printf("plane shine\n");
     return this->shine;
 }

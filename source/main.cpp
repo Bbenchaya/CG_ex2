@@ -47,14 +47,10 @@ void mydisplay(){
     glBindTexture(GL_TEXTURE_2D, texture);
     glViewport(0, 0, 512, 512);
     glBegin(GL_QUADS);
-    glTexCoord2f(0, 0);
-    glVertex3f(1.0, 1.0f, 1.0);
-    glTexCoord2f(1, 0);
-    glVertex3f(1.0, -1.0f, 1.0);
-    glTexCoord2f(1, 1);
-    glVertex3f(-1.0, -1.0f, 1.0);
-    glTexCoord2f(0, 1);
-    glVertex3f(-1.0, 1.0f, 1.0);
+    glTexCoord2f(0, 0); glVertex3f(-1.0, 1.0f, 1.0);
+    glTexCoord2f(1, 0); glVertex3f(1.0, 1.0f, 1.0);
+    glTexCoord2f(1, 1); glVertex3f(1.0, -1.0f, 1.0);
+    glTexCoord2f(0, 1); glVertex3f(-1.0, -1.0f, 1.0);
     glEnd();
     glFlush();
 }
