@@ -28,17 +28,18 @@ Triangle& Triangle::operator=(const Triangle &other){
 }
 
 bool Triangle::intersect(Vector3f point){
-    Vector3f normal = Vector3f::crossProduct(p2, p1);
+//    printf("x:%f, y:%f, z:%f\n", point.p[0], point.p[1], point.p[2]);
+    Vector3f normal = Vector3f::crossProduct(p1, p2);
     normal.normalize();
-    if (Vector3f::dotProduct(point, normal) < 0)
-        return false;
-    normal = Vector3f::crossProduct(p3, p2);
+    if (Vector3f::dotProduct(point, normal) < 0){
+        return false;}
+    normal = Vector3f::crossProduct(p2, p3);
     normal.normalize();
-    if (Vector3f::dotProduct(point, normal) < 0)
-        return false;
-    normal = Vector3f::crossProduct(p1, p3);
+    if (Vector3f::dotProduct(point, normal) < 0){
+        return false;}
+    normal = Vector3f::crossProduct(p3, p1);
     normal.normalize();
-    if (Vector3f::dotProduct(point, normal) < 0)
-        return false;
+    if (Vector3f::dotProduct(point, normal) < 0){
+        return false;}
     return true;
 }
