@@ -25,25 +25,6 @@ Plane::Plane(const Vector3f &normal,
     this->kd = kd;
     this->ks = ks;
     this->mirror = mirror;
-}
-
-Vector3f Plane::getCenter(){
-    return this->center;
-}
-
-Vector3f Plane::getNormal(Vector3f point){
-    return this->normal;
-}
-
-pair<float, Vector3f> Plane::intersect(Ray &ray){
-    float numerator = Vector3f::dotProduct(getNormal(Vector3f()), getCenter());
-    float denominator = Vector3f::dotProduct(getNormal(Vector3f()), ray.getDirection());
-    float scalar =  numerator / denominator;
-    Vector3f possibleIntersection = ray.getDirection() * scalar;
-    Vector3f centerToPossibleIntersection = Vector3f();
-    centerToPossibleIntersection.fromTo(center, possibleIntersection);
-    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();
-    Vector3f p1, p2, p3, p4;
     /*
      Now find the plane's 4 corners. First, check if the plane is parallel to any of the 3 basic planes.
      If so, finding the corners is trivial. Otherwise, employ analytical geometry to find the corners.
@@ -72,8 +53,47 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
     else {
         // analytical geometry... =[
     }
-    Triangle t1 = Triangle(p1, p2 ,p3);
-    Triangle t2 = Triangle(p3, p4, p1);
+    t1 = Triangle(p1, p2 ,p3);
+    t2 = Triangle(p3, p4, p1);
+}
+
+Plane& Plane::operator=(const Plane &other){
+    if (this == &other)
+        return *this;
+    this->normal = other.normal;
+    this->center = other.center;
+    this->width = other.width;
+    this->length = other.length;
+    this->shine = other.shine;
+    this->ka = other.ka;
+    this->ks = other.ks;
+    this->kd = other.kd;
+    this->mirror = other.mirror;
+    this->p1 = other.p1;
+    this->p2 = other.p2;
+    this->p3 = other.p3;
+    this->p4 = other.p4;
+    this->t1 = other.t1;
+    this->t2 = other.t2;
+    return *this;
+}
+
+Vector3f Plane::getCenter(){
+    return this->center;
+}
+
+Vector3f Plane::getNormal(Vector3f point){
+    return this->normal;
+}
+
+pair<float, Vector3f> Plane::intersect(Ray &ray){
+    float numerator = Vector3f::dotProduct(getNormal(Vector3f()), getCenter());
+    float denominator = Vector3f::dotProduct(getNormal(Vector3f()), ray.getDirection());
+    float scalar =  numerator / denominator;
+    Vector3f possibleIntersection = ray.getDirection() * scalar;
+    Vector3f centerToPossibleIntersection = Vector3f();
+    centerToPossibleIntersection.fromTo(center, possibleIntersection);
+    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();
     if (t1.intersect(possibleIntersection) || t2.intersect(possibleIntersection))
         return make_pair(centerToPossibleIntersectionNorm, possibleIntersection);
     else

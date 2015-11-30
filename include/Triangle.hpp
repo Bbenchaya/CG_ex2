@@ -19,7 +19,11 @@ private:
     Vector3f p1, p2, p3;
 
 public:
+    Triangle();
+    
     Triangle(Vector3f p1, Vector3f p2, Vector3f p3);
+    
+    Triangle& operator=(const Triangle &other);
     
     bool intersect(Vector3f point);
 };

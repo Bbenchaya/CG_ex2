@@ -8,10 +8,23 @@
 
 #include "Triangle.hpp"
 
+Triangle::Triangle(){
+    
+}
+
 Triangle::Triangle(Vector3f p1, Vector3f p2, Vector3f p3){
     this->p1 = p1;
     this->p2 = p2;
     this->p3 = p3;
+}
+
+Triangle& Triangle::operator=(const Triangle &other){
+    if (this == &other)
+        return *this;
+    this->p1 = other.p1;
+    this->p2 = other.p2;
+    this->p3 = other.p3;
+    return *this;
 }
 
 bool Triangle::intersect(Vector3f point){
