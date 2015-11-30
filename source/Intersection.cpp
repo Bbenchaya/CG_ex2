@@ -12,7 +12,7 @@ Intersection::Intersection() {
     
 }
 
-Intersection::Intersection(float min_distance, Primitive &min_primitive, Vector3f intersectionPoint){
+Intersection::Intersection(float min_distance, Primitive *min_primitive, Vector3f intersectionPoint){
     this->min_distance = min_distance;
     this->min_primitive = min_primitive;
     this->intersectionPoint = intersectionPoint;
@@ -31,7 +31,7 @@ float Intersection::getMinDistance() const{
     return this->min_distance;
 }
 
-Primitive Intersection::getMinPrimitive() const{
+Primitive* Intersection::getMinPrimitive(){
     return this->min_primitive;
 }
 

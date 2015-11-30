@@ -68,31 +68,40 @@ Intersection Scene::findIntersection(Ray &ray){
             intersectionPoint = curr_distance.second;
         }
     }
-    return *(new Intersection(min_distance, *min_primitive, intersectionPoint));
+    return *(new Intersection(min_distance, min_primitive, intersectionPoint));
 }
 
-Vector3f Scene::getColor(const Ray &ray, const Intersection &hit, const Camera &camera){
+Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera){
     if (hit.getMinDistance() == INFINITY)
         return *(new Vector3f(0, 0, 0)); //the ray hits nothing, so paint the pixel in black
-    
-    Primitive prim = hit.getMinPrimitive();
-    Vector3f ka = prim.getKa();
-    Vector3f kd = prim.getKd();
-    Vector3f ks = prim.getKs();
-    float nShine = prim.getShine();
-    Vector3f N = hit.getIntersectionPoint();
-    N.normalize();
-    Vector3f V = camera.getPosition() - hit.getIntersectionPoint();
+    Primitive *prim = hit.getMinPrimitive();
+    Vector3f ka = prim->getKa();
+    Vector3f kd = prim->getKd();
+    Vector3f ks = prim->getKs();
+    float nShine = prim->getShine();
+    Vector3f N = prim->getNormal(hit.getIntersectionPoint());
+//    N.normalize();
+    Vector3f V = hit.getIntersectionPoint() - camera.getPosition();
     V.normalize();
-    Vector3f res = color + ka; //Should I sum the ambient of the scene and prim?
+    Vector3f res = color * ka; //Should I sum the ambient of the scene and prim?
     for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
-        
         Vector3f L = (*light_iter).get_position() - hit.getIntersectionPoint();
         L.normalize();
-        Vector3f R = 2 * (Vector3f::dotProduct(prim.getNormal(Vector3f()), L)) * prim.getNormal(Vector3f()) - L;
-        R.normalize();
-        res += (kd * Vector3f::dotProduct(N, L)) + (ks * powf(Vector3f::dotProduct(V , R), nShine));
-
+        bool ray_intersects_another_primitive = false;
+//        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
+//            if (*primitive != &prim) {
+//                Ray ray(L);
+//                if ((*primitive)->intersect(ray).first != INFINITY) {
+//                    ray_intersects_another_primitive = true;
+//                    break;
+//                }
+//            }
+//        }
+//        if (!ray_intersects_another_primitive) {
+            Vector3f R = 2 * (Vector3f::dotProduct(prim->getNormal(Vector3f()), L)) * prim->getNormal(Vector3f()) - L;
+            R.normalize();
+            res += (kd * Vector3f::dotProduct(N, L)) + (ks * powf(Vector3f::dotProduct(V , R), nShine));
+//        }
     }
     return res;
 }

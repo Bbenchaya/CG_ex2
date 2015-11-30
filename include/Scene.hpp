@@ -58,7 +58,7 @@ public:
     
     Intersection findIntersection(Ray &ray);
     
-    Vector3f getColor(const Ray &ray, const Intersection &hit, const Camera &camera);
+    Vector3f getColor(const Ray &ray, Intersection &hit, const Camera &camera);
     
     void castRays(Vector3f ***image);
     

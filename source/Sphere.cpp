@@ -51,18 +51,22 @@ pair<float, Vector3f> Sphere::intersect(Ray &ray){
 }
 
 Vector3f Sphere::getKa() {
+    printf("sphere kA\n");
     return this->ka;
 }
 
 Vector3f Sphere::getKd(){
+    printf("sphere kD\n");
     return this->kd;
 }
 
 Vector3f Sphere::getKs(){
+    printf("sphere kS\n");
     return this->ks;
 }
 
 float Sphere::getShine(){
+    printf("sphere kA\n");
     return this->shine;
 }
 

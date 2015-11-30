@@ -35,18 +35,22 @@ Vector3f Primitive::getNormal(Vector3f point){
 }
 
 Vector3f Primitive::getKa(){
+    printf("prim kA\n");
     return Vector3f();
 }
 
 Vector3f Primitive::getKd(){
+    printf("prim kD\n");
     return Vector3f();
 }
 
 Vector3f Primitive::getKs(){
+    printf("prim kS\n");
     return Vector3f();
 }
 
 float Primitive::getShine(){
+    printf("prim shine\n");
     return 0.0;
 }
 
