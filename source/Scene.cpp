@@ -21,7 +21,7 @@ Scene::Scene(const Vector3f &center,
              vector<Primitive*> *primitives,
              vector<Light> *lights){
     this->center = center;
-    this->upVector = upVector;
+    this->upVector = up;
     this->resolution_i = resolution_y;
     this->resolution_j = resolution_x;
     this->width = width;
@@ -29,7 +29,6 @@ Scene::Scene(const Vector3f &center,
     this->rightVector = Vector3f::crossProduct(center, up);
     this->primitives = primitives;
     this->lights = lights;
-    this->center.normalize();
     this->upVector.normalize();
 }
 
@@ -49,51 +48,11 @@ Scene& Scene::operator=(const Scene &other){
 }
 
 Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j){
-    float scalar = width / getWidth();
-    Vector3f v;
-    if (i < getWidth() / 2) {
-        float scalar_left = -scalar * (getWidth() - i);
-        Vector3f left_addition = rightVector;
-        left_addition *= scalar_left;
-        if (j < getWidth() / 2) {
-            float scalar_up = scalar * (getWidth() - j);
-            Vector3f up_addition = upVector;
-            up_addition *= scalar_up;
-            up_addition += left_addition;
-            v = center + up_addition;
-            v.normalize();
-        }
-        else {
-            float scalar_down = -scalar * (getWidth() - j);
-            Vector3f down_addition = upVector;
-            down_addition *= scalar_down;
-            down_addition += left_addition;
-            v = center + down_addition;
-            v.normalize();
-        }
-    }
-    else {
-        float scalar_right = scalar * (getWidth() - i);
-        Vector3f right_addition = rightVector;
-        right_addition *= scalar_right;
-        if (j < getWidth() / 2) {
-            float scalar_up = scalar * (getWidth() - j);
-            Vector3f up_addition = upVector;
-            up_addition *= scalar_up;
-            up_addition += right_addition;
-            v = center + up_addition;
-            v.normalize();
-        }
-        else {
-            float scalar_down = -scalar * (getWidth() - j);
-            Vector3f down_addition = upVector;
-            down_addition *= scalar_down;
-            down_addition += right_addition;
-            v = center + down_addition;
-            v.normalize();
-        }
-    }
-    return *(new Ray(v));
+    float scalar = width / resolution_j;
+    Vector3f p = center;
+    p = p - (i - floorf(resolution_i / 2)) * scalar * upVector + (j - floorf(resolution_j / 2)) * scalar * rightVector;
+    p.normalize();
+    return *(new Ray(p));
 }
 
 Intersection Scene::findIntersection(Ray &ray){
@@ -102,7 +61,7 @@ Intersection Scene::findIntersection(Ray &ray){
     Vector3f intersectionPoint;
     for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
         pair<float, Vector3f> curr_distance = (*primitive)->intersect(ray);
-        printf("--------- curr distance is: %f ---------", curr_distance.first);
+        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
         if (curr_distance.first < min_distance) {
             min_primitive = (*primitive);
             min_distance = curr_distance.first;

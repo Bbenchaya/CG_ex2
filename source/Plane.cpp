@@ -87,9 +87,10 @@ Vector3f Plane::getNormal(Vector3f point){
 }
 
 pair<float, Vector3f> Plane::intersect(Ray &ray){
-    cout<<"Plane Intersect-------"<<endl;
-    float numerator = Vector3f::dotProduct(getNormal(Vector3f()), getCenter());
-    float denominator = Vector3f::dotProduct(getNormal(Vector3f()), ray.getDirection());
+    float numerator = Vector3f::dotProduct(normal, center);
+    float denominator = Vector3f::dotProduct(normal, ray.getDirection());
+    if (denominator == 0)
+        return make_pair(INFINITY, Vector3f());
     float scalar =  numerator / denominator;
     Vector3f possibleIntersection = ray.getDirection() * scalar;
     Vector3f centerToPossibleIntersection = Vector3f();

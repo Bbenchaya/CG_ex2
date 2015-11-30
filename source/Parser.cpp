@@ -45,13 +45,13 @@ void Parser::parse(vector<Light> &lights,
                 float kd[3];
                 fscanf(file, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &x, &y, &z, &radius, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine);
                 //            printf("x:%f,y:%f,z:%f,radius:%f,ka0:%f,ka1:%f,ka2:%f,kd0:%f,kd1:%f,kd2:%f,ks0:%f,ks1:%f,ks2:%f,shine:%f\n", x, y, z, radius, ka[0], ka[1], ka[2], kd[0], kd[1], kd[2], ks[0], ks[1], ks[2], shine);
-                Sphere spher(Vector3f(x, y, z),
+                Sphere *spher = new Sphere(Vector3f(x, y, z),
                              radius,
                              Vector3f(ka),
                              Vector3f(ks),
                              Vector3f(kd),
                              shine);
-                primitives.push_back(&(spher));
+                primitives.push_back(spher);
                 cout << "Sphere created!" << endl;
             }
             if (strncmp(next_line, "plane", 5) == 0){
@@ -62,7 +62,7 @@ void Parser::parse(vector<Light> &lights,
                 char mirror = '\0';
                 fscanf(file, " %f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f %c", &normalX, &normalY, &normalZ, &centerX, &centerY, &centerZ, &width, &length, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine, &mirror);
                 //            printf("normalX:%f,normalY:%f,normalZ:%f,centerX:%f,centerY:%f,centerZ:%f,width:%f,length:%f,ka0:%f,ka1:%f,ka2:%f,kd0:%f,kd1:%f,kd2:%f,ks0:%f,ks1:%f,ks2:%f,shine:%f", normalX, normalY, normalZ, centerX, centerY, centerZ, width, length, ka[0], ka[1], ka[2], kd[0], kd[1], kd[2], ks[0], ks[1], ks[2], shine);
-                Plane plane(Vector3f(normalX, normalY, normalZ),
+                Plane *plane = new Plane(Vector3f(normalX, normalY, normalZ),
                             Vector3f(centerX, centerY, centerZ),
                             width,
                             length,
@@ -71,7 +71,7 @@ void Parser::parse(vector<Light> &lights,
                             Vector3f(kd),
                             Vector3f(ks),
                             mirror);
-                primitives.push_back(&(plane));
+                primitives.push_back(plane);
                 cout << "Plane created!" << endl;
             }
             if (strncmp(next_line, "light", 5) == 0){
