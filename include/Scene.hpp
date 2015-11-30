@@ -36,7 +36,7 @@ private:
     float width;
     unsigned int resolution_i;
     unsigned int resolution_j;
-    Vector3f color;
+    Vector3f ambient_color;
     vector<Primitive*> *primitives;
     vector<Light> *lights;
     
@@ -48,7 +48,7 @@ public:
           float width,
           unsigned int resolution_i,
           unsigned int resolution_j,
-          const Vector3f &color,
+          const Vector3f &ambient_color,
           vector<Primitive*> *primitives,
           vector<Light> *lights);
     

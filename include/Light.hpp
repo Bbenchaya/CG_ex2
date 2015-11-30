@@ -36,6 +36,8 @@ public:
     
     Vector3f get_intensity();
     
+    Vector3f get_position();
+    
     bool is_spotlight();
     
     bool illuminates(Vector3f L);

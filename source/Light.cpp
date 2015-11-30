@@ -40,6 +40,10 @@ Vector3f Light::get_intensity(){
     return this->intensity;
 }
 
+Vector3f Light::get_position(){
+    return this->position;
+}
+
 bool Light::is_spotlight(){
     return !this->directional;
 }

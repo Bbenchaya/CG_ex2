@@ -17,7 +17,7 @@ Scene::Scene(const Vector3f &center,
              float width,
              unsigned int resolution_x,
              unsigned int resolution_y,
-             const Vector3f &color, //ambient light color
+             const Vector3f &ambient_color,
              vector<Primitive*> *primitives,
              vector<Light> *lights){
     this->center = center;
@@ -25,7 +25,7 @@ Scene::Scene(const Vector3f &center,
     this->resolution_i = resolution_y;
     this->resolution_j = resolution_x;
     this->width = width;
-    this->color = color;
+    this->ambient_color = ambient_color;
     this->rightVector = Vector3f::crossProduct(center, up);
     this->rightVector.normalize();
     this->primitives = primitives;
@@ -41,7 +41,7 @@ Scene& Scene::operator=(const Scene &other){
     this->width = other.width;
     this->resolution_i = other.resolution_i;
     this->resolution_j = other.resolution_j;
-    this->color = other.color;
+    this->ambient_color = other.ambient_color;
     this->rightVector = other.rightVector;
     this->primitives = other.primitives;
     this->lights = other.lights;
@@ -83,28 +83,37 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     Vector3f N = prim->getNormal(hit.getIntersectionPoint());
     Vector3f V = hit.getIntersectionPoint() - camera.getPosition();
     V.normalize();
-    Vector3f res = color * ka; //Should I sum the ambient of the scene and prim?
-    for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
-        Vector3f L = (*light_iter).get_direction() - hit.getIntersectionPoint();
-        L.normalize();
-        if (light_iter->is_spotlight() && !light_iter->illuminates(L)) {
-            continue;
+    Vector3f res = ambient_color * ka; //Should I sum the ambient of the scene and prim?
+    for (vector<Light>::iterator light = lights->begin(); light != lights->end(); light++){
+        Vector3f L;
+        if (light->is_spotlight()) {
+            L = (*light).get_position() - hit.getIntersectionPoint();
+            if (!light->illuminates(L)){
+                continue;
+            }
         }
+        else
+            L = light->get_direction() * -1000000; // arbitrary position for a directional light at pseudo-infinity
+        L.normalize();
         bool ray_intersects_another_primitive = false;
-//        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
-//            if (*primitive != prim) {
-//                Ray ray(L);
-//                if ((*primitive)->intersect(ray).first != INFINITY) {
-//                    ray_intersects_another_primitive = true;
-//                    break;
-//                }
-//            }
-//        }
-//        if (!ray_intersects_another_primitive) {
-            Vector3f R = hit.getIntersectionPoint() - (2 * N)*( Vector3f::dotProduct(hit.getIntersectionPoint(), N));
+        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
+            if (*primitive != prim) {
+                Ray ray(L);
+                if ((*primitive)->intersect(hit.getIntersectionPoint(), ray.getDirection()).first != INFINITY) {
+                    ray_intersects_another_primitive = true;
+                    break;
+                }
+            }
+        }
+        if (!ray_intersects_another_primitive) {
+            Vector3f R = -L + N * 2 * (Vector3f::dotProduct(L, N));
             R.normalize();
-            res += (kd * Vector3f::dotProduct(N, L)) + (ks * powf(Vector3f::dotProduct(V , R), nShine));
-//        }
+            Vector3f V = hit.getIntersectionPoint();
+            V.normalize();
+            float angleCos = fmaxf(0, Vector3f::dotProduct(V, R));
+            res += (kd * Vector3f::dotProduct(N, L)) * light->get_intensity() + (ks * powf(angleCos, nShine) * light->get_intensity());
+//            res += (kd * Vector3f::dotProduct(N, L)) * light->get_intensity();
+        }
     }
     res[0] = fminf(res[0], 1);
     res[1] = fminf(res[1], 1);
