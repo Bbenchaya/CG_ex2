@@ -18,9 +18,8 @@ Scene::Scene(const Vector3f &center,
              unsigned int resolution_x,
              unsigned int resolution_y,
              const Vector3f &color,
-             vector<Primitive> &primitives,
-             vector<Light> &lights) :   primitives(NULL),
-                                        lights(NULL){
+             vector<Primitive> *primitives,
+             vector<Light> *lights){
     this->center = center;
     this->upVector = upVector;
     this->resolution_i = resolution_y;
@@ -39,11 +38,13 @@ Scene& Scene::operator=(const Scene &other){
         return *this;
     this->center = other.center;
     this->upVector = other.upVector;
+    this->width = other.width;
     this->resolution_i = other.resolution_i;
     this->resolution_j = other.resolution_j;
-    this->width = other.width;
     this->color = other.color;
-    this->rightVector = Vector3f::crossProduct(other.center, other.upVector);
+    this->rightVector = other.rightVector;
+    this->primitives = other.primitives;
+    this->lights = other.lights;
     return *this;
 }
 
@@ -99,7 +100,7 @@ Intersection Scene::findIntersection(Ray &ray){
     float min_distance = INFINITY;
     Primitive *min_primitive = NULL;
     Vector3f intersectionPoint;
-    for (vector<Primitive>::iterator primitive = primitives.begin(); primitive != primitives.end(); primitive++) {
+    for (vector<Primitive>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
         pair<float, Vector3f> curr_distance = (*primitive).intersect(ray);
         if (curr_distance.first < min_distance) {
             min_primitive = &(*primitive);
@@ -120,7 +121,7 @@ Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
     Vector3f ray_normal = -primitiveNormal*(Vector3f::dotProduct(ray_direction, primitiveNormal));
     Vector3f directional_vec = ray_direction+ray_normal;
     Vector3f reflected_light = ray_normal+directional_vec;
-    for (vector<Light>::iterator light_iter = lights.begin(); light_iter != lights.end(); ++light_iter){
+    for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
         Vector3f curr_light = light_iter->get_position();
         float scalar = 0;
         if (reflected_light[0] == 0){
@@ -152,7 +153,7 @@ Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
                 else{
                     Ray reflected_ray = Ray(reflected_light);
                     bool reach_light = true;
-                    for(vector<Primitive>::iterator prim_iter = primitives.begin(); prim_iter != primitives.end() && reach_light; ++prim_iter){
+                    for(vector<Primitive>::iterator prim_iter = primitives->begin(); prim_iter != primitives->end() && reach_light; ++prim_iter){
                         float distance = prim_iter->intersect(reflected_ray).first;
                         if((*prim_iter != prim) && distance < INFINITY){
                             reach_light = false;

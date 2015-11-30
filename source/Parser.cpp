@@ -34,9 +34,9 @@ void Parser::parse(vector<Light> &lights,
                             Ry,
                             Rx,
                             Vector3f(ambient),
-                            primitives,
-                            lights);
-                cout << "Scene created!" << endl;
+                            &primitives,
+                            &lights);
+                            cout << "Scene created!" << endl;
             }
             if (strcmp(next_line, "spher") == 0){
                 float x, y, z, radius, shine;

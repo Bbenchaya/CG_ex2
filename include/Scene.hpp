@@ -37,8 +37,8 @@ private:
     unsigned int resolution_i;
     unsigned int resolution_j;
     Vector3f color;
-    vector<Primitive> primitives;
-    vector<Light> lights;
+    vector<Primitive> *primitives;
+    vector<Light> *lights;
     
 public:
     Scene();
@@ -49,8 +49,8 @@ public:
           unsigned int resolution_i,
           unsigned int resolution_j,
           const Vector3f &color,
-          vector<Primitive> &primitives,
-          vector<Light> &lights);
+          vector<Primitive> *primitives,
+          vector<Light> *lights);
     
     Scene& operator=(const Scene &other);
     
