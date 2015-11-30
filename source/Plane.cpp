@@ -86,14 +86,14 @@ Vector3f Plane::getNormal(Vector3f point){
     return this->normal;
 }
 
-pair<float, Vector3f> Plane::intersect(Ray &ray){
+pair<float, Vector3f> Plane::intersect(Vector3f p0, Vector3f V){
 //    float numerator = Vector3f::dotProduct(normal, center);
-    float denominator = Vector3f::dotProduct(normal, ray.getDirection());
+    float denominator = Vector3f::dotProduct(normal, V);
     if (denominator == 0)
         return make_pair(INFINITY, Vector3f());
-    float scalar = Vector3f::dotProduct(normal, center / denominator);
+    float scalar = Vector3f::dotProduct(normal, (center - p0) / denominator);
     scalar = fabsf(scalar);
-    Vector3f possibleIntersection = ray.getDirection() * scalar;
+    Vector3f possibleIntersection = V * scalar;
 //    possibleIntersection *= scalar;
 //    Vector3f centerToPossibleIntersection = possibleIntersection - center;
 //    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();

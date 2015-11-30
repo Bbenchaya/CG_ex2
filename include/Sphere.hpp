@@ -31,7 +31,7 @@ public:
     
     Sphere& operator=(const Sphere &other);
     
-    pair<float, Vector3f> intersect(Ray &ray);
+    pair<float, Vector3f> intersect(Vector3f p0, Vector3f V);
 
     Vector3f getNormal(Vector3f point);
     

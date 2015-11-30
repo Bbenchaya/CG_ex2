@@ -30,7 +30,7 @@ public:
     Primitive(char type);
     virtual Primitive& operator=(const Primitive &other);
     virtual bool operator!=(const Primitive &other);
-    virtual pair<float, Vector3f> intersect(Ray &ray);
+    virtual pair<float, Vector3f> intersect(Vector3f p0, Vector3f V);
     const char instanceof();
     virtual Vector3f getNormal(Vector3f point);
     virtual Vector3f getKa();

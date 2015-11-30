@@ -61,7 +61,7 @@ Intersection Scene::findIntersection(Ray &ray){
     Primitive *min_primitive = NULL;
     Vector3f intersectionPoint;
     for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
-        pair<float, Vector3f> curr_distance = (*primitive)->intersect(ray);
+        pair<float, Vector3f> curr_distance = (*primitive)->intersect(Vector3f(0, 0, 0) ,ray.getDirection());
 //        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
         if (curr_distance.first < min_distance) {
             min_primitive = (*primitive);

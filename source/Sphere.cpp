@@ -34,19 +34,20 @@ Sphere& Sphere::operator=(const Sphere &other){
     return *this;
 }
 
-pair<float, Vector3f> Sphere::intersect(Ray &ray){
-    float t_m = Vector3f::dotProduct(center, ray.getDirection());
-    float d_squared = Vector3f::dotProduct(center, center) - powf(t_m, 2);
+pair<float, Vector3f> Sphere::intersect(Vector3f p0, Vector3f V){
+    Vector3f L = center - p0;
+    float t_m = Vector3f::dotProduct(L, V);
+    float d_squared = powf(L.getLength(), 2) - powf(t_m, 2);
     if (d_squared > radius * radius)
         return make_pair(INFINITY, Vector3f());
     float t_h = sqrtf(radius * radius - d_squared);
     if (t_m - t_h > 0){
-        Vector3f intersectionVector = ray.getDirection() * (t_m - t_h);
-        return make_pair(sqrtf(Vector3f::dotProduct(intersectionVector, intersectionVector)), intersectionVector);
+        Vector3f intersectionVector = V * (t_m - t_h);
+        return make_pair(intersectionVector.getLength(), intersectionVector);
     }
     else {
-        Vector3f intersectionVector = ray.getDirection() * (t_m + t_h);
-        return make_pair(sqrtf(Vector3f::dotProduct(intersectionVector, intersectionVector)), intersectionVector);
+        Vector3f intersectionVector = V * (t_m + t_h);
+        return make_pair(intersectionVector.getLength(), intersectionVector);
     }
 }
 

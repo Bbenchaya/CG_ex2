@@ -26,7 +26,7 @@ bool Primitive::operator!=(const Primitive &other){
     return (this != &other);
 }
 
-pair<float, Vector3f> Primitive::intersect(Ray &ray){
+pair<float, Vector3f> Primitive::intersect(Vector3f p0, Vector3f V){
     return make_pair(INFINITY, Vector3f());
 }
 
