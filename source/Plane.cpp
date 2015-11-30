@@ -92,6 +92,7 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
     if (denominator == 0)
         return make_pair(INFINITY, Vector3f());
     float scalar = Vector3f::dotProduct(normal, center / denominator);
+    scalar = fabsf(scalar);
     Vector3f possibleIntersection = ray.getDirection() * scalar;
 //    possibleIntersection *= scalar;
 //    Vector3f centerToPossibleIntersection = possibleIntersection - center;

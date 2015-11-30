@@ -27,6 +27,7 @@ Scene::Scene(const Vector3f &center,
     this->width = width;
     this->color = color;
     this->rightVector = Vector3f::crossProduct(center, up);
+    this->rightVector.normalize();
     this->primitives = primitives;
     this->lights = lights;
     this->upVector.normalize();
@@ -80,7 +81,6 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     Vector3f ks = prim->getKs();
     float nShine = prim->getShine();
     Vector3f N = prim->getNormal(hit.getIntersectionPoint());
-//    N.normalize();
     Vector3f V = hit.getIntersectionPoint() - camera.getPosition();
     V.normalize();
     Vector3f res = color * ka; //Should I sum the ambient of the scene and prim?
@@ -89,7 +89,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
         L.normalize();
         bool ray_intersects_another_primitive = false;
 //        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
-//            if (*primitive != &prim) {
+//            if (*primitive != prim) {
 //                Ray ray(L);
 //                if ((*primitive)->intersect(ray).first != INFINITY) {
 //                    ray_intersects_another_primitive = true;
@@ -98,7 +98,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
 //            }
 //        }
 //        if (!ray_intersects_another_primitive) {
-            Vector3f R = 2 * (Vector3f::dotProduct(prim->getNormal(Vector3f()), L)) * prim->getNormal(Vector3f()) - L;
+            Vector3f R = hit.getIntersectionPoint() - (2 * N)*( Vector3f::dotProduct(hit.getIntersectionPoint(), N));
             R.normalize();
             res += (kd * Vector3f::dotProduct(N, L)) + (ks * powf(Vector3f::dotProduct(V , R), nShine));
 //        }

@@ -42,11 +42,11 @@ pair<float, Vector3f> Sphere::intersect(Ray &ray){
     float t_h = sqrtf(radius * radius - d_squared);
     if (t_m - t_h > 0){
         Vector3f intersectionVector = ray.getDirection() * (t_m - t_h);
-        return make_pair(sqrtf(Vector3f::dotProduct(intersectionVector, intersectionVector)), intersectionVector); // ray-sphere intersection point
+        return make_pair(sqrtf(Vector3f::dotProduct(intersectionVector, intersectionVector)), intersectionVector);
     }
     else {
         Vector3f intersectionVector = ray.getDirection() * (t_m + t_h);
-        return make_pair(sqrtf(Vector3f::dotProduct(intersectionVector, intersectionVector)), intersectionVector); // ray-sphere intersection point
+        return make_pair(sqrtf(Vector3f::dotProduct(intersectionVector, intersectionVector)), intersectionVector);
     }
 }
 
