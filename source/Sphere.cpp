@@ -50,6 +50,22 @@ pair<float, Vector3f> Sphere::intersect(Ray &ray){
     }
 }
 
+Vector3f Sphere::getKa() {
+    return this->ka;
+}
+
+Vector3f Sphere::getKd(){
+    return this->kd;
+}
+
+Vector3f Sphere::getKs(){
+    return this->ks;
+}
+
+float Sphere::getShine(){
+    return this->shine;
+}
+
 Vector3f Sphere::getNormal(Vector3f point){
     //possible bug? should 'new'?
     return (point - center)/Vector3f::dotProduct(point-center, point-center);

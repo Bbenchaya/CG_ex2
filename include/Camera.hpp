@@ -19,7 +19,7 @@ private:
 public:
     Camera();
     Camera(Vector3f &position);
-    Vector3f getPosition();
+    Vector3f getPosition() const;
 };
 
 #endif /* Camera_hpp */

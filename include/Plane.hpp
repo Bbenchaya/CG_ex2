@@ -50,6 +50,13 @@ public:
     
     pair<float, Vector3f> intersect(Ray &ray);
     
+    Vector3f getKa();
+    
+    Vector3f getKd();
+    
+    Vector3f getKs();
+    
+    float getShine();
 };
 
 #endif /* Plane_hpp */

@@ -17,7 +17,7 @@ Scene::Scene(const Vector3f &center,
              float width,
              unsigned int resolution_x,
              unsigned int resolution_y,
-             const Vector3f &color,
+             const Vector3f &color, //ambient light color
              vector<Primitive*> *primitives,
              vector<Light> *lights){
     this->center = center;
@@ -71,61 +71,87 @@ Intersection Scene::findIntersection(Ray &ray){
     return *(new Intersection(min_distance, *min_primitive, intersectionPoint));
 }
 
-Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
+Vector3f Scene::getColor(const Ray &ray, const Intersection &hit, const Camera &camera){
     if (hit.getMinDistance() == INFINITY)
         return *(new Vector3f(0, 0, 0)); //the ray hits nothing, so paint the pixel in black
-    Vector3f res = Vector3f(0, 0, 0);
+    
     Primitive prim = hit.getMinPrimitive();
-    Vector3f ray_direction = ray.getDirection();
-    Vector3f primitiveNormal = prim.getNormal(hit.getIntersectionPoint());
-    Vector3f ray_normal = -primitiveNormal*(Vector3f::dotProduct(ray_direction, primitiveNormal));
-    Vector3f directional_vec = ray_direction+ray_normal;
-    Vector3f reflected_light = ray_normal+directional_vec;
+    Vector3f ka = prim.getKa();
+    Vector3f kd = prim.getKd();
+    Vector3f ks = prim.getKs();
+    float nShine = prim.getShine();
+    Vector3f N = hit.getIntersectionPoint();
+    N.normalize();
+    Vector3f V = camera.getPosition() - hit.getIntersectionPoint();
+    V.normalize();
+    Vector3f res = color + ka; //Should I sum the ambient of the scene and prim?
     for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
-        Vector3f curr_light = light_iter->get_position();
-        float scalar = 0;
-        if (reflected_light[0] == 0){
-            if (curr_light[0] != 0) {
-                continue;
-            }
-            else{
-                scalar = (curr_light[0]/reflected_light[0]);
-            }
-        }
-        else if (reflected_light[1] == 0){
-            if (curr_light[1] != 0) {
-                continue;
-            }
-            else{
-                if(scalar != (curr_light[1]/reflected_light[1])){
-                    continue;
-                }
-            }
-        }
-        else if (reflected_light[2] == 0){
-            if (curr_light[2] != 0) {
-                continue;
-            }
-            else{
-                if(scalar != (curr_light[2]/reflected_light[2])){
-                    continue;
-                }
-                else{
-                    Ray reflected_ray = Ray(reflected_light);
-                    bool reach_light = true;
-                    for(vector<Primitive*>::iterator prim_iter = primitives->begin(); prim_iter != primitives->end() && reach_light; ++prim_iter){
-                        float distance = (*prim_iter)->intersect(reflected_ray).first;
-                        if((*prim_iter != &prim) && distance < INFINITY){
-                            reach_light = false;
-                        }
-                    }
-                    res += light_iter->get_color();
-                }
-            }
-        }
+        
+        Vector3f L = (*light_iter).get_position() - hit.getIntersectionPoint();
+        L.normalize();
+        Vector3f R = 2 * (Vector3f::dotProduct(prim.getNormal(Vector3f()), L)) * prim.getNormal(Vector3f()) - L;
+        R.normalize();
+        res += (kd * Vector3f::dotProduct(N, L)) + (ks * powf(Vector3f::dotProduct(V , R), nShine));
+
     }
     return res;
 }
+
+//    Vector3f ray_direction = ray.getDirection();
+//        
+//    //cout<<"first "<<hit.getIntersectionPoint().p[0]<<" second "<<hit.getIntersectionPoint().p[1]<<" third "<<hit.getIntersectionPoint().p[2]<<endl;
+//    Vector3f ray_normal = -primitiveNormal*(Vector3f::dotProduct(ray_direction, primitiveNormal));
+//    Vector3f directional_vec = ray_direction + ray_normal;
+//    Vector3f reflected_light = ray_normal + directional_vec;
+//    
+//        Vector3f curr_light = light_iter->get_position();
+//
+//        
+        
+
+//        float scalar = 0;
+//        if (reflected_light[0] == 0){
+//            if (curr_light[0] != 0) {
+//                continue;
+//            }
+//            else{
+//                scalar = (curr_light[0]/reflected_light[0]);
+//            }
+//        }
+//        else if (reflected_light[1] == 0){
+//            if (curr_light[1] != 0) {
+//                continue;
+//            }
+//            else{
+//                if(scalar != (curr_light[1]/reflected_light[1])){
+//                    continue;
+//                }
+//            }
+//        }
+//        else if (reflected_light[2] == 0){
+//            if (curr_light[2] != 0) {
+//                continue;
+//            }
+//            else{
+//                if(scalar != (curr_light[2]/reflected_light[2])){
+//                    continue;
+//                }
+//                else{
+//                    Ray reflected_ray = Ray(reflected_light);
+//                    bool reach_light = true;
+//                    for(vector<Primitive*>::iterator prim_iter = primitives->begin(); prim_iter != primitives->end() && reach_light; ++prim_iter){
+//                        float distance = (*prim_iter)->intersect(reflected_ray).first;
+//                        if((*prim_iter != &prim) && distance < INFINITY){
+//                            reach_light = false;
+//                        }
+//                    }
+//                    res += light_iter->get_color();
+//                }
+//            }
+//        }
+//    }
+
+
 
 void Scene::castRays(Vector3f ***image){
     Vector3f cameraPosition(0, 0, 0);
@@ -134,7 +160,7 @@ void Scene::castRays(Vector3f ***image){
         for (unsigned int j = 0; j < getWidth(); j++) {
             Ray ray = constructRayThroughPixel(camera, i ,j);
             Intersection hit = findIntersection(ray);
-            (*image)[i][j] = getColor(ray, hit);
+            (*image)[i][j] = getColor(ray, hit, camera);
         }
     }
 }

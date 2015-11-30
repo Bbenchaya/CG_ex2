@@ -100,7 +100,7 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
         return make_pair(centerToPossibleIntersectionNorm, possibleIntersection);
     else
         return make_pair(INFINITY, Vector3f());
-    
+
     
 //    if (normal.p[2] == 0) { // plane rotates around z axis
 //        float cosAngle = Vector3f::dotProduct(centerToPossibleIntersection, Vector3f(0, 0, 1)) / centerToPossibleIntersectionNorm;
@@ -134,4 +134,22 @@ pair<float, Vector3f> Plane::intersect(Ray &ray){
 //    }
     cout << "A plane was provided with illegal normal vector" << endl;
     return make_pair(0, Vector3f());;
+}
+
+
+
+Vector3f Plane::getKa() {
+    return this->ka;
+}
+
+Vector3f Plane::getKd(){
+    return this->kd;
+}
+
+Vector3f Plane::getKs(){
+    return this->ks;
+}
+
+float Plane::getShine(){
+    return this->shine;
 }

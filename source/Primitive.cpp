@@ -34,6 +34,23 @@ Vector3f Primitive::getNormal(Vector3f point){
     return Vector3f();
 }
 
+Vector3f Primitive::getKa(){
+    return Vector3f();
+}
+
+Vector3f Primitive::getKd(){
+    return Vector3f();
+}
+
+Vector3f Primitive::getKs(){
+    return Vector3f();
+}
+
+float Primitive::getShine(){
+    return 0.0;
+}
+
+
 const char Primitive::instanceof(){
     return type;
 }

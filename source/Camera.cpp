@@ -16,7 +16,7 @@ Camera::Camera(Vector3f &position){
     this->position = position;
 }
 
-Vector3f Camera::getPosition(){
+Vector3f Camera::getPosition() const{
     return this->position;
 }
 

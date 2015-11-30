@@ -31,6 +31,10 @@ public:
     virtual pair<float, Vector3f> intersect(Ray &ray);
     const char instanceof();
     virtual Vector3f getNormal(Vector3f point);
+    virtual Vector3f getKa();
+    virtual Vector3f getKd();
+    virtual Vector3f getKs();
+    virtual float getShine();
 };
 
 #endif /* Primitive_hpp */
