@@ -85,7 +85,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     V.normalize();
     Vector3f res = color * ka; //Should I sum the ambient of the scene and prim?
     for (vector<Light>::iterator light_iter = lights->begin(); light_iter != lights->end(); ++light_iter){
-        Vector3f L = (*light_iter).get_position() - hit.getIntersectionPoint();
+        Vector3f L = (*light_iter).get_direction() - hit.getIntersectionPoint();
         L.normalize();
         bool ray_intersects_another_primitive = false;
 //        for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {

@@ -14,25 +14,26 @@
 class Light {
 
 private:
-    Vector3f position;
-    Vector3f color;
+    Vector3f direction;
+    Vector3f intensity;
 //Spot Light
-    Vector3f spotlight;
+    Vector3f position;
     float light_cutoff;
     bool is_directional;
 
 public:
     Light();
     //Spot_Light
-    Light(const Vector3f &position,
-          const Vector3f &color,
-          const Vector3f &spotlight,
+    Light(const Vector3f &direction,
+          const Vector3f &intensity,
+          const Vector3f &position,
           float light_cutoff);
     //Reular Light
-    Light(const Vector3f &position,
-          const Vector3f &color);
+    Light(const Vector3f &direction,
+          const Vector3f &intensity);
     
-    Vector3f get_position();
-    Vector3f get_color();
+    Vector3f get_direction();
+    
+    Vector3f get_intensity();
 };
 #endif /* Light_hpp */

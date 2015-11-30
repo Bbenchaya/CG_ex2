@@ -76,18 +76,18 @@ void Parser::parse(vector<Light> &lights,
             }
             if (strncmp(next_line, "light", 5) == 0){
                 float dirX, dirY, dirZ;
-                float color[3];
+                float intensity[3];
                 float positionX, positionY, positionZ, angle;
-                int params = fscanf(file, " %f,%f,%f,%f,%f,%f,%f", &dirX, &dirY, &dirZ, color, color + 1, color + 2, &positionX);
+                int params = fscanf(file, " %f,%f,%f,%f,%f,%f,%f", &dirX, &dirY, &dirZ, intensity, intensity + 1, intensity + 2, &positionX);
                 if (params < 7){
                     Light light(Vector3f(dirX, dirY, dirZ),
-                                Vector3f(color));
+                                Vector3f(intensity));
                     lights.push_back(light);
                 }
                 else {
                     fscanf(file, ",%f,%f,%f", &positionY, &positionZ, &angle);
                     Light spot_light(Vector3f(dirX, dirY, dirZ),
-                                     Vector3f(color),
+                                     Vector3f(intensity),
                                      Vector3f(positionX, positionY, positionZ),
                                      angle);
                     lights.push_back(spot_light);

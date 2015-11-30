@@ -13,30 +13,30 @@ Light::Light(){
 }
 
 //SpotLight Constructor
-Light::Light(const Vector3f &position,
-             const Vector3f &color,
-             const Vector3f &spotlight,
+Light::Light(const Vector3f &direction,
+             const Vector3f &intensity,
+             const Vector3f &position,
              float light_cutoff){
+    this->direction = direction;
+    this->intensity = intensity;
     this->position = position;
-    this->color = color;
-    this->spotlight = spotlight;
     this->light_cutoff = light_cutoff;
-    this->is_directional = true;
-}
-
-//Regular Light Constructor
-Light::Light(const Vector3f &position,
-             const Vector3f &color){
-    this->position = position;
-    this->color = color;
     this->is_directional = false;
 }
 
-Vector3f Light::get_position(){
-    return this->position;
+//Regular Light Constructor
+Light::Light(const Vector3f &direction,
+             const Vector3f &intensity){
+    this->direction = direction;
+    this->intensity = intensity;
+    this->is_directional = true;
 }
 
-Vector3f Light::get_color(){
-    return this->color;
+Vector3f Light::get_direction(){
+    return this->direction;
+}
+
+Vector3f Light::get_intensity(){
+    return this->intensity;
 }
 
