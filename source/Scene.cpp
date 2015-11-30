@@ -103,6 +103,9 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             res += (kd * Vector3f::dotProduct(N, L)) + (ks * powf(Vector3f::dotProduct(V , R), nShine));
 //        }
     }
+    res[0] = fminf(res[0], 1);
+    res[1] = fminf(res[1], 1);
+    res[2] = fminf(res[2], 1);
     return res;
 }
 
