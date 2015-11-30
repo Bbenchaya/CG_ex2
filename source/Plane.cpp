@@ -31,24 +31,24 @@ Plane::Plane(const Vector3f &normal,
      */
     // plane is parallel to xy plane
     if (normal.p[0] == 0 && normal.p[1] == 0){
-        p1 = Vector3f(-length / 2, width / 2, normal.p[2]);
-        p2 = Vector3f(length / 2, width / 2, normal.p[2]);
-        p3 = Vector3f(length / 2, -width / 2, normal.p[2]);
-        p4 = Vector3f(-length / 2, -width / 2, normal.p[2]);
+        p1 = Vector3f(-length / 2, width / 2, this->center.p[2]);
+        p2 = Vector3f(length / 2, width / 2, this->center.p[2]);
+        p3 = Vector3f(length / 2, -width / 2, this->center.p[2]);
+        p4 = Vector3f(-length / 2, -width / 2, this->center.p[2]);
     }
     // plane is parallel to xz plane
     else if (normal.p[0] == 0 && normal.p[2] == 0){
-        p1 = Vector3f(width / 2, normal.p[1], -length / 2);
-        p2 = Vector3f(width / 2, normal.p[1], length / 2);
-        p3 = Vector3f(-width / 2, normal.p[1], length / 2);
-        p4 = Vector3f(-width / 2, normal.p[1], -length / 2);
+        p1 = Vector3f(width / 2, this->center.p[1], -length / 2);
+        p2 = Vector3f(width / 2, this->center.p[1], length / 2);
+        p3 = Vector3f(-width / 2, this->center.p[1], length / 2);
+        p4 = Vector3f(-width / 2, this->center.p[1], -length / 2);
     }
     // plane is parallel to yz plane
     else if (normal.p[1] == 0 && normal.p[2] == 0){
-        p1 = Vector3f(normal.p[0], width / 2, -length / 2);
-        p2 = Vector3f(normal.p[0], width / 2, length / 2);
-        p3 = Vector3f(normal.p[0], -width / 2, length / 2);
-        p4 = Vector3f(normal.p[0], -width / 2, -length / 2);
+        p1 = Vector3f(this->center.p[0], width / 2, -length / 2);
+        p2 = Vector3f(this->center.p[0], width / 2, length / 2);
+        p3 = Vector3f(this->center.p[0], -width / 2, length / 2);
+        p4 = Vector3f(this->center.p[0], -width / 2, -length / 2);
     }
     else {
         // analytical geometry... =[
@@ -87,17 +87,19 @@ Vector3f Plane::getNormal(Vector3f point){
 }
 
 pair<float, Vector3f> Plane::intersect(Ray &ray){
-    float numerator = Vector3f::dotProduct(normal, center);
+//    float numerator = Vector3f::dotProduct(normal, center);
     float denominator = Vector3f::dotProduct(normal, ray.getDirection());
     if (denominator == 0)
         return make_pair(INFINITY, Vector3f());
-    float scalar =  numerator / denominator;
+    float scalar = Vector3f::dotProduct(normal, center / denominator);
     Vector3f possibleIntersection = ray.getDirection() * scalar;
-    Vector3f centerToPossibleIntersection = Vector3f();
-    centerToPossibleIntersection.fromTo(center, possibleIntersection);
-    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();
-    if (t1.intersect(possibleIntersection) || t2.intersect(possibleIntersection))
-        return make_pair(centerToPossibleIntersectionNorm, possibleIntersection);
+//    possibleIntersection *= scalar;
+//    Vector3f centerToPossibleIntersection = possibleIntersection - center;
+//    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();
+    bool a = t1.intersect(possibleIntersection);
+    bool b = t2.intersect(possibleIntersection);
+    if (a || b)
+        return make_pair(possibleIntersection.getLength(), possibleIntersection);
     else
         return make_pair(INFINITY, Vector3f());
     

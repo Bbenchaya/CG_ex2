@@ -10,6 +10,7 @@
 #define Triangle_hpp
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "Vector3f.h"
 

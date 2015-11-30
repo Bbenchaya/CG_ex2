@@ -9,6 +9,8 @@
 #ifndef Primitive_hpp
 #define Primitive_hpp
 
+#include <stdlib.h>
+#include <stdio.h>
 #include <iostream>
 #include <utility>
 

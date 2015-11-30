@@ -61,7 +61,7 @@ Intersection Scene::findIntersection(Ray &ray){
     Vector3f intersectionPoint;
     for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
         pair<float, Vector3f> curr_distance = (*primitive)->intersect(ray);
-        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
+//        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
         if (curr_distance.first < min_distance) {
             min_primitive = (*primitive);
             min_distance = curr_distance.first;
@@ -130,8 +130,8 @@ Vector3f Scene::getColor(const Ray &ray, const Intersection &hit){
 void Scene::castRays(Vector3f ***image){
     Vector3f cameraPosition(0, 0, 0);
     Camera camera = Camera(cameraPosition);
-    for (unsigned int i = 0; i < getHeight(); i++) {
-        for (unsigned int j = 0; j < getWidth(); j++) {
+    for (unsigned int i = 0; i < 512; i++) {
+        for (unsigned int j = 0; j < 512; j++) {
             Ray ray = constructRayThroughPixel(camera, i ,j);
             Intersection hit = findIntersection(ray);
             (*image)[i][j] = getColor(ray, hit);
