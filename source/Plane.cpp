@@ -87,16 +87,12 @@ Vector3f Plane::getNormal(Vector3f point){
 }
 
 pair<float, Vector3f> Plane::intersect(Vector3f p0, Vector3f V){
-//    float numerator = Vector3f::dotProduct(normal, center);
     float denominator = Vector3f::dotProduct(normal, V);
     if (denominator == 0)
         return make_pair(INFINITY, Vector3f());
     float scalar = Vector3f::dotProduct(normal, (center - p0) / denominator);
     scalar = fabsf(scalar);
     Vector3f possibleIntersection = V * scalar;
-//    possibleIntersection *= scalar;
-//    Vector3f centerToPossibleIntersection = possibleIntersection - center;
-//    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();
     if (t1.intersect(possibleIntersection) || t2.intersect(possibleIntersection))
         return make_pair(possibleIntersection.getLength(), possibleIntersection);
     else
@@ -139,16 +135,64 @@ pair<float, Vector3f> Plane::intersect(Vector3f p0, Vector3f V){
 
 
 
-Vector3f Plane::getKa() {
-    return this->ka;
+Vector3f Plane::getKa(Vector3f at_point) {
+    float x_scale = length / 32;
+    float y_scale = width / 32;
+    Vector3f p1_to_point = at_point - p1;
+    float p1_to_point_distance = p1_to_point.getLength();
+    p1_to_point.normalize();
+    Vector3f p1_to_p2 = p2 - p1;
+    p1_to_p2.normalize();
+    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
+    float angle = acosf(cosAngle);
+    float x_dist = p1_to_point_distance * cosAngle;
+    float y_dist = p1_to_point_distance * sinf(angle);
+    if ((((int)(x_dist / x_scale)) % 2 == 0 && ((int)(y_dist / y_scale)) % 2 == 0)
+        ||
+        (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
+        return Vector3f(0, 0, 0);
+    else
+        return this->ka;
 }
 
-Vector3f Plane::getKd(){
-    return this->kd;
+Vector3f Plane::getKd(Vector3f at_point){
+    float x_scale = length / 32;
+    float y_scale = width / 32;
+    Vector3f p1_to_point = at_point - p1;
+    float p1_to_point_distance = p1_to_point.getLength();
+    p1_to_point.normalize();
+    Vector3f p1_to_p2 = p2 - p1;
+    p1_to_p2.normalize();
+    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
+    float angle = acosf(cosAngle);
+    float x_dist = p1_to_point_distance * cosAngle;
+    float y_dist = p1_to_point_distance * sinf(angle);
+    if ((((int)(x_dist / x_scale)) % 2 == 0 && ((int)(y_dist / y_scale)) % 2 == 0)
+        ||
+        (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
+        return Vector3f(0, 0, 0);
+    else
+        return this->kd;
 }
 
-Vector3f Plane::getKs(){
-    return this->ks;
+Vector3f Plane::getKs(Vector3f at_point){
+    float x_scale = length / 32;
+    float y_scale = width / 32;
+    Vector3f p1_to_point = at_point - p1;
+    float p1_to_point_distance = p1_to_point.getLength();
+    p1_to_point.normalize();
+    Vector3f p1_to_p2 = p2 - p1;
+    p1_to_p2.normalize();
+    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
+    float angle = acosf(cosAngle);
+    float x_dist = p1_to_point_distance * cosAngle;
+    float y_dist = p1_to_point_distance * sinf(angle);
+    if ((((int)(x_dist / x_scale)) % 2 == 0 && ((int)(y_dist / y_scale)) % 2 == 0)
+        ||
+        (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
+        return Vector3f(0, 0, 0);
+    else
+        return this->ks;
 }
 
 float Plane::getShine(){

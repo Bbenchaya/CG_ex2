@@ -34,15 +34,15 @@ Vector3f Primitive::getNormal(Vector3f point){
     return Vector3f();
 }
 
-Vector3f Primitive::getKa(){
+Vector3f Primitive::getKa(Vector3f at_point){
     return Vector3f();
 }
 
-Vector3f Primitive::getKd(){
+Vector3f Primitive::getKd(Vector3f at_point){
     return Vector3f();
 }
 
-Vector3f Primitive::getKs(){
+Vector3f Primitive::getKs(Vector3f at_point){
     return Vector3f();
 }
 

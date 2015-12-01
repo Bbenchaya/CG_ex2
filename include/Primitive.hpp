@@ -33,9 +33,9 @@ public:
     virtual pair<float, Vector3f> intersect(Vector3f p0, Vector3f V);
     const char instanceof();
     virtual Vector3f getNormal(Vector3f point);
-    virtual Vector3f getKa();
-    virtual Vector3f getKd();
-    virtual Vector3f getKs();
+    virtual Vector3f getKa(Vector3f at_point);
+    virtual Vector3f getKd(Vector3f at_point);
+    virtual Vector3f getKs(Vector3f at_point);
     virtual float getShine();
 };
 

@@ -49,15 +49,15 @@ pair<float, Vector3f> Sphere::intersect(Vector3f p0, Vector3f V){
         return make_pair(INFINITY, Vector3f());
 }
 
-Vector3f Sphere::getKa() {
+Vector3f Sphere::getKa(Vector3f at_point) {
     return this->ka;
 }
 
-Vector3f Sphere::getKd(){
+Vector3f Sphere::getKd(Vector3f at_point){
     return this->kd;
 }
 
-Vector3f Sphere::getKs(){
+Vector3f Sphere::getKs(Vector3f at_point){
     return this->ks;
 }
 

@@ -35,11 +35,11 @@ public:
 
     Vector3f getNormal(Vector3f point);
     
-    Vector3f getKa();
+    Vector3f getKa(Vector3f at_point);
     
-    Vector3f getKd();
+    Vector3f getKd(Vector3f at_point);
     
-    Vector3f getKs();
+    Vector3f getKs(Vector3f at_point);
     
     float getShine();
 

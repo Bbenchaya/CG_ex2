@@ -50,11 +50,11 @@ public:
     
     pair<float, Vector3f> intersect(Vector3f p0, Vector3f V);
     
-    Vector3f getKa();
+    Vector3f getKa(Vector3f at_point);
     
-    Vector3f getKd();
+    Vector3f getKd(Vector3f at_point);
     
-    Vector3f getKs();
+    Vector3f getKs(Vector3f at_point);
     
     float getShine();
 };
