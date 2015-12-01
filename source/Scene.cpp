@@ -51,7 +51,8 @@ Scene& Scene::operator=(const Scene &other){
 Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int j){
     float scalar = width / resolution_j;
     Vector3f p = center;
-    p = p - (i - floorf(resolution_i / 2)) * scalar * upVector + (j - floorf(resolution_j / 2)) * scalar * rightVector;
+    p = p - (i - floorf(resolution_i / 2)) * scalar * upVector
+          + (j - floorf(resolution_j / 2)) * scalar * rightVector;
     p.normalize();
     return *(new Ray(p));
 }
@@ -83,7 +84,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     Vector3f N = prim->getNormal(hit.getIntersectionPoint());
     Vector3f V = hit.getIntersectionPoint() - camera.getPosition();
     V.normalize();
-    Vector3f res = ambient_color * ka; //Should I sum the ambient of the scene and prim?
+    Vector3f res = ambient_color * ka;
     for (vector<Light>::iterator light = lights->begin(); light != lights->end(); light++){
         Vector3f L;
         if (light->is_spotlight()) {
@@ -98,8 +99,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
         bool ray_intersects_another_primitive = false;
         for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
             if (*primitive != prim) {
-                Ray ray(L);
-                if ((*primitive)->intersect(hit.getIntersectionPoint(), ray.getDirection()).first != INFINITY) {
+                if ((*primitive)->intersect(hit.getIntersectionPoint(), L).first != INFINITY) {
                     ray_intersects_another_primitive = true;
                     break;
                 }
@@ -108,7 +108,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
         if (!ray_intersects_another_primitive) {
             Vector3f R = -L + N * 2 * (Vector3f::dotProduct(L, N));
             R.normalize();
-            Vector3f V = hit.getIntersectionPoint();
+            Vector3f V = -hit.getIntersectionPoint();
             V.normalize();
             float angleCos = fmaxf(0, Vector3f::dotProduct(V, R));
             res += (kd * Vector3f::dotProduct(N, L)) * light->get_intensity() + (ks * powf(angleCos, nShine) * light->get_intensity());

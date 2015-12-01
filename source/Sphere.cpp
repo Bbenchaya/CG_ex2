@@ -45,10 +45,8 @@ pair<float, Vector3f> Sphere::intersect(Vector3f p0, Vector3f V){
         Vector3f intersectionVector = V * (t_m - t_h);
         return make_pair(intersectionVector.getLength(), intersectionVector);
     }
-    else {
-        Vector3f intersectionVector = V * (t_m + t_h);
-        return make_pair(intersectionVector.getLength(), intersectionVector);
-    }
+    else
+        return make_pair(INFINITY, Vector3f());
 }
 
 Vector3f Sphere::getKa() {
@@ -68,6 +66,6 @@ float Sphere::getShine(){
 }
 
 Vector3f Sphere::getNormal(Vector3f point){
-    //possible bug? should 'new'?
-    return (point - center)/Vector3f::dotProduct(point-center, point-center);
+    Vector3f N = point - center;
+    return N / N.getLength();
 }

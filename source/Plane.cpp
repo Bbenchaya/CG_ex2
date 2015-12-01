@@ -97,9 +97,7 @@ pair<float, Vector3f> Plane::intersect(Vector3f p0, Vector3f V){
 //    possibleIntersection *= scalar;
 //    Vector3f centerToPossibleIntersection = possibleIntersection - center;
 //    float centerToPossibleIntersectionNorm = centerToPossibleIntersection.getLength();
-    bool a = t1.intersect(possibleIntersection);
-    bool b = t2.intersect(possibleIntersection);
-    if (a || b)
+    if (t1.intersect(possibleIntersection) || t2.intersect(possibleIntersection))
         return make_pair(possibleIntersection.getLength(), possibleIntersection);
     else
         return make_pair(INFINITY, Vector3f());
