@@ -203,7 +203,8 @@ Vector3f Plane::getKa(Vector3f at_point) {
         (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
         return Vector3f(0, 0, 0);
     else
-        return Vector3f(1, 1, 1);
+//        return Vector3f(1, 1, 1);
+        return this->ka;
 }
 
 Vector3f Plane::getKd(Vector3f at_point){
