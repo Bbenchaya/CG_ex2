@@ -52,7 +52,7 @@ Ray Scene::constructRayThroughPixel(Camera &camera, unsigned int i ,unsigned int
     float scalar = width / resolution_j;
     Vector3f p = center;
     p = p - (i - floorf(resolution_i / 2)) * scalar * upVector
-          + (j - floorf(resolution_j / 2)) * scalar * rightVector;
+    + (j - floorf(resolution_j / 2)) * scalar * rightVector;
     p.normalize();
     return *(new Ray(p));
 }
@@ -63,7 +63,7 @@ Intersection Scene::findIntersection(Ray &ray){
     Vector3f intersectionPoint;
     for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
         pair<float, Vector3f> curr_distance = (*primitive)->intersect(Vector3f(0, 0, 0) ,ray.getDirection());
-//        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
+        //        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
         if (curr_distance.first < min_distance) {
             min_primitive = (*primitive);
             min_distance = curr_distance.first;
@@ -76,17 +76,16 @@ Intersection Scene::findIntersection(Ray &ray){
 Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera){
     if (hit.getMinDistance() == INFINITY)
         return Vector3f(0, 0, 0); //the ray hits nothing, so paint the pixel in black
-    Primitive *prim = hit.getMinPrimitive();
+    Primitive *min_prim = hit.getMinPrimitive();
     Vector3f at_point = hit.getIntersectionPoint();
-    Vector3f ka = prim->getKa(at_point);
-    Vector3f kd = prim->getKd(at_point);
-    Vector3f ks = prim->getKs(at_point);
-    float nShine = prim->getShine();
-    Vector3f N = prim->getNormal(hit.getIntersectionPoint());
+    Vector3f ka = min_prim->getKa(at_point);
+    Vector3f kd = min_prim->getKd(at_point);
+    Vector3f ks = min_prim->getKs(at_point);
+    float nShine = min_prim->getShine();
+    Vector3f N = min_prim->getNormal(hit.getIntersectionPoint());
     Vector3f V = camera.getPosition() - hit.getIntersectionPoint();
     V.normalize();
-    Vector3f res(0, 0, 0);
-    res += ambient_color * ka;
+    Vector3f res = ambient_color * ka;
     for (vector<Light>::iterator light = lights->begin(); light != lights->end(); light++){
         Vector3f L;
         if (light->is_spotlight()) {
@@ -96,11 +95,11 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             }
         }
         else
-            L = light->get_direction() * -100; // arbitrary position for a directional light at pseudo-infinity
+            L = light->get_direction() * -100000; // arbitrary position for a directional light at pseudo-infinity
         L.normalize();
         bool ray_intersects_another_primitive = false;
         for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
-            if (*primitive != prim) {
+            if (*primitive != min_prim) {
                 if ((*primitive)->intersect(hit.getIntersectionPoint(), L).first != INFINITY) {
                     ray_intersects_another_primitive = true;
                     break;
@@ -108,10 +107,10 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             }
         }
         if (!ray_intersects_another_primitive) {
-            Vector3f R = -L - N * 2 * (Vector3f::dotProduct(-L, N));
+            Vector3f R = -L + N * 2 * (Vector3f::dotProduct(L, N));
             R.normalize();
-            float angleCos = fmaxf(0, Vector3f::dotProduct(V, R));
-            res += ((kd * Vector3f::dotProduct(N, L)) + (ks * powf(angleCos, nShine))) * light->get_intensity();
+            float angleCos = fmax(0, Vector3f::dotProduct(V, R));
+            res += ((kd * Vector3f::dotProduct(N, L)) + (ks * pow(angleCos, nShine))) * light->get_intensity();
         }
     }
     res[0] = fminf(res[0], 1);
