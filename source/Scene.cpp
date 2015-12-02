@@ -83,19 +83,20 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     Vector3f ks = prim->getKs(at_point);
     float nShine = prim->getShine();
     Vector3f N = prim->getNormal(hit.getIntersectionPoint());
-    Vector3f V = hit.getIntersectionPoint() - camera.getPosition();
+    Vector3f V = camera.getPosition() - hit.getIntersectionPoint();
     V.normalize();
-    Vector3f res = ambient_color * ka;
+    Vector3f res(0, 0, 0);
+    res += ambient_color * ka;
     for (vector<Light>::iterator light = lights->begin(); light != lights->end(); light++){
         Vector3f L;
         if (light->is_spotlight()) {
-            L = (*light).get_position() - hit.getIntersectionPoint();
+            L = light->get_position() - hit.getIntersectionPoint();
             if (!light->illuminates(L)){
                 continue;
             }
         }
         else
-            L = light->get_direction() * -1000000; // arbitrary position for a directional light at pseudo-infinity
+            L = light->get_direction() * -100; // arbitrary position for a directional light at pseudo-infinity
         L.normalize();
         bool ray_intersects_another_primitive = false;
         for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); ++primitive) {
@@ -107,12 +108,10 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             }
         }
         if (!ray_intersects_another_primitive) {
-            Vector3f R = -L + N * 2 * (Vector3f::dotProduct(L, N));
+            Vector3f R = -L - N * 2 * (Vector3f::dotProduct(-L, N));
             R.normalize();
-            Vector3f V = -hit.getIntersectionPoint();
-            V.normalize();
             float angleCos = fmaxf(0, Vector3f::dotProduct(V, R));
-            res += (kd * Vector3f::dotProduct(N, L)) * light->get_intensity() + (ks * powf(angleCos, nShine) * light->get_intensity());
+            res += ((kd * Vector3f::dotProduct(N, L)) + (ks * powf(angleCos, nShine))) * light->get_intensity();
         }
     }
     res[0] = fminf(res[0], 1);

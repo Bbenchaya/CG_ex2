@@ -9,6 +9,7 @@
 #ifndef Light_hpp
 #define Light_hpp
 
+#include <math.h>
 #include "Vector3f.h"
 
 class Light {

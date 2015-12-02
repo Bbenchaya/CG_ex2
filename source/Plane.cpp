@@ -156,22 +156,22 @@ Vector3f Plane::getKa(Vector3f at_point) {
 }
 
 Vector3f Plane::getKd(Vector3f at_point){
-    float x_scale = length / 32;
-    float y_scale = width / 32;
-    Vector3f p1_to_point = at_point - p1;
-    float p1_to_point_distance = p1_to_point.getLength();
-    p1_to_point.normalize();
-    Vector3f p1_to_p2 = p2 - p1;
-    p1_to_p2.normalize();
-    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
-    float angle = acosf(cosAngle);
-    float x_dist = p1_to_point_distance * cosAngle;
-    float y_dist = p1_to_point_distance * sinf(angle);
-    if ((((int)(x_dist / x_scale)) % 2 == 0 && ((int)(y_dist / y_scale)) % 2 == 0)
-        ||
-        (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
-        return Vector3f(0, 0, 0);
-    else
+//    float x_scale = length / 32;
+//    float y_scale = width / 32;
+//    Vector3f p1_to_point = at_point - p1;
+//    float p1_to_point_distance = p1_to_point.getLength();
+//    p1_to_point.normalize();
+//    Vector3f p1_to_p2 = p2 - p1;
+//    p1_to_p2.normalize();
+//    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
+//    float angle = acosf(cosAngle);
+//    float x_dist = p1_to_point_distance * cosAngle;
+//    float y_dist = p1_to_point_distance * sinf(angle);
+//    if ((((int)(x_dist / x_scale)) % 2 == 0 && ((int)(y_dist / y_scale)) % 2 == 0)
+//        ||
+//        (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
+//        return Vector3f(0, 0, 0);
+//    else
         return this->kd;
 }
 
