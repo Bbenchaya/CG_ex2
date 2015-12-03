@@ -2,13 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
-#include <vector>
 #include <fstream>
-#include "Vector3f.h"
 #include "Parser.hpp"
-#include "Light.hpp"
 #include "Scene.hpp"
-#include "Sphere.hpp"
 
 using namespace std;
 GLuint texture;
@@ -66,6 +62,8 @@ int main(int argc, char **argv){
     for (int i = 0; i < scene.getHeight(); i++) {
         image[i] = new Vector3f[scene.getWidth()];
     }
+    Cone* cone = new Cone(Vector3f(0, 0, -20), 0, 0.1, Vector3f(0.5, 0, 0.5), Vector3f(0.5, 0.5, 0.5), Vector3f(0.5, 0.5, 0.5), 20);
+//    primitives.push_back(cone);
     scene.castRays(&image);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE);

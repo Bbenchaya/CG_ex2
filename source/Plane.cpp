@@ -142,44 +142,13 @@ pair<float, Vector3f> Plane::intersect(Vector3f p0, Vector3f V){
     if (denominator == 0)
         return make_pair(INFINITY, Vector3f());
     float scalar = Vector3f::dotProduct(normal, (center - p0) / denominator);
-    scalar = fabsf(scalar);
+    scalar = fabsf(scalar*1.02);
     Vector3f possibleIntersection = V * scalar;
     if (t1.intersect(possibleIntersection) || t2.intersect(possibleIntersection))
         return make_pair(possibleIntersection.getLength(), possibleIntersection);
     else
         return make_pair(INFINITY, Vector3f());
 
-    
-//    if (normal.p[2] == 0) { // plane rotates around z axis
-//        float cosAngle = Vector3f::dotProduct(centerToPossibleIntersection, Vector3f(0, 0, 1)) / centerToPossibleIntersectionNorm;
-//        float angle = acosf(cosAngle);
-//        float centerToPossibleIntersectionXComponent = centerToPossibleIntersectionNorm * cosAngle;
-//        float centerToPossibleIntersectionYComponent = centerToPossibleIntersectionNorm * sinf(angle);
-//        if (centerToPossibleIntersectionXComponent <= length / 2 && centerToPossibleIntersectionYComponent <= width / 2) {
-//            return make_pair(sqrtf(Vector3f::dotProduct(possibleIntersection, possibleIntersection)), possibleIntersection); // the distance from the origin to the intersection point
-//        }
-//        else return make_pair(INFINITY, Vector3f());
-//    }
-//    if (normal.p[1] == 0) { // plane rotates around y axis
-//        float cosAngle = Vector3f::dotProduct(centerToPossibleIntersection, Vector3f(0, 1, 0)) / centerToPossibleIntersectionNorm;
-//        float angle = acosf(cosAngle);
-//        float centerToPossibleIntersectionXComponent = centerToPossibleIntersectionNorm * cosAngle;
-//        float centerToPossibleIntersectionYComponent = centerToPossibleIntersectionNorm * sinf(angle);
-//        if (centerToPossibleIntersectionXComponent <= length / 2 && centerToPossibleIntersectionYComponent <= width / 2) {
-//            return make_pair(sqrtf(Vector3f::dotProduct(possibleIntersection, possibleIntersection)), possibleIntersection); // the distance from the origin to the intersection point
-//        }
-//        else return make_pair(INFINITY, Vector3f());
-//    }
-//    if (normal.p[0] == 0) { // plane rotates around z axis
-//        float cosAngle = Vector3f::dotProduct(centerToPossibleIntersection, Vector3f(1, 0, 0)) / centerToPossibleIntersectionNorm;
-//        float angle = acosf(cosAngle);
-//        float centerToPossibleIntersectionXComponent = centerToPossibleIntersectionNorm * cosAngle;
-//        float centerToPossibleIntersectionYComponent = centerToPossibleIntersectionNorm * sinf(angle);
-//        if (centerToPossibleIntersectionXComponent <= length / 2 && centerToPossibleIntersectionYComponent <= width / 2) {
-//            return make_pair(sqrtf(Vector3f::dotProduct(possibleIntersection, possibleIntersection)), possibleIntersection); // the distance from the origin to the intersection point
-//        }
-//        else return make_pair(INFINITY, Vector3f());
-//    }
     cout << "A plane was provided with illegal normal vector" << endl;
     return make_pair(0, Vector3f());;
 }
@@ -189,22 +158,24 @@ pair<float, Vector3f> Plane::intersect(Vector3f p0, Vector3f V){
 Vector3f Plane::getKa(Vector3f at_point) {
     float x_scale = length / 32;
     float y_scale = width / 32;
-    Vector3f p1_to_point = at_point - p1;
-    float p1_to_point_distance = p1_to_point.getLength();
-    p1_to_point.normalize();
-    Vector3f p1_to_p2 = p2 - p1;
-    p1_to_p2.normalize();
-    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
-    float angle = acosf(cosAngle);
-    float x_dist = p1_to_point_distance * cosAngle;
-    float y_dist = p1_to_point_distance * sinf(angle);
-    if ((((int)(x_dist / x_scale)) % 2 == 0 && ((int)(y_dist / y_scale)) % 2 == 0)
-        ||
-        (((int)(x_dist / x_scale)) % 2 == 1 && ((int)(y_dist / y_scale)) % 2 == 1))
+//    Vector3f p1_to_point = at_point - p1;
+//    float p1_to_point_distance = p1_to_point.getLength();
+//    p1_to_point.normalize();
+//    Vector3f p1_to_p2 = p2 - p1;
+//    p1_to_p2.normalize();
+//    Vector3f p1_to_p4 = p4 - p1;
+//    p1_to_p4.normalize();
+//    float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
+//    float angle = acosf(cosAngle);
+//    float x_dist = p1_to_point_distance * cosAngle;
+//    float y_dist = Vector3f::dotProduct(p1_to_point, p1_to_p4) * p1_to_point_distance;
+    float y_dist = fabsf(at_point[0] - p1[0]);
+    float x_dist = fabsf(at_point[2] - p1[2]);
+    if (((int)(x_dist / x_scale)) % 2 == ((int)(y_dist / y_scale)) % 2)
         return Vector3f(0, 0, 0);
     else
-//        return Vector3f(1, 1, 1);
-        return this->ka;
+        return Vector3f(1, 1, 1);
+//        return this->ka;
 }
 
 Vector3f Plane::getKd(Vector3f at_point){

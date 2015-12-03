@@ -14,6 +14,7 @@
 		F053BAF71BFF113800B31B92 /* Intersection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F053BAF51BFF113800B31B92 /* Intersection.cpp */; };
 		F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F05EB9711BFCD17D00A06A14 /* Ray.cpp */; };
 		F05EB9791BFCE13D00A06A14 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F05EB9771BFCE13D00A06A14 /* Camera.cpp */; };
+		F0B598601C0FAB0A006B7226 /* Cone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B5985E1C0FAB0A006B7226 /* Cone.cpp */; };
 		F0CCFC011BFA37F600E0BD43 /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */; };
 		F0CCFC071BFA738A00E0BD43 /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC051BFA738A00E0BD43 /* Plane.cpp */; };
 		F0CCFC0A1BFA739500E0BD43 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0CCFC081BFA739500E0BD43 /* Light.cpp */; };
@@ -50,6 +51,8 @@
 		F05EB9771BFCE13D00A06A14 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		F05EB9781BFCE13D00A06A14 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		F05EB97C1BFCF87900A06A14 /* init_simple.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init_simple.txt; sourceTree = "<group>"; };
+		F0B5985E1C0FAB0A006B7226 /* Cone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cone.cpp; sourceTree = "<group>"; };
+		F0B5985F1C0FAB0A006B7226 /* Cone.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cone.hpp; sourceTree = "<group>"; };
 		F0CCFBFC1BFA318B00E0BD43 /* init2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init2.txt; sourceTree = "<group>"; };
 		F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
 		F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sphere.hpp; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				F05EB9781BFCE13D00A06A14 /* Camera.hpp */,
+				F0B5985F1C0FAB0A006B7226 /* Cone.hpp */,
 				F053BAF61BFF113800B31B92 /* Intersection.hpp */,
 				F0CCFC091BFA739500E0BD43 /* Light.hpp */,
 				F0CCFC0F1BFA757000E0BD43 /* Parser.hpp */,
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				F05EB9771BFCE13D00A06A14 /* Camera.cpp */,
+				F0B5985E1C0FAB0A006B7226 /* Cone.cpp */,
 				F053BAF51BFF113800B31B92 /* Intersection.cpp */,
 				F0CCFC081BFA739500E0BD43 /* Light.cpp */,
 				F0CCFC0E1BFA757000E0BD43 /* Parser.cpp */,
@@ -206,6 +211,7 @@
 				F053BAF71BFF113800B31B92 /* Intersection.cpp in Sources */,
 				F0CCFC0D1BFA739C00E0BD43 /* Scene.cpp in Sources */,
 				F01DA7641C0B929100979F08 /* Triangle.cpp in Sources */,
+				F0B598601C0FAB0A006B7226 /* Cone.cpp in Sources */,
 				F05EB9791BFCE13D00A06A14 /* Camera.cpp in Sources */,
 				F05EB9731BFCD17D00A06A14 /* Ray.cpp in Sources */,
 				F0D7C7981BFF4C9D002CF750 /* Primitive.cpp in Sources */,
