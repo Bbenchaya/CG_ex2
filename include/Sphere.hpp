@@ -20,6 +20,7 @@ private:
     Vector3f kd;
     Vector3f ks;
     float shine;
+    bool mirror;
     
 public:
     Sphere(const Vector3f &center,
@@ -27,7 +28,8 @@ public:
            const Vector3f &ka,
            const Vector3f &ks,
            const Vector3f &kd,
-           float shine);
+           float shine,
+           bool mirror);
     
     Sphere& operator=(const Sphere &other);
     
@@ -42,6 +44,8 @@ public:
     Vector3f getKs(Vector3f at_point);
     
     float getShine();
+    
+    bool isMirror();
 
 };
 

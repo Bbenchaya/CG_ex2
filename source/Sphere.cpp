@@ -13,13 +13,15 @@ Sphere::Sphere(const Vector3f &center,
                const Vector3f &ka,
                const Vector3f &ks,
                const Vector3f &kd,
-               float shine) : Primitive('s'){
+               float shine,
+               bool mirror) : Primitive('s'){
     this->center = center;
     this->radius = radius;
     this->ka = ka;
     this->ks = ks;
     this->kd = kd;
     this->shine = shine;
+    this->mirror = mirror;
 }
 
 Sphere& Sphere::operator=(const Sphere &other){
@@ -68,4 +70,8 @@ float Sphere::getShine(){
 Vector3f Sphere::getNormal(Vector3f point){
     Vector3f N = point - center;
     return N / N.getLength();
+}
+
+bool Sphere::isMirror(){
+    return this->mirror;
 }

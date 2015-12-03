@@ -50,6 +50,9 @@ float Primitive::getShine(){
     return 0.0;
 }
 
+bool Primitive::isMirror(){
+    return false;
+}
 
 const char Primitive::instanceof(){
     return type;

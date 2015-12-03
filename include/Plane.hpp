@@ -57,6 +57,8 @@ public:
     Vector3f getKs(Vector3f at_point);
     
     float getShine();
+    
+    bool isMirror();
 };
 
 #endif /* Plane_hpp */

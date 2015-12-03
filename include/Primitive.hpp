@@ -37,6 +37,7 @@ public:
     virtual Vector3f getKd(Vector3f at_point);
     virtual Vector3f getKs(Vector3f at_point);
     virtual float getShine();
+    virtual bool isMirror();
 };
 
 #endif /* Primitive_hpp */

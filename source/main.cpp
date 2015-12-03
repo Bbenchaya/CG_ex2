@@ -106,6 +106,7 @@ void init(Vector3f ***image){
 }
 
 void mydisplay(){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBindTexture(GL_TEXTURE_2D, texture);
     glViewport(0, 0, height, width);

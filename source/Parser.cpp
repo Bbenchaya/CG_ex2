@@ -42,13 +42,19 @@ void Parser::parse(vector<Light> &lights,
                 float ka[3];
                 float ks[3];
                 float kd[3];
-                fscanf(file, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f", &x, &y, &z, &radius, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine);
+                char mirror = '\0';
+                bool isMirror = false;
+                fscanf(file, "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f %c", &x, &y, &z, &radius, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine, &mirror);
+                if (mirror == 'M') {
+                    isMirror = true;
+                }
                 Sphere *spher = new Sphere(Vector3f(x, y, z),
                              radius,
                              Vector3f(ka),
                              Vector3f(ks),
                              Vector3f(kd),
-                             shine);
+                             shine,
+                             isMirror);
                 primitives.push_back(spher);
                 cout << "Sphere created!" << endl;
             }
@@ -58,7 +64,11 @@ void Parser::parse(vector<Light> &lights,
                 float ks[3];
                 float kd[3];
                 char mirror = '\0';
+                bool isMirror = false;
                 fscanf(file, " %f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f %c", &normalX, &normalY, &normalZ, &centerX, &centerY, &centerZ, &width, &length, ka, ka + 1, ka + 2, kd, kd + 1, kd + 2, ks, ks + 1, ks + 2, &shine, &mirror);
+                if (mirror == 'M') {
+                    isMirror = true;
+                }
                 Plane *plane = new Plane(Vector3f(normalX, normalY, normalZ),
                             Vector3f(centerX, centerY, centerZ),
                             width,
@@ -67,7 +77,7 @@ void Parser::parse(vector<Light> &lights,
                             Vector3f(ka),
                             Vector3f(kd),
                             Vector3f(ks),
-                            mirror);
+                            isMirror);
                 primitives.push_back(plane);
                 cout << "Plane created!" << endl;
             }

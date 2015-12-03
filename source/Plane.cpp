@@ -221,3 +221,7 @@ Vector3f Plane::getKs(Vector3f at_point){
 float Plane::getShine(){
     return this->shine;
 }
+
+bool Plane::isMirror(){
+    return this->mirror;
+}
