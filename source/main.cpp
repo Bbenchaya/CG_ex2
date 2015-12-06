@@ -12,54 +12,31 @@ int width;
 int height;
 
 Vector3f* fisheye(Vector3f *source_image){
-    // create the result data
     Vector3f *dstpixels = new Vector3f[width * height];
-    // for each row
     for (int y = 0; y < height; y++) {
-        // normalize y coordinate to -1 ... 1
         double ny = ((2.0 * y) / height) - 1.0;
-        // pre calculate ny*ny
-        double ny2 = powf(ny, 2);
-        // for each column
+        double ny2 = pow(ny, 2);
         for (int x = 0; x < width; x++) {
-            // normalize x coordinate to -1 ... 1
             double nx = ((2.0 * x) / width) - 1.0;
-            // pre calculate nx*nx
             double nx2 = pow(nx, 2);
-            // calculate distance from center (0,0)
-            // this will include circle or ellipse shape portion
-            // of the image, depending on image dimensions
-            // you can experiment with images with different dimensions
             double r = sqrt(nx2 + ny2);
-            // discard pixels outside from circle!
             if (0.0 <= r && r <= 1.0) {
                 double nr = sqrt(1.0 - pow(r, 2));
-                // new distance is between 0 ... 1
                 nr = (r + (1.0 - nr)) / 2.0;
-                // discard radius greater than 1.0
                 if (nr <= 1.0) {
-                    // calculate the angle for polar coordinates
                     double theta = atan2(ny,nx);
-                    // calculate new x position with new distance in same angle
                     double nxn = nr * cos(theta);
                     double nyn = nr * sin(theta);
-                    // map from -1 ... 1 to image coordinates
                     int x2 = (int)(((nxn + 1) * width) / 2.0);
-                    // map from -1 ... 1 to image coordinates
                     int y2 = (int)(((nyn + 1) * height) / 2.0);
-                    // find (x2,y2) position from source pixels
                     int srcpos = (int)(y2 * width + x2);
-                    // make sure that position stays within arrays
-//                    printf("i:%d, j:%d\n%f:%f:%f\n", y2, x2, source_image[srcpos][0], source_image[srcpos][1], source_image[srcpos][2]);
                     if (srcpos >= 0 & srcpos < width * height) {
-                        // get new pixel (x2,y2) and put it to target array at (x,y)
                         dstpixels[y * width + x] = source_image[srcpos];
                     }
                 }
             }
         }
     }
-    //return result pixels
     return dstpixels;
 }
 
