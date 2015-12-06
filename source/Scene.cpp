@@ -85,7 +85,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
     Vector3f N = min_prim->getNormal(hit.getIntersectionPoint());
     Vector3f V = camera.getPosition() - hit.getIntersectionPoint();
     V.normalize();
-    Vector3f res = ambient_color * ka;
+    Vector3f res(0, 0, 0);
     for (vector<Light>::iterator light = lights->begin(); light != lights->end(); light++){
         Vector3f L;
         if (light->is_spotlight()) {
@@ -95,6 +95,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             }
         }
         else
+//            continue;
             L = light->get_direction() * -100000; // arbitrary position for a directional light at pseudo-infinity
         L.normalize();
         bool ray_intersects_another_primitive = false;
@@ -113,6 +114,7 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             res += ((kd * Vector3f::dotProduct(N, L)) + (ks * pow(angleCos, nShine))) * light->get_intensity();
         }
     }
+    res += ambient_color * ka;
     res[0] = fminf(res[0], 1);
     res[1] = fminf(res[1], 1);
     res[2] = fminf(res[2], 1);

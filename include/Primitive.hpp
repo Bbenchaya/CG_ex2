@@ -24,6 +24,7 @@ class Primitive {
 
 protected:
     const char type;
+    bool mirror;
     
 public:
     Primitive();

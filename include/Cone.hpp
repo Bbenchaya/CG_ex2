@@ -29,7 +29,8 @@ public:
          const Vector3f &ka,
          const Vector3f &ks,
          const Vector3f &kd,
-         float shine);
+         float shine,
+         bool mirror);
     
     Cone& operator=(const Cone &other);
     
@@ -44,6 +45,8 @@ public:
     Vector3f getKs(Vector3f at_point);
     
     float getShine();
+    
+    bool isMirror();
     
 };
 

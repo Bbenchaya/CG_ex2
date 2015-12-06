@@ -13,19 +13,19 @@ int height;
 
 Vector3f* fisheye(Vector3f *source_image){
     // create the result data
-    Vector3f *dstpixels = new Vector3f[height * width];
+    Vector3f *dstpixels = new Vector3f[width * height];
     // for each row
-    for (int i = 0; i < height; i++) {
+    for (int y = 0; y < height; y++) {
         // normalize y coordinate to -1 ... 1
-        double ny = ((2 * i) / height)-1;
+        double ny = ((2.0 * y) / height) - 1.0;
         // pre calculate ny*ny
-        double ny2 = ny * ny;
+        double ny2 = powf(ny, 2);
         // for each column
-        for (int j = 0; j < width ; j++) {
+        for (int x = 0; x < width; x++) {
             // normalize x coordinate to -1 ... 1
-            double nx = ((2 * j) / width) - 1;
+            double nx = ((2.0 * x) / width) - 1.0;
             // pre calculate nx*nx
-            double nx2 = nx * nx;
+            double nx2 = pow(nx, 2);
             // calculate distance from center (0,0)
             // this will include circle or ellipse shape portion
             // of the image, depending on image dimensions
@@ -33,27 +33,27 @@ Vector3f* fisheye(Vector3f *source_image){
             double r = sqrt(nx2 + ny2);
             // discard pixels outside from circle!
             if (0.0 <= r && r <= 1.0) {
-                double nr = sqrt(1.0 - r*r);
+                double nr = sqrt(1.0 - pow(r, 2));
                 // new distance is between 0 ... 1
                 nr = (r + (1.0 - nr)) / 2.0;
                 // discard radius greater than 1.0
-                if (nr<=1.0) {
+                if (nr <= 1.0) {
                     // calculate the angle for polar coordinates
                     double theta = atan2(ny,nx);
                     // calculate new x position with new distance in same angle
                     double nxn = nr * cos(theta);
-                    // calculate new y position with new distance in same angle
                     double nyn = nr * sin(theta);
                     // map from -1 ... 1 to image coordinates
-                    int i2 = (int)(((nxn + 1) * width) / 2.0);
+                    int x2 = (int)(((nxn + 1) * width) / 2.0);
                     // map from -1 ... 1 to image coordinates
-                    int j2 = (int)(((nyn + 1) * height) / 2.0);
+                    int y2 = (int)(((nyn + 1) * height) / 2.0);
                     // find (x2,y2) position from source pixels
-                    int srcpos = i2 * width + j2;
+                    int srcpos = (int)(y2 * width + x2);
                     // make sure that position stays within arrays
+//                    printf("i:%d, j:%d\n%f:%f:%f\n", y2, x2, source_image[srcpos][0], source_image[srcpos][1], source_image[srcpos][2]);
                     if (srcpos >= 0 & srcpos < width * height) {
                         // get new pixel (x2,y2) and put it to target array at (x,y)
-                        dstpixels[i * width + j] = source_image[srcpos];
+                        dstpixels[y * width + x] = source_image[srcpos];
                     }
                 }
             }
@@ -63,7 +63,7 @@ Vector3f* fisheye(Vector3f *source_image){
     return dstpixels;
 }
 
-GLfloat* transformImageToGL(Vector3f*** image, bool to_fish_eye){
+GLfloat* transformImageToGL(Vector3f ***image, bool to_fish_eye){
     GLfloat *res = new GLfloat[height * width * 3];
     if (to_fish_eye) {
         Vector3f *fisheyed = new Vector3f[height * width];
@@ -99,7 +99,7 @@ void init(Vector3f ***image){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    GLfloat *image_for_GL = transformImageToGL(image, false);
+    GLfloat *image_for_GL = transformImageToGL(image, true);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, height, width, 0, GL_RGB, GL_FLOAT, image_for_GL);
 
@@ -132,7 +132,7 @@ int main(int argc, char **argv){
     for (int i = 0; i < height; i++) {
         image[i] = new Vector3f[width];
     }
-    Cone* cone = new Cone(Vector3f(0, 0, -20), 0, 0.1, Vector3f(0.5, 0, 0.5), Vector3f(0.5, 0.5, 0.5), Vector3f(0.5, 0.5, 0.5), 20);
+    Cone* cone = new Cone(Vector3f(0, 0, -20), 0, 0.1, Vector3f(0.5, 0, 0.5), Vector3f(0.5, 0.5, 0.5), Vector3f(0.5, 0.5, 0.5), 20, false);
 //    primitives.push_back(cone);
     scene.castRays(&image);
     glutInit(&argc, argv);

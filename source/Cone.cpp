@@ -14,7 +14,8 @@ Cone::Cone(const Vector3f &center,
            const Vector3f &ka,
            const Vector3f &ks,
            const Vector3f &kd,
-           float shine) : Primitive('c'){
+           float shine,
+           bool mirror) : Primitive('c'){
     this->center = center;
     this->z_min = z_min;
     this->z_max = z_max;
@@ -22,6 +23,7 @@ Cone::Cone(const Vector3f &center,
     this->ks = ks;
     this->kd = kd;
     this->shine = shine;
+    this->mirror = mirror;
 }
 
 Cone& Cone::operator=(const Cone &other){
@@ -34,6 +36,7 @@ Cone& Cone::operator=(const Cone &other){
     this->ks = other.ks;
     this->kd = other.kd;
     this->shine = other.shine;
+    this->mirror = other.mirror;
     return *this;
 }
 
@@ -70,4 +73,8 @@ float Cone::getShine(){
 Vector3f Cone::getNormal(Vector3f point){
     Vector3f N = point - center;
     return N / N.getLength();
+}
+
+bool Cone::isMirror(){
+    return mirror;
 }

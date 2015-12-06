@@ -32,6 +32,7 @@ Sphere& Sphere::operator=(const Sphere &other){
     this->ka = other.ka;
     this->ks = other.ks;
     this->kd = other.kd;
+    this->mirror = other.mirror;
     this->shine = other.shine;
     return *this;
 }
