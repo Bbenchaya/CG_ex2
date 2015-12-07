@@ -53,7 +53,6 @@ bool Light::illuminates(Vector3f L){
     L.normalize();
     Vector3f D = direction;
     D.normalize();
-//    if (light_cutoff > acosf(Vector3f::dotProduct(L, D) * 180.0 / M_PI))
     if (cosf(light_cutoff * M_PI / 180.0) > Vector3f::dotProduct(L, D))
         return false;
     else

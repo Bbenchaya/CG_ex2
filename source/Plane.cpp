@@ -142,7 +142,6 @@ Vector3f Plane::getKa(Vector3f at_point) {
     Vector3f p1_to_p4 = p4 - p1;
     p1_to_p4.normalize();
     float cosAngle = Vector3f::dotProduct(p1_to_point, p1_to_p2);
-    float angle = acosf(cosAngle);
     float x_dist = p1_to_point_distance * cosAngle;
     float y_dist = Vector3f::dotProduct(p1_to_point, p1_to_p4) * p1_to_point_distance;
 //    float y_dist = fabsf(at_point[0] - p1[0]);
@@ -150,8 +149,8 @@ Vector3f Plane::getKa(Vector3f at_point) {
     if (((int)(x_dist / x_scale)) % 2 == ((int)(y_dist / y_scale)) % 2)
         return Vector3f(0, 0, 0);
     else
-        return Vector3f(1, 1, 1);
-//        return this->ka;
+//        return Vector3f(1, 1, 1);
+        return this->ka;
 }
 
 Vector3f Plane::getKd(Vector3f at_point){

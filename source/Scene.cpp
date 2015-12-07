@@ -63,7 +63,6 @@ Intersection Scene::findIntersection(Ray &ray){
     Vector3f intersectionPoint;
     for (vector<Primitive*>::iterator primitive = primitives->begin(); primitive != primitives->end(); primitive++) {
         pair<float, Vector3f> curr_distance = (*primitive)->intersect(Vector3f(0, 0, 0) ,ray.getDirection());
-        //        printf("prim: %c, dist: %f\n", (*primitive)->instanceof(), curr_distance.first);
         if (curr_distance.first < min_distance) {
             min_primitive = (*primitive);
             min_distance = curr_distance.first;
@@ -95,7 +94,6 @@ Vector3f Scene::getColor(const Ray &ray, Intersection &hit, const Camera &camera
             }
         }
         else
-//            continue;
             L = light->get_direction() * -100000; // arbitrary position for a directional light at pseudo-infinity
         L.normalize();
         bool ray_intersects_another_primitive = false;

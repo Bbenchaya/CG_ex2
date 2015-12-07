@@ -28,7 +28,6 @@ Triangle& Triangle::operator=(const Triangle &other){
 }
 
 bool Triangle::intersect(Vector3f point){
-//    printf("x:%f, y:%f, z:%f\n", point.p[0], point.p[1], point.p[2]);
     Vector3f normal = Vector3f::crossProduct(p1, p2);
     normal.normalize();
     if (Vector3f::dotProduct(point, normal) < 0){

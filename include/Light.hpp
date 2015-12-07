@@ -24,12 +24,12 @@ private:
 
 public:
     Light();
-    //Spot_Light
+    // Spotlight
     Light(const Vector3f &direction,
           const Vector3f &intensity,
           const Vector3f &position,
           float light_cutoff);
-    //Reular Light
+    // Directional light
     Light(const Vector3f &direction,
           const Vector3f &intensity);
     

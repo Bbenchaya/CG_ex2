@@ -76,7 +76,7 @@ void init(Vector3f ***image){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    GLfloat *image_for_GL = transformImageToGL(image, true);
+    GLfloat *image_for_GL = transformImageToGL(image, false);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, height, width, 0, GL_RGB, GL_FLOAT, image_for_GL);
 
@@ -109,8 +109,6 @@ int main(int argc, char **argv){
     for (int i = 0; i < height; i++) {
         image[i] = new Vector3f[width];
     }
-    Cone* cone = new Cone(Vector3f(0, 0, -20), 0, 0.1, Vector3f(0.5, 0, 0.5), Vector3f(0.5, 0.5, 0.5), Vector3f(0.5, 0.5, 0.5), 20, false);
-//    primitives.push_back(cone);
     scene.castRays(&image);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE);

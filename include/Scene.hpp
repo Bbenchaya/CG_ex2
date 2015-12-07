@@ -16,7 +16,6 @@
 #include <vector>
 
 #include "Camera.hpp"
-#include "Cone.hpp"
 #include "Intersection.hpp"
 #include "Light.hpp"
 #include "Plane.hpp"
