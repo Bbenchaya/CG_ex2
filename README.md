@@ -7,11 +7,11 @@ the user's field of view, so the projection is processed into a 2D image which i
 
 ## Output examples
 
-![output](https://github.com/asafch/CG_ex1/blob/master/example1.png)
+![output](https://github.com/asafch/CG_ex2/blob/master/example1.png)
 
-![output](https://github.com/asafch/CG_ex1/blob/master/example2.png)
+![output](https://github.com/asafch/CG_ex2/blob/master/example2.png)
 
-![output](https://github.com/asafch/CG_ex1/blob/master/example3.png)
+![output](https://github.com/asafch/CG_ex2/blob/master/example3.png)
 
 
 ### License
