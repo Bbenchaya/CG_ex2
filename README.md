@@ -5,6 +5,14 @@ describing a 3D scene with objects inside it. From this data a 3D scene would be
 algorithm is applied, in order to find the scene's projection on a 2D plane that's present in the scene. This plane simbolizes
 the user's field of view, so the projection is processed into a 2D image which is rendered in an OpenGL window.
 
+## Output examples
+
+![output](https://github.com/asafch/CG_ex1/blob/master/example1.png)
+
+![output](https://github.com/asafch/CG_ex1/blob/master/example2.png)
+
+![output](https://github.com/asafch/CG_ex1/blob/master/example3.png)
+
 
 ### License
 

@@ -50,6 +50,9 @@
 		F05EB9771BFCE13D00A06A14 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		F05EB9781BFCE13D00A06A14 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		F05EB97C1BFCF87900A06A14 /* init_simple.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init_simple.txt; sourceTree = "<group>"; };
+		F08B38231C176F5600BE951C /* example1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example1.png; sourceTree = "<group>"; };
+		F08B38241C176F5600BE951C /* example2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example2.png; sourceTree = "<group>"; };
+		F08B38251C176F5600BE951C /* example3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example3.png; sourceTree = "<group>"; };
 		F0CCFBFC1BFA318B00E0BD43 /* init2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init2.txt; sourceTree = "<group>"; };
 		F0CCFBFF1BFA37F600E0BD43 /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
 		F0CCFC031BFA72E900E0BD43 /* Sphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sphere.hpp; sourceTree = "<group>"; };
@@ -92,6 +95,9 @@
 				F0DBB3641BF91D7D00B0CF52 /* include */,
 				F0DBB3661BF91D7D00B0CF52 /* source */,
 				59B069641BF8D1D700E24D65 /* Products */,
+				F08B38231C176F5600BE951C /* example1.png */,
+				F08B38241C176F5600BE951C /* example2.png */,
+				F08B38251C176F5600BE951C /* example3.png */,
 				F0DBB3691BF91DB900B0CF52 /* README.md */,
 			);
 			sourceTree = "<group>";
